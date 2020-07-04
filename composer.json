@@ -30,6 +30,7 @@
         "symfony/twig-pack": "dev-master",
         "symfony/validator": "5.2.*",
         "symfony/web-link": "5.2.*",
+        "symfony/webpack-encore-bundle": "dev-master",
         "symfony/yaml": "5.2.*"
     },
     "require-dev": {

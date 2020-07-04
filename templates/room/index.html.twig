@@ -3,39 +3,50 @@
 {% block title %}Room index{% endblock %}
 
 {% block body %}
-    <h1>Room index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Height</th>
-                <th>Depth</th>
-                <th>Width</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<div class="header">
+    <img src="{{ absolute_url(asset('images/room.jpg')) }}" class="responsive"  alt="321">
+    <div class="container">
+        <h1>Room List</h1>
+        <a href="{{ path('room_new') }}">Create new</a>
+        
+    </div>
+    
+</div>
+
+<div class="content container">
+
+    
+    
+
+    <div class="rooms row">
+
         {% for room in rooms %}
-            <tr>
-                <td>{{ room.id }}</td>
-                <td>{{ room.Name }}</td>
-                <td>{{ room.Height }}</td>
-                <td>{{ room.Depth }}</td>
-                <td>{{ room.Width }}</td>
-                <td>
-                    <a href="{{ path('room_show', {'id': room.id}) }}">show</a>
-                    <a href="{{ path('room_edit', {'id': room.id}) }}">edit</a>
-                </td>
-            </tr>
+        <div class="col-sm-6">
+            <div class="room ">
+                <div class="image"><img src="{{ asset(room.Image) }}" alt=""></div>
+                <h2>{{ room.Name }}</h2>
+                <div><span class="measure">Height: </span>{{ room.Height }}</div>
+                <div><span class="measure">Depth: </span>{{ room.Depth }}</div>
+                <div><span class="measure">Width: </span>{{ room.Width }}</div>
+                <div class="view">
+                    <a href="{{ path('room_show', {'id': room.id}) }}">View</a>
+                    {# <a href="{{ path('room_edit', {'id': room.id}) }}">edit</a> #}
+                </div>
+            </div>
+        </div>
         {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
+            <div>
+                <span colspan="6">no records found</span>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
+    
 
-    <a href="{{ path('room_new') }}">Create new</a>
+    
+
+    
+
+</div>
+    
 {% endblock %}

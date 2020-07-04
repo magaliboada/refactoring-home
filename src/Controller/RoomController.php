@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Room;
-use App\Form\Room1Type;
+use App\Form\Room2Type;
 use App\Repository\RoomRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @Route("/room")
@@ -20,6 +23,7 @@ class RoomController extends AbstractController
      */
     public function index(RoomRepository $roomRepository): Response
     {
+
         return $this->render('room/index.html.twig', [
             'rooms' => $roomRepository->findAll(),
         ]);
@@ -28,16 +32,45 @@ class RoomController extends AbstractController
     /**
      * @Route("/new", name="room_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request)
     {
         $room = new Room();
-        $form = $this->createForm(Room1Type::class, $room);
+        $form = $this->createForm(Room2Type::class, $room);
         $form->handleRequest($request);
 
+        
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $imageName = $form->get('Image')->getData();
+            if(isset($imageName))
+            {    
+                $originalFilename = pathinfo($imageName->getClientOriginalName(), PATHINFO_FILENAME);
+                // $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $originalFilename.'-'.uniqid().'.'.$imageName->guessExtension();
+            
+                // Move the file to the directory where images are stored
+                try {
+                    $imageName->move(
+                        $this->getParameter('images_directory'),
+                        $newFilename
+                    );
+
+                    $fullPath = 'images'.'/'.$newFilename;
+                    $room->setImage($fullPath);
+
+                    
+                } catch (FileException $e) {
+                    echo var_export( $e, true);
+                }
+            }
+
+            
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($room);
             $entityManager->flush();
+
 
             return $this->redirectToRoute('room_index');
         }
@@ -63,10 +96,35 @@ class RoomController extends AbstractController
      */
     public function edit(Request $request, Room $room): Response
     {
-        $form = $this->createForm(Room1Type::class, $room);
+        $form = $this->createForm(Room2Type::class, $room);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageName = $form->get('Image')->getData();
+            if(isset($imageName))
+            {    
+                $originalFilename = pathinfo($imageName->getClientOriginalName(), PATHINFO_FILENAME);
+                // $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $originalFilename.'-'.uniqid().'.'.$imageName->guessExtension();
+            
+                // Move the file to the directory where images are stored
+                try {
+                    $imageName->move(
+                        $this->getParameter('images_directory'),
+                        $newFilename
+                    );
+
+                    $fullPath = 'images'.'/'.$newFilename;
+                    $room->setImage($fullPath);
+
+                    
+                } catch (FileException $e) {
+                    echo var_export( $e, true);
+                }
+            }
+
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('room_index');

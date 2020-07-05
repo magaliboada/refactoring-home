@@ -1,26 +1,23 @@
 <?php
 
 namespace App\Form;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 use App\Entity\Item;
 use App\Entity\Room;
-use App\Form\ItemType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class Room2Type extends AbstractType
+class ItemType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder            
-            ->add('Name')
-            ->add('Height')
-            ->add('Depth')
-            ->add('Width')
+        $builder
+            ->add('Name', TextType::class)
             ->add('Image', FileType::class, [
                 'label' => 'Image',
 
@@ -43,26 +40,15 @@ class Room2Type extends AbstractType
                     ])
                 ],
             ])
-            ->add('Items', CollectionType::class, array(
-                'entry_type'   => ItemType::class,
-                'entry_options' => [
-                    'label' => false
-                ],
-                'by_reference' => false,                
-                'allow_add' => true,
-                'allow_delete' => true,
-                'attr' => ['class' => 'item-list'],
-            ))
-            ->add('save', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-success'],
-            ])
-            ;
+            ->add('Price', IntegerType::class)
+            ->add('Link', TextType::class)
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Room::class,
+            'data_class' => Item::class,
         ]);
     }
 }

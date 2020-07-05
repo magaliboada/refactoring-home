@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RoomRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,6 +44,16 @@ class Room
      * @ORM\Column(type="integer", nullable=true)
      */
     private $Width;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Item::class, mappedBy="Room", orphanRemoval=true, cascade={"persist"})
+     */
+    private $Items;
+
+    public function __construct()
+    {
+        $this->Items = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -104,6 +116,37 @@ class Room
     public function setWidth(?int $Width): self
     {
         $this->Width = $Width;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Item[]
+     */
+    public function getItems(): Collection
+    {
+        return $this->Items;
+    }
+
+    public function addItem(Item $item): self
+    {
+        if (!$this->Items->contains($item)) {
+            $this->Items[] = $item;
+            $item->setRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItem(Item $item): self
+    {
+        if ($this->Items->contains($item)) {
+            $this->Items->removeElement($item);
+            // set the owning side to null (unless already changed)
+            if ($item->getRoom() === $this) {
+                $item->setRoom(null);
+            }
+        }
 
         return $this;
     }

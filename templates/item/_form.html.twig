@@ -1,4 +1,6 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+   {{ form_row(form.Name) }}
+   {{ form_row(form.Image) }}
+   {{ form_row(form.Price) }}
+   {{ form_row(form.Link) }}
 {{ form_end(form) }}

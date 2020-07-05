@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ItemRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\FormTypeInterface;
+
 
 /**
  * @ORM\Entity(repositoryClass=ItemRepository::class)
@@ -18,9 +20,19 @@ class Item
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Image;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $Price;
 
     /**
      * @ORM\Column(type="string", length=600, nullable=true)
@@ -28,9 +40,10 @@ class Item
     private $Link;
 
     /**
-     * @ORM\Column(type="string", length=400, nullable=true)
+     * @ORM\ManyToOne(targetEntity=Room::class, inversedBy="Items")
+     * @ORM\JoinColumn(nullable=false, name="room_id", referencedColumnName="id")
      */
-    private $Image;
+    private $Room;
 
     public function getId(): ?int
     {
@@ -42,9 +55,33 @@ class Item
         return $this->Name;
     }
 
-    public function setName(string $Name): self
+    public function setName(?string $Name): self
     {
         $this->Name = $Name;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->Image;
+    }
+
+    public function setImage(?string $Image): self
+    {
+        $this->Image = $Image;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->Price;
+    }
+
+    public function setPrice(?float $Price): self
+    {
+        $this->Price = $Price;
 
         return $this;
     }
@@ -61,14 +98,14 @@ class Item
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getRoom(): ?Room
     {
-        return $this->Image;
+        return $this->Room;
     }
 
-    public function setImage(?string $Image): self
+    public function setRoom(?Room $Room): self
     {
-        $this->Image = $Image;
+        $this->Room = $Room;
 
         return $this;
     }

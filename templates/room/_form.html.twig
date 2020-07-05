@@ -1,4 +1,35 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+    <div class="header">
+        <img src="{{ absolute_url(asset('images/room.jpg')) }}" class="responsive"  alt="321">
+        <div class="container">
+            <h1>Create new Room</h1>
+            <a href="{{ path('room_new') }}">Create new</a>
+            
+        </div>
+        
+    </div>
+
+    <div class="content container">
+        <div class="main-information">
+            {{ form_row(form.Name) }}
+            {{ form_row(form.Width) }}
+            {{ form_row(form.Height) }}
+            {{ form_row(form.Depth) }}
+            {{ form_row(form.Image) }}
+            {% if room.Image != null %}
+                <img src="{{ asset(room.Image) }}" alt="" style="height:300px; width:auto;">
+            {% endif %}
+        </div>
+        
+        {% for row in form.Items %}
+        <div class="element">
+        {{form_row(row)}}
+        </div>
+        {% endfor %}
+
+    
+        
+
+    </div>
 {{ form_end(form) }}

@@ -1,9 +1,11 @@
 {{ form_start(form) }}
 
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
     <div class="header">
         <img src="{{ absolute_url(asset('images/room.jpg')) }}" class="responsive"  alt="321">
         <div class="container">
-            <h1>Create new Room</h1>
+            <h1>Room</h1>
             <a href="{{ path('room_new') }}">Create new</a>
             
         </div>
@@ -18,16 +20,28 @@
             {{ form_row(form.Depth) }}
             {{ form_row(form.Image) }}
             {% if room.Image != null %}
-                <img src="{{ asset(room.Image) }}" alt="" style="height:300px; width:auto;">
+            <div class="form-image">
+                <img src="{{ asset(room.Image) }}" alt="" style="height:500px; width:auto;">
+            </div>
             {% endif %}
         </div>
-        
-        {% for row in form.Items %}
-        <div class="element">
-        {{form_row(row)}}
-        </div>
-        {% endfor %}
 
+        <div class="elements offset-sm-1 col-sm-10">
+            <h2>Items</h2>
+        </div>
+
+        <div class="elements offset-sm-1 col-sm-10" id="item-list" data-prototype="{{ form_widget(form.Items.vars.prototype)|e('html_attr') }}">
+        {% for row in form.Items %}
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <strong>{{row.vars.value.name}}</strong>
+                </div>
+                <div class="panel-body">
+                {{form_row(row)}}
+                </div>
+            </div>
+        {% endfor %}
+        </div>
     
         
 

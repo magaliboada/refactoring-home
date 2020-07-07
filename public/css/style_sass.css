@@ -26,7 +26,7 @@
 }
 
 .room .image {
-  height: 149px;
+  height: 270px;
   width: 100%;
   overflow: hidden;
 }
@@ -75,5 +75,11 @@ label {
 .element div,
 .main-information div {
   padding: 7px;
+}
+
+.form-image {
+  text-align: center;
+  border: 1px solid grey;
+  margin: 10px;
 }
 /*# sourceMappingURL=style_sass.css.map */

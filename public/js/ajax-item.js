@@ -42,10 +42,12 @@ function addNewForm() {
     $collectionHolder.data('index', index+1);
 
     //Create the panel
-    var $panel = $('<div class="panel item panel-warning"><div class="panel-heading"></div></div>');
+    var $panel = $('<div class="panel item panel-warning"><div class="panel-heading">New Item</div></div>');
 
     //Create the panel-boya dna append the form 
-    var $panelBody = $('<div class="panel-heading"></div>').append(newForm);
+    var $panelBody = $('<div class="panel-body main-information"></div>').append(newForm);
+
+    console.log($panelBody[0].innerHTML);
 
     //Append the form to the panel
     $panel.append($panelBody);

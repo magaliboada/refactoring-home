@@ -18,17 +18,17 @@
 
     
     
-
+</b>
     <div class="rooms row">
 
         {% for room in rooms %}
         <div class="col-sm-6">
-            <div class="room ">
+            <div class="room panel">
                 <div class="image"><img src="{{ asset(room.Image) }}" alt=""></div>
                 <h2>{{ room.Name }}</h2>
-                <div><span class="measure">Height: </span>{{ room.Height }}</div>
-                <div><span class="measure">Depth: </span>{{ room.Depth }}</div>
-                <div><span class="measure">Width: </span>{{ room.Width }}</div>
+                <span class="measure"><div><b>Height:</b> {{ room.Height }}</div> </span>
+                <span class="measure"><div><b>Depth:</b> {{ room.Depth }}</div> </span>
+                <span class="measure"><div><b>Width:</b> {{ room.Width }}</div> </span>
                 <div class="view">
                     <!-- <a href="{{ path('room_show', {'id': room.id}) }}">View</a> -->
                     <a href="{{ path('room_edit', {'id': room.id}) }}">View</a>
@@ -41,6 +41,12 @@
             </div>
         {% endfor %}
     </div>
+    
+
+    
+
+    
+
 </div>
     
 {% endblock %}

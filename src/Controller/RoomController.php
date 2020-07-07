@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
- * @Route("/room")
+ * @Route("/")
  */
 class RoomController extends AbstractController
 {

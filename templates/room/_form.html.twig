@@ -14,10 +14,10 @@
 
     <div class="content container panel panel-body">
         <div class="main-information">
-            {{ form_row(form.Name) }}
-            {{ form_row(form.Width) }}
-            {{ form_row(form.Height) }}
-            {{ form_row(form.Depth) }}
+            <div class="name">{{ form_row(form.Name) }}</div>
+            <div class="measure">{{ form_row(form.Width) }}</div>
+            <div class="measure">{{ form_row(form.Height) }}</div>
+            <div class="measure">{{ form_row(form.Depth) }}</div>
             <div class="form-image">
                 {{ form_row(form.Image) }}
             </div>
@@ -36,10 +36,16 @@
         {% for row in form.Items %}
             <div class="panel panel-warning item">
                 <div class="panel-heading">
-                    <strong>{{row.vars.value.name}}</strong>
+                    {{row.vars.value.name}}
                 </div>
-                <div class="panel-body">
-                {{form_row(row)}}
+                <div class="panel-body main-information">                    
+                        {{form_row(row.Name)}}
+                    
+                        {{form_row(row.Image)}}
+
+                        {{form_row(row.Price)}}
+                    
+                        {{form_row(row.Link)}}
                 </div>
             </div>
         {% endfor %}

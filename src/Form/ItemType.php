@@ -21,6 +21,8 @@ class ItemType extends AbstractType
             ->add('Image', FileType::class, [
                 'label' => 'Image',
 
+                'attr' => ['class' => 'form-image'],
+
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
 

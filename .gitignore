@@ -62,8 +62,3 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 *.pdf
-*.jpg
-*.jpg
-*.jpg
-assets/room.jpg
-*.jpg

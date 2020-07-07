@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Room;
-use App\Form\Room2Type;
+use App\Form\RoomType;
 use App\Repository\RoomRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,7 +35,7 @@ class RoomController extends AbstractController
     public function new(Request $request)
     {
         $room = new Room();
-        $form = $this->createForm(Room2Type::class, $room);
+        $form = $this->createForm(RoomType::class, $room);
         $form->handleRequest($request);
 
         
@@ -96,7 +96,7 @@ class RoomController extends AbstractController
      */
     public function edit(Request $request, Room $room): Response
     {
-        $form = $this->createForm(Room2Type::class, $room);
+        $form = $this->createForm(RoomType::class, $room);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

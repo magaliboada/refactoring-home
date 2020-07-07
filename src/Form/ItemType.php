@@ -40,8 +40,12 @@ class ItemType extends AbstractType
                     ])
                 ],
             ])
-            ->add('Price', IntegerType::class)
-            ->add('Link', TextType::class)
+            ->add('Price', IntegerType::class, [
+                'required' => false
+            ])
+            ->add('Link', TextType::class, [
+                'required' => false
+            ])
         ;
     }
 

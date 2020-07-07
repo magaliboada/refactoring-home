@@ -1,3 +1,5 @@
+$background-general: #c3bb9359;
+
 .room {
     background-color: white;
     margin-top: 25px;
@@ -17,7 +19,7 @@
             width: fit-content;
             padding-left: 40px;
             padding-right: 40px;
-            background-color: #c3bb9359;
+            background-color: $background-general;
             color: black;
         }
     }
@@ -30,7 +32,7 @@
 }
 
 .container {
-    background-color: #c3bb9359;
+    background-color: $background-general;
 }
 
 img {
@@ -53,9 +55,10 @@ img {
         position: absolute;
         top: 195px;
         background-color: white;
-        padding: 20px;
+        padding: 23px;
         padding-right: 15%;
         color: #c5bea7;
+        margin-left: -14px;
     }
 }
 
@@ -75,8 +78,72 @@ label {
     padding: 7px
 }
 
-.form-image {
+.form-preview-image {
     text-align: center;
-    border: 1px solid grey;
-    margin: 10px;
+  /* border: 1px solid grey; */
+  margin: 10px;
+  background-color: #ffffff9e;
+}
+
+.form-image div {
+    display: flex;
+}
+
+div#item-list {
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+
+    .panel-heading {
+        background-color: $background-general !important;
+    }
+}
+
+.panel-heading {
+    color: #515151 !important;
+}
+
+.panel-warning {
+    border-color: #c3bb9359 !important;
+}
+
+button#room_save {
+    position: absolute;
+    text-align: center;
+    display: flex;
+    left: 39.9%;
+}
+
+a.btn.btn-warning {
+    position: absolute;
+    left: 45.1%;
+}
+
+form button.btn.btn-danger {
+    position: absolute;
+    left: 52.7%;
+}
+
+button.btn.btn-danger {
+    margin-bottom: 7rem;
+}
+
+button.btn.btn-danger,
+a.btn.btn-warning,
+button#room_save {
+  width: 8%;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid black;
+    // 
+    
+}
+
+.main-information {
+    input {
+        background-color: transparent;
+    }
 }

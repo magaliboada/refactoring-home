@@ -42,7 +42,7 @@ function addNewForm() {
     $collectionHolder.data('index', index+1);
 
     //Create the panel
-    var $panel = $('<div class="panel panel-warning"><div class="panel-heading"></div></div>');
+    var $panel = $('<div class="panel item panel-warning"><div class="panel-heading"></div></div>');
 
     //Create the panel-boya dna append the form 
     var $panelBody = $('<div class="panel-heading"></div>').append(newForm);
@@ -69,7 +69,7 @@ function addRemoveButton($panel) {
 
     $removeButton.click( function(e) {
         // console.log(e.target.parent());
-        $(e.target).parents('.panel').slideUp(1000, function() {
+        $(e.target).parents('.item').slideUp(1000, function() {
             $(this).remove();
 
         });

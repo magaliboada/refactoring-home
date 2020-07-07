@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Room{% endblock %}
+{% block title %}{{ room.Name }}{% endblock %}
 
 {% block body %}
-    <div class="action-buttons">
+<div class="">
         {{ include('room/_form.html.twig', {'button_label': 'Update'}) }}
+        <a class="btn btn-warning" href="{{ path('room_index') }}">Back to list</a> 
         {{ include('room/_delete_form.html.twig') }}
-    </div>
+</div>
 
-    <a href="{{ path('room_index') }}">back to list</a>
 {% endblock %}
 

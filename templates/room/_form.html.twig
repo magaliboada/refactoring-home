@@ -3,24 +3,26 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
     <div class="header">
-        <img src="{{ absolute_url(asset('images/room.jpg')) }}" class="responsive"  alt="321">
+        <img src="{{ absolute_url(asset('images/room.jpg')) }}" class="responsive"  alt="header">
         <div class="container">
-            <h1>Room</h1>
+            <h1>{{room.Name}}</h1>
             <a href="{{ path('room_new') }}">Create new</a>
             
         </div>
         
     </div>
 
-    <div class="content container">
+    <div class="content container panel panel-body">
         <div class="main-information">
             {{ form_row(form.Name) }}
             {{ form_row(form.Width) }}
             {{ form_row(form.Height) }}
             {{ form_row(form.Depth) }}
-            {{ form_row(form.Image) }}
-            {% if room.Image != null %}
             <div class="form-image">
+                {{ form_row(form.Image) }}
+            </div>
+            {% if room.Image != null %}
+            <div class="form-preview-image">
                 <img src="{{ asset(room.Image) }}" alt="" style="height:500px; width:auto;">
             </div>
             {% endif %}
@@ -30,9 +32,9 @@
             <h2>Items</h2>
         </div>
 
-        <div class="elements offset-sm-1 col-sm-10" id="item-list" data-prototype="{{ form_widget(form.Items.vars.prototype)|e('html_attr') }}">
+        <div class="elements offset-sm-1 col-sm-10 panel" id="item-list" data-prototype="{{ form_widget(form.Items.vars.prototype)|e('html_attr') }}">
         {% for row in form.Items %}
-            <div class="panel panel-warning">
+            <div class="panel panel-warning item">
                 <div class="panel-heading">
                     <strong>{{row.vars.value.name}}</strong>
                 </div>
@@ -46,4 +48,6 @@
         
 
     </div>
+
+    
 {{ form_end(form) }}

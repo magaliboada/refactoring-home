@@ -1,6 +1,8 @@
 {{ form_start(form) }}
    {{ form_row(form.Name) }}
-   {{ form_row(form.Image) }}
+   <div class="form-image">
+      {{ form_row(form.Image) }}
+   </div>
    {{ form_row(form.Price) }}
    {{ form_row(form.Link) }}
 {{ form_end(form) }}

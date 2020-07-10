@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Model\Scraper;
+
 /**
  * @Route("/")
  */
@@ -65,12 +66,10 @@ class RoomController extends AbstractController
                     echo var_export( $e, true);
                 }
             }
-
             
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($room);
             $entityManager->flush();
-
 
             return $this->redirectToRoute('room_index');
         }
@@ -91,7 +90,7 @@ class RoomController extends AbstractController
             $scraper = new Scraper($item->getLink());
             $item->setPrice($scraper->getPrice());
             $item->setImage($scraper->getImage());
-
+            $item->store = $scraper->getSite();
         }
 
         return $this->render('room/show.html.twig', [
@@ -113,7 +112,6 @@ class RoomController extends AbstractController
             if(isset($imageName))
             {    
                 $originalFilename = pathinfo($imageName->getClientOriginalName(), PATHINFO_FILENAME);
-                // $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $originalFilename.'-'.uniqid().'.'.$imageName->guessExtension();
             
                 // Move the file to the directory where images are stored

@@ -35,13 +35,34 @@ class Scraper
     {
         // $this->url = urlencode($this->url);
 
-        $html = file_get_contents($this->url);
+        $html = $price = '';
+        try {
+            $html = file_get_contents($this->url);
         $price = $this->get_string_between($html, '<span id="priceblock_ourprice" class="a-size-medium a-color-price priceBlockBuyingPriceString">', '</span>');
+        $price = str_replace(",", ".", $price);
+        
+
+        $html = file_get_contents($this->url);
+        
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        $this->price = floatval($price);
+        $this->image = $this->get_string_between($html, 'data-old-hires="', '" onload');
+    }
+
+    private function handleIkea(): void
+    {
+        // $this->url = urlencode($this->url);
+
+        $html = file_get_contents($this->url);
+        $price = $this->get_string_between($html, '<span class="product-pip__price__value">', '</span>');
         $price = str_replace(",", ".", $price);
         $this->price = floatval($price);
 
         $html = file_get_contents($this->url);
-        $this->image = $this->get_string_between($html, 'data-old-hires="', '" onload');
+        $this->image = $this->get_string_between($html, 'og:image" content="', '" />');
     }
 
     private function handleLeroy(): void
@@ -79,6 +100,11 @@ class Scraper
         
     }
 
+    public function getSite(): string
+    {
+        return $this->site;
+    }
+
     public function getPrice(): float
     {
         return $this->price;
@@ -100,6 +126,8 @@ class Scraper
             $this->site = 'Ikea';
         } elseif (strpos($this->url, 'maisonsdumonde') !== false) {
             $this->site = 'Maison';
+        }elseif (strpos($this->url, 'ikea') !== false) {
+            $this->site = 'Ikea';
         } else {
             $this->site = '';
         }

@@ -15,9 +15,9 @@
     <div class="content container panel panel-body">
         <div class="main-information">
             <div class="name">{{ form_row(form.Name) }}</div>
-            <div class="measure">{{ form_row(form.Width) }}</div>
-            <div class="measure">{{ form_row(form.Height) }}</div>
-            <div class="measure">{{ form_row(form.Depth) }}</div>
+            <div class="">{{ form_row(form.Width) }}</div>
+            <div class="">{{ form_row(form.Height) }}</div>
+            <div class="">{{ form_row(form.Depth) }}</div>
             <div class="form-image">
                 {{ form_row(form.Image) }}
             </div>
@@ -31,20 +31,15 @@
         <div class="elements offset-sm-1 col-sm-10">
             <h2>Items</h2>
         </div>
-
         <div class="elements offset-sm-1 col-sm-10 panel edit" id="item-list" data-prototype="{{ form_widget(form.Items.vars.prototype)|e('html_attr') }}">
         {% for row in form.Items %}
-            <div class="panel edit panel-warning item">
+            <div class="panel edit panel-warning shadow mb-4 item">
                 <div class="panel-heading">
                     {{row.vars.value.name}}
                 </div>
                 <div class="panel-body main-information">                    
                         {{form_row(row.Name)}}
-<!--                     
-                        {{form_row(row.Image)}}
 
-                        {{form_row(row.Price)}}
-                     -->
                         {{form_row(row.Link)}}
                 </div>
             </div>

@@ -5,10 +5,13 @@
 {% block body %}
 
 <div class="header">
-    <img src="{{ absolute_url(asset('images/room.jpg')) }}" class="responsive"  alt="321">
+    <img src="{{ absolute_url(asset('images/room.jpg')) }}" class="responsive"  alt="header">
     <div class="container">
-        <h1>Room List</h1>
-        <a href="{{ path('room_new') }}">Create new</a>
+        <h1 class="home-header">
+            <span>Room List</span>
+            <a href="{{ path('room_new') }}">Create new</a>
+        </h1>
+        
         
     </div>
     
@@ -23,17 +26,16 @@
 
         {% for room in rooms %}
         <div class="col-sm-6">
-            <div class="room panel">
+            <a href="{{ path('room_show', {'id': room.id}) }}">
+            <div class="room panel shadow">
                 <div class="image"><img src="{{ asset(room.Image) }}" alt=""></div>
                 <h2>{{ room.Name }}</h2>
                 <span class="measure"><div><b>Height:</b> {{ room.Height }}</div> </span>
                 <span class="measure"><div><b>Depth:</b> {{ room.Depth }}</div> </span>
                 <span class="measure"><div><b>Width:</b> {{ room.Width }}</div> </span>
-                <div class="view">
-                    <a href="{{ path('room_show', {'id': room.id}) }}">View</a>
-                    <!-- <a href="{{ path('room_edit', {'id': room.id}) }}">View</a> -->
-                </div>
+        
             </div>
+        </a>
         </div>
         {% else %}
             <div>

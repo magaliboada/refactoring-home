@@ -18,33 +18,33 @@ class ItemType extends AbstractType
     {
         $builder
             ->add('Name', TextType::class)
-            ->add('Image', FileType::class, [
-                'label' => 'Image',
+            // ->add('Image', FileType::class, [
+            //     'label' => 'Image',
 
-                'attr' => ['class' => 'form-image'],
+            //     'attr' => ['class' => 'form-image'],
 
-                // unmapped means that this field is not associated to any entity property
-                'mapped' => false,
+            //     // unmapped means that this field is not associated to any entity property
+            //     'mapped' => false,
 
-                // make it optional so you don't have to re-upload the PDF file
-                // every time you edit the Product details
-                'required' => false,
+            //     // make it optional so you don't have to re-upload the PDF file
+            //     // every time you edit the Product details
+            //     'required' => false,
 
-                // unmapped fields can't define their validation using annotations
-                // in the associated entity, so you can use the PHP constraint classes
-                'constraints' => [
-                    new File([
-                        'maxSize' => '2048k',
-                        'mimeTypes' => [
-                            'image/jpeg',
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid Image',
-                    ])
-                ],
-            ])
-            ->add('Price', IntegerType::class, [
-                'required' => false
-            ])
+            //     // unmapped fields can't define their validation using annotations
+            //     // in the associated entity, so you can use the PHP constraint classes
+            //     'constraints' => [
+            //         new File([
+            //             'maxSize' => '2048k',
+            //             'mimeTypes' => [
+            //                 'image/jpeg',
+            //             ],
+            //             'mimeTypesMessage' => 'Please upload a valid Image',
+            //         ])
+            //     ],
+            // ])
+            // ->add('Price', IntegerType::class, [
+            //     'required' => false
+            // ])
             ->add('Link', TextType::class, [
                 'required' => false
             ])

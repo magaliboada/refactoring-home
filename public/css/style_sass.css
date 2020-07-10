@@ -1,6 +1,7 @@
 @charset "UTF-8";
 .content.container {
   padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 label {
@@ -17,6 +18,32 @@ input:focus {
   background-color: white;
 }
 
+.btn-warning {
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+
+.btn-warning:hover {
+  color: #fff;
+  background-color: #ec971f;
+  border-color: #d58512;
+}
+
+a.btn.btn-warning {
+  width: 15% !important;
+}
+
+a:focus, a:hover, a {
+  color: initial;
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
 .container {
   background-color: #c3bb9359;
 }
@@ -27,10 +54,6 @@ input:focus {
 
 .rooms .measure, .rooms h2 {
   color: gray;
-}
-
-.rooms .measure {
-  font-size: 1.5rem;
 }
 
 .room {
@@ -66,11 +89,6 @@ input:focus {
   overflow: hidden;
 }
 
-img {
-  width: 100%;
-  height: auto;
-}
-
 .header {
   height: 300px;
   overflow: hidden;
@@ -84,12 +102,17 @@ img {
 .header h1 {
   z-index: 2;
   position: absolute;
-  top: 195px;
+  top: 206px;
   background-color: white;
   padding: 23px;
   padding-right: 15%;
   color: #c5bea7;
   margin-left: -14px;
+}
+
+.header h1 a {
+  font-size: x-large;
+  /* color: #c5bea7; */
 }
 
 .element:nth-child(odd) {
@@ -118,6 +141,11 @@ img {
   display: flex;
 }
 
+.shadow:hover {
+  -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+          box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
 div#item-list {
   width: 100%;
   background-color: white;
@@ -127,21 +155,79 @@ div#item-list {
 
 div#item-list .panel-heading {
   background-color: #c3bb9359 !important;
+  font-size: x-large;
 }
 
 div#item-list .panel-heading {
   color: #515151 !important;
+  padding: 10px;
+}
+
+div#item-list .store {
+  font-style: italic;
+  font-size: large;
 }
 
 div#item-list .panel-warning {
   border-color: #c3bb9359 !important;
 }
 
-div#item-list .panel-body.main-information > div > div:nth-child(2),
-div#item-list .panel-body.main-information > div:nth-child(2) {
+div#item-list .row.body-item div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+div#item-list .center-values {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+div#item-list .price .col-sm-4 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  font-size: xx-large;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+div#item-list .body-item {
+  font-size: x-large;
+}
+
+div#item-list .body-item div {
+  padding: 8px;
+  color: #6b6464;
+}
+
+div#item-list .body-item .row {
+  margin-left: 0px;
+}
+
+div#item-list .body-item .row a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .main-information {
@@ -157,6 +243,16 @@ div#item-list .panel-body.main-information > div:nth-child(2) {
   padding: 8px;
 }
 
+.main-information .row div {
+  color: #686565;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  font-size: large;
+}
+
 .main-information .price div::after {
   content: '   €';
 }
@@ -165,32 +261,16 @@ div#item-list .panel-body.main-information > div:nth-child(2) {
   content: '   cm';
 }
 
-button#room_save {
-  position: absolute;
-  text-align: center;
+.action-buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  left: 39.9%;
-}
-
-a.btn.btn-warning {
-  position: absolute;
-  left: 45.1%;
-}
-
-form button.btn.btn-danger {
-  position: absolute;
-  left: 52.7%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 button.btn.btn-danger {
   margin-bottom: 7rem;
-}
-
-button.btn.btn-danger,
-a.btn.btn-warning,
-button#room_save {
-  width: 8%;
 }
 /*# sourceMappingURL=style_sass.css.map */

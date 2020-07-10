@@ -14,10 +14,9 @@
     <div class="content container panel panel-body">
         <div class="main-information">
             <div class="row">
-                <div class="measure col-sm-1"></div>
-                <div class="measure col-sm-2"><b>Width: </b>{{ ( room.Width/100 )|number_format(2, ',', '.') }} m</div>
-                <div class="measure col-sm-2"><b>Height: </b>{{ ( room.Height/100 )|number_format(2, ',', '.') }} m</div>
-                <div class="measure col-sm-2"><b>Depth: </b>{{ ( room.Depth/100 )|number_format(2, ',', '.') }} m</div>
+                <div class="measure col-sm-3"><b>Width: </b>{{ ( room.Width/100 )|number_format(2, ',', '.') }} m</div>
+                <div class="measure col-sm-3"><b>Height: </b>{{ ( room.Height/100 )|number_format(2, ',', '.') }} m</div>
+                <div class="measure col-sm-3"><b>Depth: </b>{{ ( room.Depth/100 )|number_format(2, ',', '.') }} m</div>
             </div>
             {% if room.Image != null %}
             <div class="form-preview-image">
@@ -26,72 +25,43 @@
             {% endif %}
         </div>
 
-        <div class="elements offset-sm-1 col-sm-10">
-            <h2>Items</h2>
+        <div class="elements offset-sm-1 col-sm-10 mb-4">
         </div>
 
         
         <div class="elements offset-sm-1 col-sm-10 panel" id="item-list" >
         {% for row in room.Items %}
-            <div class="panel panel-warning item">
-                <div class="panel-heading">
-                    {{(row.Name)}}
+                <a href="{{(row.Link)}}" target="_blank">
+                <div class="panel panel-warning item shadow pt-4 pl-4 pr-4 mb-4 bg-white">
+                    <div class="panel-heading">
+                        {{(row.Name)}}
+                    </div>
+                    <div class="panel-body row body-item pl-2">      
+                        
+                            <div class="image col-sm-3">
+                                <img src="{{(row.Image)}}" alt="">
+                            </div>  
+                            <div class="col-sm-5"></div>                      
+                            <div class=" col-sm-4">
+                                <div class="price center-values">
+                                    {{ (row.Price)|number_format(2, ',', '.') }} €
+                                </div>
+                                <div class="store center-values">
+                                    {{ row.store }}
+                                </div>                            
+                            </div>
+                    </div>
                 </div>
-                <div class="panel-body main-information row">      
-                    <a href="{{(row.Link)}}" target="_blank">
-                        <div class="image col-sm-3">
-                            <img src="{{(row.Image)}}" alt="">
-                        </div>  
-                        <div class="col-sm-5"></div>                      
-                        <div class=" price col-sm-4">
-                            {{ (row.Price)|number_format(2, ',', '.') }} €
-                        </div>
-                    </a>
-                </div>
-
-                
-                
-            </div>
+            </a>
         {% endfor %}
-        <a class="btn btn-info" href="/{{room.id}}/edit">Edit</a> 
-        <a class="btn btn-warning" href="{{ path('room_index') }}">Back to list</a> 
+        <div class="action-buttons">
+            <a class="btn btn-info m-2" href="/{{room.id}}/edit">Edit</a> 
+            <a class="btn btn-warning m-2" href="{{ path('room_index') }}">Back to list</a> 
+        </div>
         </div>
     
         
 
     </div>
 
-    <style>
-
-        a:focus, a:hover, a {
-            color: initial;
-            text-decoration: none;
-        }
-
-        .price.col-sm-4 {
-            display: flex; 
-            text-align: center;
-            font-size: xx-large;
-            justify-content: center;
-        }
-
-        .panel-body.main-information.row a {            
-            display: flex;
-            align-items: center;
-            /* justify-content: center; */
-        }
-
-        .main-information {
-            font-size: x-large;
-        }
-
-        .panel-heading {
-            font-size: x-large;
-        }
-
-        .main-information div {
-            padding: 8px;
-            color: #6b6464;
-        }
-    </style>
 {% endblock %}

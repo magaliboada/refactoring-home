@@ -42,7 +42,7 @@ function addNewForm() {
     $collectionHolder.data('index', index+1);
 
     //Create the panel
-    var $panel = $('<div class="panel item panel-warning"><div class="panel-heading">New Item</div></div>');
+    var $panel = $('<div class="panel panel-warning item shadow pt-4 pl-4 pr-4 mb-4 bg-white"><div class="panel-heading">New Item</div></div>');
 
     //Create the panel-body and append the form 
     var $panelBody = $('<div class="panel-body main-information"></div>').append(newForm);
@@ -65,7 +65,7 @@ function addNewForm() {
 
 function addRemoveButton($panel) {
     //remove button
-    var $removeButton = $('<div class="btn btn-danger">Remove Item</div>');
+    var $removeButton = $('<div class="btn btn-danger m-4">Remove Item</div>');
     var $panelFooter = $('<div class="panel-footer"></div>').append($removeButton);
 
     //handle Click Event

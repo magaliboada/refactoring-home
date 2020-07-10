@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
-
+use App\Model\Scraper;
 /**
  * @Route("/")
  */
@@ -86,6 +86,14 @@ class RoomController extends AbstractController
      */
     public function show(Room $room): Response
     {
+
+        foreach ($room->getItems() as &$item) {
+            $scraper = new Scraper($item->getLink());
+            $item->setPrice($scraper->getPrice());
+            $item->setImage($scraper->getImage());
+
+        }
+
         return $this->render('room/show.html.twig', [
             'room' => $room,
         ]);
@@ -127,7 +135,9 @@ class RoomController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('room_index');
+            return $this->redirectToRoute('room_show', ['id' => $room->getId()]);
+
+            // return $this->redirectToRoute('room_index');
         }
 
         return $this->render('room/edit.html.twig', [

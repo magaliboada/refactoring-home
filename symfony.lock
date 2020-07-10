@@ -156,6 +156,9 @@
             "config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "sunra/php-simple-html-dom-parser": {
+        "version": "dev-master"
+    },
     "symfony/asset": {
         "version": "5.2-dev"
     },
@@ -278,9 +281,6 @@
         "version": "5.2-dev"
     },
     "symfony/http-kernel": {
-        "version": "5.2-dev"
-    },
-    "symfony/inflector": {
         "version": "5.2-dev"
     },
     "symfony/intl": {

@@ -5,15 +5,15 @@ var $addNewItem = $('<div href="#" class="btn btn-info">Add new Item</div>');
 $(document).ready( function() {
 
     //get the collectionHolder
-    $collectionHolder = $('#item-list');
+    $collectionHolder = $('#item-list.edit');
 
     //Append Add Button to the CollectionHolder
     $collectionHolder.append($addNewItem);
 
-    $collectionHolder.data('index', $collectionHolder.find('.panel').length)
+    $collectionHolder.data('index', $collectionHolder.find('.panel.edit').length)
 
     //Add Remove button to existing Items
-    $collectionHolder.find('.panel').each( function () {
+    $collectionHolder.find('.panel.edit').each( function () {
         addRemoveButton($(this));
     });
 
@@ -44,7 +44,7 @@ function addNewForm() {
     //Create the panel
     var $panel = $('<div class="panel item panel-warning"><div class="panel-heading">New Item</div></div>');
 
-    //Create the panel-boya dna append the form 
+    //Create the panel-body and append the form 
     var $panelBody = $('<div class="panel-body main-information"></div>').append(newForm);
 
     console.log($panelBody[0].innerHTML);
@@ -53,6 +53,7 @@ function addNewForm() {
     $panel.append($panelBody);
 
     //Append panel to the CollectionHolder
+    
     $addNewItem.before($panel);
 
 

@@ -3,23 +3,9 @@
 {% block title %}New Room{% endblock %}
 
 {% block body %}
-    
-    <div class="header">
-        <img src="{{ absolute_url(asset('images/room.jpg')) }}" class="responsive"  alt="321">
-        <div class="container">
-            <h1>Create new Room</h1>
-            <a href="{{ path('room_new') }}">Create new</a>
-            
-        </div>
-        
-    </div>
+<div class="">
+        {{ include('room/_form.html.twig', {'button_label': 'Update'}) }}
+        <a class="btn btn-warning" href="{{ path('room_index') }}">Back to list</a> 
+</div>
 
-    <div class="content container">
-
-        {{ form(form) }}
-
-         <a href="{{ path('room_index') }}">back to list</a>
-    </div>
-
-   
 {% endblock %}

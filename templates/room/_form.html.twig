@@ -3,11 +3,9 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
     <div class="header">
-        <img src="{{ absolute_url(asset('images/room.jpg')) }}" class="responsive"  alt="header">
+        <img src="{{ absolute_url(asset('images/roof.jpg')) }}" class="responsive"  alt="header">
         <div class="container">
-            <h1>{{room.Name}}</h1>
-            <a href="{{ path('room_new') }}">Create new</a>
-            
+            <h1>New Room</h1>            
         </div>
         
     </div>
@@ -28,9 +26,6 @@
             {% endif %}
         </div>
 
-        <div class="elements offset-sm-1 col-sm-10">
-            <h2>Items</h2>
-        </div>
         <div class="elements offset-sm-1 col-sm-10 panel edit" id="item-list" data-prototype="{{ form_widget(form.Items.vars.prototype)|e('html_attr') }}">
         {% for row in form.Items %}
             <div class="panel edit panel-warning shadow mb-4 item">

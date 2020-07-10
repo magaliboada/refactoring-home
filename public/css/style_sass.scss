@@ -1,4 +1,4 @@
-$background-general: #c3bb9359;
+$background-general: #ffffffe3;
 
 .content.container {
     padding-top: 40px;
@@ -41,8 +41,8 @@ a:focus, a:hover, a {
 }
 
 img {
-    width: 100%;
-    height: auto;
+    width: 100% !important;
+    height: auto !important;
 }
 
 .container {
@@ -57,11 +57,6 @@ img {
 .rooms {
     .measure, h2 {
         color: gray;
-    }
-    
-    .measure {
-        // font-size: 1.5rem;
-        
     }
 }
 
@@ -93,30 +88,39 @@ img {
         height: 270px;
         width: 100%;
         overflow: hidden;
+
+        img {
+            min-height: -webkit-fill-available;
+        }
     }
 }
 
 
 
 .header {
-    height: 300px;
+    height: 202px;
     overflow: hidden;
 
-    img{
-        padding: 10px;
+     img {
+        /* padding: 10px; */
         z-index: -1;
+        /* top: 25px; */
+        position: fixed;
     }
 
-    h1 {
+    .home-header {
         z-index: 2;
         position: absolute;
-        top: 206px;
+        top: 100px;
         background-color: white;
         padding: 23px;
-        padding-right: 15%;
+        width: 41%;
         color: #c5bea7;
-        margin-left: -14px;
-        
+        margin-left: -15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
         a {
             font-size: x-large;
             /* color: #c5bea7; */
@@ -160,9 +164,8 @@ div#item-list {
     width: 100%;
     background-color: white;
     padding: 20px;
-    margin-bottom: 30px;
-
-    
+    margin-top: 30px;
+    margin-bottom: 30px;    
 
     .panel-heading {
         background-color: $background-general !important;
@@ -172,6 +175,7 @@ div#item-list {
     .panel-heading {
         color: #515151 !important;
         padding: 10px;
+        background-color: #c5bea757 !important;
     }
 
     .store {
@@ -223,12 +227,17 @@ div#item-list {
         }
     }
 
+    img {
+        border: 1px solid #c3bb9359;
+    }
+
     
 }
 
 .main-information {
     border: 4px solid white;
-    padding: 25px;
+    background: white;
+
 
     input {
         background-color: transparent;
@@ -245,7 +254,10 @@ div#item-list {
         font-size: large;
     }
 
-    
+    .row {
+        display: flex;
+        justify-content: center;
+    }
 
     .price div::after {
         content: '   €';
@@ -268,17 +280,13 @@ div#item-list {
     justify-content: center;
 }
 
-// form  {
-    // button.btn.btn-danger {
-    //     position: absolute;
-    //     left: 52.7%;
-    // }
-
-    // a.btn.btn-warning {
-    //     position: absolute;
-    //     left: 45.1%;
-    // }
-// }
+.user-menu {
+    position: fixed;
+    background: white;
+    width: 100%;
+    z-index: 99;
+    padding: 10px;
+}
 
 button.btn.btn-danger {
     margin-bottom: 7rem;

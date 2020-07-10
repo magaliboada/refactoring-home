@@ -40,12 +40,12 @@ a:focus, a:hover, a {
 }
 
 img {
-  width: 100%;
-  height: auto;
+  width: 100% !important;
+  height: auto !important;
 }
 
 .container {
-  background-color: #c3bb9359;
+  background-color: #ffffffe3;
 }
 
 .container.content {
@@ -79,7 +79,7 @@ img {
   width: fit-content;
   padding-left: 40px;
   padding-right: 40px;
-  background-color: #c3bb9359;
+  background-color: #ffffffe3;
   color: gray;
 }
 
@@ -89,28 +89,43 @@ img {
   overflow: hidden;
 }
 
+.room .image img {
+  min-height: -webkit-fill-available;
+}
+
 .header {
-  height: 300px;
+  height: 202px;
   overflow: hidden;
 }
 
 .header img {
-  padding: 10px;
+  /* padding: 10px; */
   z-index: -1;
+  /* top: 25px; */
+  position: fixed;
 }
 
-.header h1 {
+.header .home-header {
   z-index: 2;
   position: absolute;
-  top: 206px;
+  top: 100px;
   background-color: white;
   padding: 23px;
-  padding-right: 15%;
+  width: 41%;
   color: #c5bea7;
-  margin-left: -14px;
+  margin-left: -15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.header h1 a {
+.header .home-header a {
   font-size: x-large;
   /* color: #c5bea7; */
 }
@@ -150,17 +165,19 @@ div#item-list {
   width: 100%;
   background-color: white;
   padding: 20px;
+  margin-top: 30px;
   margin-bottom: 30px;
 }
 
 div#item-list .panel-heading {
-  background-color: #c3bb9359 !important;
+  background-color: #ffffffe3 !important;
   font-size: x-large;
 }
 
 div#item-list .panel-heading {
   color: #515151 !important;
   padding: 10px;
+  background-color: #c5bea757 !important;
 }
 
 div#item-list .store {
@@ -230,9 +247,13 @@ div#item-list .body-item .row a {
           align-items: center;
 }
 
+div#item-list img {
+  border: 1px solid #c3bb9359;
+}
+
 .main-information {
   border: 4px solid white;
-  padding: 25px;
+  background: white;
 }
 
 .main-information input {
@@ -253,6 +274,15 @@ div#item-list .body-item .row a {
   font-size: large;
 }
 
+.main-information .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .main-information .price div::after {
   content: '   €';
 }
@@ -268,6 +298,14 @@ div#item-list .body-item .row a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.user-menu {
+  position: fixed;
+  background: white;
+  width: 100%;
+  z-index: 99;
+  padding: 10px;
 }
 
 button.btn.btn-danger {

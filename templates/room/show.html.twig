@@ -4,25 +4,26 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
     <div class="header">
-        <img src="{{ absolute_url(asset('images/room.jpg')) }}" class="responsive"  alt="header">
+        <img src="{{ absolute_url(asset('images/roof.jpg')) }}" class=""  alt="header">
         <div class="container">
-            <h1>{{room.Name}}</h1>            
+            <div class="home-header">
+                <h1>{{room.Name}}</h1>
+            </div>
         </div>
-        
     </div>
 
     <div class="content container panel panel-body">
-        <div class="main-information">
-            <div class="row">
-                <div class="measure col-sm-3"><b>Width: </b>{{ ( room.Width/100 )|number_format(2, ',', '.') }} m</div>
-                <div class="measure col-sm-3"><b>Height: </b>{{ ( room.Height/100 )|number_format(2, ',', '.') }} m</div>
-                <div class="measure col-sm-3"><b>Depth: </b>{{ ( room.Depth/100 )|number_format(2, ',', '.') }} m</div>
-            </div>
+        <div class="main-information">            
             {% if room.Image != null %}
             <div class="form-preview-image">
                 <img src="{{ asset(room.Image) }}" alt="" style="height:500px; width:auto;">
             </div>
             {% endif %}
+            <div class="row">
+                <div class="measure col-sm-3"><b>Width: </b>{{ ( room.Width/100 )|number_format(2, ',', '.') }} m</div>
+                <div class="measure col-sm-3"><b>Height: </b>{{ ( room.Height/100 )|number_format(2, ',', '.') }} m</div>
+                <div class="measure col-sm-3"><b>Depth: </b>{{ ( room.Depth/100 )|number_format(2, ',', '.') }} m</div>
+            </div>
         </div>
 
         <div class="elements offset-sm-1 col-sm-10 mb-4">

@@ -48,7 +48,7 @@ img {
 .container {
 
     &.content {
-        padding-top: 40px;
+        padding: 30px;
     }
 
     background-color: $background-general;
@@ -62,8 +62,8 @@ img {
 
 .room {
     background-color: white;
-    padding: 30px;
-    margin-bottom: 50px;
+    padding: 50px;
+    margin-bottom: 30px;
 
     &.row {
         padding: inherit;
@@ -88,10 +88,16 @@ img {
         height: 270px;
         width: 100%;
         overflow: hidden;
+        margin-bottom: 20px;
 
         img {
             min-height: -webkit-fill-available;
         }
+    }
+
+    span.measure {
+        width: 33%;
+        float: left;
     }
 }
 
@@ -115,7 +121,7 @@ img {
         background-color: white;
         padding: 23px;
         width: 41%;
-        color: #c5bea7;
+        color: gray;
         margin-left: -15px;
         display: flex;
         justify-content: space-between;
@@ -123,7 +129,7 @@ img {
 
         a {
             font-size: x-large;
-            /* color: #c5bea7; */
+            color: gray;
         }
     }
 }
@@ -281,11 +287,36 @@ div#item-list {
 }
 
 .user-menu {
+    
     position: fixed;
     background: white;
     width: 100%;
     z-index: 99;
     padding: 10px;
+    text-align: end;
+    display: flex;
+    color: gray;
+    justify-content: space-between;
+    padding-right: 30px;
+    padding-left: 30px;
+    align-items: center;
+
+    a {
+        color: gray;
+    }
+
+    .home {
+        a {
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+        height: 40px !important;
+        width: auto !important;
+            padding-right: 15px;
+        }
+    }
 }
 
 button.btn.btn-danger {

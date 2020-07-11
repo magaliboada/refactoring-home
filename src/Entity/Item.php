@@ -32,7 +32,7 @@ class Item
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $Price;
+    private $Price = 0;
 
     /**
      * @ORM\Column(type="string", length=600, nullable=true)

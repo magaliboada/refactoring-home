@@ -22,6 +22,21 @@
 
     </head>
     <body>
+        <div class="user-menu">
+            <div class="home">
+                <a href="/">
+                    <img src="{{ absolute_url(asset('images/favicon.png')) }}" alt="">
+                    <span>Refactoring Home</span>
+                </a>
+            </div>
+            <div class="account">
+                <a href="#">
+                    My account
+                </a>
+                |
+                <a href="/logout">Lougout</a>
+            </div>
+        </div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

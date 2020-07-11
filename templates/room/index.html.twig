@@ -3,9 +3,7 @@
 {% block title %}Room index{% endblock %}
 
 {% block body %}
-<div class="user-menu">
-    My account
-</div>
+
 <div class="header">
     <img src="{{ absolute_url(asset('images/roof.jpg')) }}" class="responsive"  alt="header">
     <div class="container">
@@ -27,7 +25,7 @@
     <div class="rooms row">
 
         {% for room in rooms %}
-        <div class="col-sm-6">
+        <div class="col-sm-6 col-xs-12">
             <a href="{{ path('room_show', {'id': room.id}) }}">
             <div class="room panel shadow">
                 <div class="image"><img src="{{ asset(room.Image) }}" alt=""></div>

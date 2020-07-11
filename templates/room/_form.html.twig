@@ -1,13 +1,19 @@
 {{ form_start(form) }}
-
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
     <div class="header">
-        <img src="{{ absolute_url(asset('images/roof.jpg')) }}" class="responsive"  alt="header">
+        <img src="{{ absolute_url(asset('images/roof.jpg')) }}" class=""  alt="header">
         <div class="container">
-            <h1>New Room</h1>            
+            <div class="home-header">
+                <h1>
+                    {% if room.Name is not empty %}
+                        {{room.Name}}
+                    {% else %}
+                        New Room
+                    {% endif %}           
+                </h1>
+            </div>
         </div>
-        
     </div>
 
     <div class="content container panel panel-body">
@@ -34,16 +40,10 @@
                 </div>
                 <div class="panel-body main-information">                    
                         {{form_row(row.Name)}}
-
                         {{form_row(row.Link)}}
                 </div>
             </div>
         {% endfor %}
         </div>
-    
-        
-
     </div>
-
-    
 {{ form_end(form) }}

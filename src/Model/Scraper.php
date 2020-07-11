@@ -10,7 +10,7 @@ class Scraper
 {
     
     private $url;
-    private $price;
+    private $price = 0;
     private $image;
     private $site;
 

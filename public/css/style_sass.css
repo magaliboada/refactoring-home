@@ -49,7 +49,7 @@ img {
 }
 
 .container.content {
-  padding-top: 40px;
+  padding: 30px;
 }
 
 .rooms .measure, .rooms h2 {
@@ -58,8 +58,8 @@ img {
 
 .room {
   background-color: white;
-  padding: 30px;
-  margin-bottom: 50px;
+  padding: 50px;
+  margin-bottom: 30px;
 }
 
 .room.row {
@@ -87,10 +87,16 @@ img {
   height: 270px;
   width: 100%;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .room .image img {
   min-height: -webkit-fill-available;
+}
+
+.room span.measure {
+  width: 33%;
+  float: left;
 }
 
 .header {
@@ -112,7 +118,7 @@ img {
   background-color: white;
   padding: 23px;
   width: 41%;
-  color: #c5bea7;
+  color: gray;
   margin-left: -15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -127,7 +133,7 @@ img {
 
 .header .home-header a {
   font-size: x-large;
-  /* color: #c5bea7; */
+  color: gray;
 }
 
 .element:nth-child(odd) {
@@ -306,6 +312,38 @@ div#item-list img {
   width: 100%;
   z-index: 99;
   padding: 10px;
+  text-align: end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: gray;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-right: 30px;
+  padding-left: 30px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user-menu a {
+  color: gray;
+}
+
+.user-menu .home a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user-menu .home img {
+  height: 40px !important;
+  width: auto !important;
+  padding-right: 15px;
 }
 
 button.btn.btn-danger {

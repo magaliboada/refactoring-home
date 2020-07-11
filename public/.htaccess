@@ -1,0 +1,4 @@
+AuthName "Dialog prompt"
+AuthType Basic
+AuthUserFile /var/www/refactoring-home/.htpasswd
+Require valid-user

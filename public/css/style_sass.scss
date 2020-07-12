@@ -69,6 +69,10 @@ img {
         padding: inherit;
     }
 
+    .title, .info {
+        padding-top: 15px;
+    }
+
     .view {
         margin-top: 30px;
 
@@ -85,14 +89,12 @@ img {
     }
 
     .image {
-        height: 270px;
         width: 100%;
-        overflow: hidden;
-        margin-bottom: 20px;
+        height: 250px;
+        background-position: center center;
+        background-repeat: no-repeat;
 
-        img {
-            min-height: -webkit-fill-available;
-        }
+          
     }
 
     span.measure {
@@ -119,8 +121,8 @@ img {
         position: absolute;
         top: 100px;
         background-color: white;
+        min-width: 330px;
         padding: 23px;
-        width: 41%;
         color: gray;
         margin-left: -15px;
         display: flex;
@@ -426,3 +428,4 @@ input#registration_form_agreeTerms {
         margin: 0;
     }
 }
+

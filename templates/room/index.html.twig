@@ -22,15 +22,20 @@
     <div class="rooms row">
 
         {% for room in rooms %}
-        <div class="col-sm-6 col-xs-12">
+        <div class="col-sm-12 col-md-12 col-lg-6">
             <a href="{{ path('room_show', {'id': room.id}) }}">
             <div class="room panel shadow">
-                <div class="image"><img src="{{ asset(room.Image) }}" alt=""></div>
-                <h2>{{ room.Name }}</h2>
-                <span class="measure"><div><b>Height:</b> {{ room.Height }}</div> </span>
-                <span class="measure"><div><b>Depth:</b> {{ room.Depth }}</div> </span>
-                <span class="measure"><div><b>Width:</b> {{ room.Width }}</div> </span>
-        
+                <div class="image" 
+                    style="background-image: url('{{ asset(room.Image) }}');">
+                </div>
+                <div class="title">
+                    <h2>{{ room.Name }}</h2>
+                </div>
+                <div class="info">
+                    <span class="measure"><div><b>Height:</b> {{ room.Height }}</div> </span>
+                    <span class="measure"><div><b>Depth:</b> {{ room.Depth }}</div> </span>
+                    <span class="measure"><div><b>Width:</b> {{ room.Width }}</div> </span>
+                </div>        
             </div>
         </a>
         </div>

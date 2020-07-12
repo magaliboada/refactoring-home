@@ -6,7 +6,6 @@ var $addNewItem = $('<div href="#" class="btn btn-info">Add new Item</div>');
 $(document).ready( function() {
 
 
-    placeButton();
 
     $( window ).resize(function() {
         placeButton();
@@ -81,11 +80,8 @@ function addRemoveButton($panel) {
 
     $removeButton.click( function(e) {
         // console.log(e.target.parent());
-        $(e.target).parents('.item').slideUp(1000, function() {
-            $(this).remove();
+        $(e.target).parents('.item').remove();
             placeButton();
-
-        });
 
     });
 
@@ -108,8 +104,10 @@ function placeButton() {
 
     if($('h1')[0].innerText != 'New Room') {
         buttonWidth = $('.edit-form .content').width() - $('#room_save').width() -  $('.edit.btn-warning').width() - $('.btn-danger.delete').width();
+
     } else {
         buttonWidth = $('.edit-form .content').width() - $('#room_save').width() -  $('.edit.btn-warning').width();
+        
     }
     
     buttonWidth /= 5;

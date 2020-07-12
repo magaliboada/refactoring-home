@@ -17,6 +17,7 @@
 <div class="content container">
     <div class="rooms row">
         {% for room in rooms %}
+        <!-- {{ dump(loop.index) }} -->
         <div class="col-sm-12 col-md-12 col-lg-6">
             <a href="{{ path('room_show', {'id': room.id}) }}">
             <div class="room panel shadow">

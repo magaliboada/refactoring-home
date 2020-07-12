@@ -90,13 +90,23 @@ class RoomController extends AbstractController
      */
     public function show(Room $room): Response
     {
+        $items = $room->getItems()->toArray();
 
-        foreach ($room->getItems() as &$item) {
+        foreach ($items as &$item) {
             $scraper = new Scraper($item->getLink());
             $item->setPrice($scraper->getPrice());
             $item->setImage($scraper->getImage());
             $item->store = $scraper->getSite();
         }
+
+
+
+        // Asc sort
+        usort($items, function($first, $second) {
+            return strtolower($first->getName()) > strtolower($second->getName());
+        });
+
+        $room->setItems($items);
 
         return $this->render('room/show.html.twig', [
             'room' => $room,

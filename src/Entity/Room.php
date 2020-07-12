@@ -123,9 +123,14 @@ class Room
     /**
      * @return Collection|Item[]
      */
-    public function getItems(): Collection
+    public function getItems()
     {
         return $this->Items;
+    }
+
+    public function setItems($items): void
+    {
+        $this->Items = $items;
     }
 
     public function addItem(Item $item): self

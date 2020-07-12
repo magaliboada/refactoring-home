@@ -31,8 +31,9 @@ input:focus {
     border-color: #d58512;
 }
 
-a.btn.btn-warning {
-    width: 15% !important;
+a, button {
+    align-items: center;
+    display: flex;
 }
 
 a:focus, a:hover, a {
@@ -103,6 +104,10 @@ img {
     span.measure {
         width: 33%;
         float: left;
+    }
+
+    &.panel.shadow {
+        width: 100%;
     }
 }
 
@@ -177,6 +182,10 @@ div#item-list {
     padding: 20px;
     margin-top: 30px;
     margin-bottom: 100px;
+
+    .item {
+        width: 100%;
+    }
 
     .panel-heading {
         background-color: $background-general !important;

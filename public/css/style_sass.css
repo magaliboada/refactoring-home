@@ -30,8 +30,13 @@ input:focus {
   border-color: #d58512;
 }
 
-a.btn.btn-warning {
-  width: 15% !important;
+a, button {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 a:focus, a:hover, a {
@@ -101,6 +106,10 @@ img {
 .room span.measure {
   width: 33%;
   float: left;
+}
+
+.room.panel.shadow {
+  width: 100%;
 }
 
 .header {
@@ -177,6 +186,10 @@ div#item-list {
   padding: 20px;
   margin-top: 30px;
   margin-bottom: 100px;
+}
+
+div#item-list .item {
+  width: 100%;
 }
 
 div#item-list .panel-heading {

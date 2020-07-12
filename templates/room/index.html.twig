@@ -11,22 +11,17 @@
             <h1>Home</h1>
             <a href="{{ path('room_new') }}">Create new</a>
         </div>
-        
-        
     </div>
-    
 </div>
 
 <div class="content container">
-
     <div class="rooms row">
-
         {% for room in rooms %}
         <div class="col-sm-12 col-md-12 col-lg-6">
             <a href="{{ path('room_show', {'id': room.id}) }}">
             <div class="room panel shadow">
-                <div class="image" 
-                    style="background-image: url('{{ asset(room.Image) }}');">
+                <div class="image" >
+                    <div style="background-image: url('{{ asset(room.Image) }}'); background-size: cover;"></div>
                 </div>
                 <div class="title">
                     <h2>{{ room.Name }}</h2>
@@ -45,12 +40,6 @@
             </div>
         {% endfor %}
     </div>
-    
-
-    
-
-    
-
 </div>
     
 {% endblock %}

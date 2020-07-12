@@ -94,6 +94,10 @@ img {
   background-repeat: no-repeat;
 }
 
+.room .image div {
+  height: 100%;
+}
+
 .room span.measure {
   width: 33%;
   float: left;

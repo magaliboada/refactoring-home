@@ -171,7 +171,7 @@ div#item-list {
     background-color: white;
     padding: 20px;
     margin-top: 30px;
-    margin-bottom: 30px;    
+    margin-bottom: 100px;
 
     .panel-heading {
         background-color: $background-general !important;
@@ -329,3 +329,100 @@ button.btn.btn-danger {
 //   width: 8%;
 // }
 
+.field {
+    padding-left: 90px !important;
+    padding-right: 90px !important;
+}
+
+.field,
+[name="registration_form"] > div {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    padding: 15px;
+    font-size: 1.3rem;
+    color: gray;
+    // width: 80%;
+}
+
+[name="registration_form"] > div input,
+.field input {
+    border: none;
+    border-bottom: 1px solid gray;
+    border-radius: unset;
+    background-color: transparent;
+    margin-left: 60px;
+}
+
+
+.remember {
+
+    margin-top: 60px;
+
+    label {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: baseline;
+        padding: 13px;
+        font-size: 1.3rem;
+        float: left;
+        color: gray;
+        padding-left: 90px;
+        padding-right: 50px;
+        /* justify-content: flex-start; */
+    }
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-left: 20px;
+}
+
+.field, [name="registration_form"] > div label {
+    min-width: 155px;
+}
+
+button.btn.btn-lg.btn-warning {
+    clear: both;
+}
+
+.action-button div {
+    display: flex;
+    align-items: center;
+    margin-right: 60px;
+}
+
+input#registration_form_agreeTerms {
+    margin-left: 0px;
+}
+
+.action-button {
+    display: flex;
+    /* padding-left: 15px; */
+    float: left;
+    margin-left: 50px;
+}
+
+.footer {
+    background-color: white;
+    color: gray;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+}
+
+.new-form,
+.edit-form {
+    .btn-warning.edit,
+    button#room_save,
+    button.delete
+     {
+        position: absolute;
+        height: min-content;
+        width: auto;
+    }    
+
+    button.btn.btn-danger.delete {
+        margin: 0;
+    }
+}

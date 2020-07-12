@@ -17,6 +17,7 @@ use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppCustomAuthenticator extends AbstractFormLoginAuthenticator
 {
@@ -78,6 +79,25 @@ class AppCustomAuthenticator extends AbstractFormLoginAuthenticator
         // Check the user's password or other credentials and return true or false
         // If there are no credentials to check, you can just return true
         // throw new \Exception('TODO: check the credentials inside '.__FILE__);
+        // echo var_export($credentials, true);
+        // echo var_export($user, true);
+
+        $checkUser = new User();
+        $checkUser->setEmail($credentials['email']);
+
+        // if($user->getEmail() == $checkUser->getEmail()) {
+            
+        //     $encoder = $this->get('security.encoder_factory')->getEncoder($checkUser);
+        //     $encodedPassword = $encoder->encodePassword($credentials['password']);
+
+
+        //     echo var_export($checkUser, true);
+        //     echo var_export($user, true);
+
+
+        // }
+
+
         return true;
     }
 

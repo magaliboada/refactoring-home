@@ -7,15 +7,30 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
+    <div class="header">
+        <img src="{{ absolute_url(asset('images/roof.jpg')) }}" class=""  alt="header">
+        <div class="container">
+            <div class="home-header">
+                <h1>
+                    Register      
+                </h1>
+            </div>
+        </div>
+    </div>
 
+    <div class="content container panel panel-body">
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
+
+        <div class="action-button">
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+        
+        <button type="submit" class="btn btn-warning btn-lg">Register</button>
+        </div>
     {{ form_end(registrationForm) }}
+    
 {% endblock %}

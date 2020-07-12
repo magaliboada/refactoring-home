@@ -18,6 +18,7 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>                
         <link  rel="stylesheet" href="{{ asset('css/style_sass.css') }}">
+        <script src="{{ asset('js/main.js') }}"></script>
         <script src="{{ asset('js/ajax-item.js') }}"></script>
 
     </head>
@@ -30,16 +31,34 @@
                 </a>
             </div>
             <div class="account">
-                <a href="#">
+                
+
+                {% if app.user %}
+                <a href="/user/profile">
                     My account
                 </a>
-                |
-                <a href="/logout">Lougout</a>
+                {% else %}
+                <a href="/user/login">
+                    Login
+                </a>
+                {% endif %}
+                
+                
+                {% if app.user %}
+                    |    <a href="/user/logout">Lougout</a>
+                {% else %}
+                    |    <a href="/user/register">Register</a>
+                {% endif %}
+                
             </div>
         </div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <div class="footer">
+            © Magalí Boada 2020
+        </div>
     </body>
 </html>
+
 
 

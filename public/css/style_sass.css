@@ -172,7 +172,7 @@ div#item-list {
   background-color: white;
   padding: 20px;
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 100px;
 }
 
 div#item-list .panel-heading {
@@ -348,5 +348,121 @@ div#item-list img {
 
 button.btn.btn-danger {
   margin-bottom: 7rem;
+}
+
+.field {
+  padding-left: 90px !important;
+  padding-right: 90px !important;
+}
+
+.field,
+[name="registration_form"] > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 15px;
+  font-size: 1.3rem;
+  color: gray;
+}
+
+[name="registration_form"] > div input,
+.field input {
+  border: none;
+  border-bottom: 1px solid gray;
+  border-radius: unset;
+  background-color: transparent;
+  margin-left: 60px;
+}
+
+.remember {
+  margin-top: 60px;
+}
+
+.remember label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  padding: 13px;
+  font-size: 1.3rem;
+  float: left;
+  color: gray;
+  padding-left: 90px;
+  padding-right: 50px;
+  /* justify-content: flex-start; */
+}
+
+input[type="checkbox"] {
+  width: auto;
+  margin-left: 20px;
+}
+
+.field, [name="registration_form"] > div label {
+  min-width: 155px;
+}
+
+button.btn.btn-lg.btn-warning {
+  clear: both;
+}
+
+.action-button div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 60px;
+}
+
+input#registration_form_agreeTerms {
+  margin-left: 0px;
+}
+
+.action-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* padding-left: 15px; */
+  float: left;
+  margin-left: 50px;
+}
+
+.footer {
+  background-color: white;
+  color: gray;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.new-form .btn-warning.edit,
+.new-form button#room_save,
+.new-form button.delete,
+.edit-form .btn-warning.edit,
+.edit-form button#room_save,
+.edit-form button.delete {
+  position: absolute;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+  width: auto;
+}
+
+.new-form button.btn.btn-danger.delete,
+.edit-form button.btn.btn-danger.delete {
+  margin: 0;
 }
 /*# sourceMappingURL=style_sass.css.map */

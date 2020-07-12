@@ -2,7 +2,15 @@ var $collectionHolder;
 
 var $addNewItem = $('<div href="#" class="btn btn-info">Add new Item</div>');
 
+
 $(document).ready( function() {
+
+
+    placeButton();
+
+    $( window ).resize(function() {
+        placeButton();
+    });
 
     //get the collectionHolder
     $collectionHolder = $('#item-list.edit');
@@ -21,8 +29,7 @@ $(document).ready( function() {
     $addNewItem.click( function(){
         //create new form and append it to the collectionholder
         addNewForm();
-        
-
+        placeButton();
     });
 });
 
@@ -47,7 +54,6 @@ function addNewForm() {
     //Create the panel-body and append the form 
     var $panelBody = $('<div class="panel-body main-information"></div>').append(newForm);
 
-    console.log($panelBody[0].innerHTML);
 
     //Append the form to the panel
     $panel.append($panelBody);
@@ -64,6 +70,9 @@ function addNewForm() {
 //Remove Items Forms
 
 function addRemoveButton($panel) {
+
+    placeButton();
+
     //remove button
     var $removeButton = $('<div class="btn btn-danger m-4">Remove Item</div>');
     var $panelFooter = $('<div class="panel-footer"></div>').append($removeButton);
@@ -74,12 +83,44 @@ function addRemoveButton($panel) {
         // console.log(e.target.parent());
         $(e.target).parents('.item').slideUp(1000, function() {
             $(this).remove();
+            placeButton();
 
         });
 
     });
 
+    
     //append foote to banner
     $panel.append($panelFooter);
 
+}
+
+function placeButton() {
+    var buttonHeight = $('.edit-form .content').height() + $('.header').height() ;
+    $('#room_save').css('top', buttonHeight);
+    $('.edit.btn-warning').css('top', buttonHeight);
+    $('.btn-danger.delete').css('top', buttonHeight);
+
+    var buttonWidth = $('.edit-form .content').width();
+
+    var windowMargin = $( window ).width() - $('.edit-form .content').width();
+    windowMargin /= 2;
+
+    if($('h1')[0].innerText != 'New Room') {
+        buttonWidth = $('.edit-form .content').width() - $('#room_save').width() -  $('.edit.btn-warning').width() - $('.btn-danger.delete').width();
+    } else {
+        buttonWidth = $('.edit-form .content').width() - $('#room_save').width() -  $('.edit.btn-warning').width();
+    }
+    
+    buttonWidth /= 5;
+
+    leftValue = windowMargin + buttonWidth;
+    $('#room_save').css('left', leftValue);
+
+    leftValue += $('#room_save').width() + buttonWidth;
+    $('.edit.btn-warning').css('left', leftValue);
+
+    leftValue += $('.edit.btn-warning').width() + buttonWidth;
+    $('.btn-danger.delete').css('left', leftValue);
+    
 }

@@ -3,9 +3,9 @@
 {% block title %}New Room{% endblock %}
 
 {% block body %}
-<div class="">
+<div class="edit-form">
         {{ include('room/_form.html.twig', {'button_label': 'Update'}) }}
-        <a class="btn btn-warning" href="{{ path('room_index') }}">Back to list</a> 
+        <a class="btn btn-warning edit" href="{{ path('room_index') }}">Back to list</a> 
 </div>
 
 {% endblock %}

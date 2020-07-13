@@ -28,14 +28,14 @@
             <div class="home">
                 <a href="/">
                     <img src="{{ absolute_url(asset('images/favicon.png')) }}" alt="">
-                    <span>Refactoring Home</span>
+                    <span>Home Refactor</span>
                 </a>
             </div>
             <div class="account">
-            
+
                 {% if app.user %}
                 <a href="/user/profile">
-                    My account
+                    Hello!
                 </a>
                 {% else %}
                 <a href="/user/login">

@@ -28,12 +28,6 @@ class RoomController extends AbstractController
      */
     public function index(RoomRepository $roomRepository): Response
     {
-        // $securityContext = $this->container->get('security.authorization_checker');
-        // if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-        //     // authenticated REMEMBERED, FULLY will imply REMEMBERED (NON anonymous)
-        //     echo 'holi';
-        // }
-
         $user = $this->getUser();
 
         if($user != null){

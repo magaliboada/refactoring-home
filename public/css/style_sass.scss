@@ -62,8 +62,10 @@ img {
 
     .no-results {
         padding: 60px;
-        font-size: xx-large;
+        font-size: x-large;
         color: gray;
+        font-weight: 100;
+        font-style: italic;
     }
 }
 
@@ -457,3 +459,11 @@ input#registration_form_agreeTerms {
     }
 }
 
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    top: 210px;
+    margin-right: 10%;
+    margin-left: 10%;
+}

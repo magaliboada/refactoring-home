@@ -63,8 +63,10 @@ img {
 
 .rooms .no-results {
   padding: 60px;
-  font-size: xx-large;
+  font-size: x-large;
   color: gray;
+  font-weight: 100;
+  font-style: italic;
 }
 
 .room {
@@ -498,5 +500,14 @@ input#registration_form_agreeTerms {
 .new-form button.btn.btn-danger.delete,
 .edit-form button.btn.btn-danger.delete {
   margin: 0;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  top: 210px;
+  margin-right: 10%;
+  margin-left: 10%;
 }
 /*# sourceMappingURL=style_sass.css.map */

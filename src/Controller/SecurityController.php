@@ -23,7 +23,29 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error
+        ]);
+    }
+
+    public function encodePassword($raw, $salt)
+    {
+
+        if (!in_array($this->algorithm, hash_algos(), true)) {
+            throw new \LogicException(sprintf('The algorithm "%s" is not supported.', $this->algorithm));
+        }
+
+        //$salted = $this->mergePasswordAndSalt($raw, $salt);
+        $salted = $salt.$raw;
+        $digest = hash($this->algorithm, $salted, true);
+
+        // "stretch" hash
+        for ($i = 1; $i < $this->iterations; ++$i) {
+            $digest = hash($this->algorithm, $digest.$salted, true);
+        }
+
+        return $this->encodeHashAsBase64 ? base64_encode($digest) : bin2hex($digest);
     }
 
     /**

@@ -29,6 +29,7 @@ class RoomController extends AbstractController
     public function index(RoomRepository $roomRepository): Response
     {
         $user = $this->getUser();
+        
 
         if($user != null){
             return $this->render('room/index.html.twig', [
@@ -48,6 +49,7 @@ class RoomController extends AbstractController
         $form = $this->createForm(RoomType::class, $room);
         $form->handleRequest($request);
 
+        
         
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -75,6 +77,10 @@ class RoomController extends AbstractController
                     echo var_export( $e, true);
                 }
             }
+
+            $user = $this->getUser();
+
+        $room->setUserId($user->getId());
             
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($room);

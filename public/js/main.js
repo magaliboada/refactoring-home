@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    $('.sf-display-none').remove()
     setConteinerHeight();
 
     $( window ).resize(function() {

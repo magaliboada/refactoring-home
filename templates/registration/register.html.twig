@@ -4,7 +4,6 @@
 
 
 {% block body %}
- <script src="https://www.google.com/recaptcha/api.js"></script>
 
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
@@ -30,7 +29,7 @@
 
         <div class="action-button">
             {{ form_row(registrationForm.agreeTerms) }}         
-            <button type="submit" class="btn btn-warning btn-lg g-recaptcha" data-sitekey="6Lf1_rAZAAAAADE-l8fQkyA_sNfzh_Lu41Heup5d" data-callback='onSubmit' data-action='submit'>Register</button>
+            <button type="submit" class="btn btn-warning btn-lg g-recaptcha" data-sitekey="6Lc6BbEZAAAAACiI12d4emSiFKbBZWbaPCOG_ecn" data-callback='onSubmit' data-action='submit'>Register</button>
         </div>
     {{ form_end(registrationForm) }}
     </div>

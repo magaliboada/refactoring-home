@@ -84,12 +84,12 @@ class Room
 
     public function getUserId(): ?int
     {
-        return $this->UserId;
+        return $this->userId;
     }
 
     public function setUserId(string $UserId): self
     {
-        $this->UserId = $UserId;
+        $this->userId = $UserId;
 
         return $this;
     }

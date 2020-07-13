@@ -61,6 +61,12 @@ img {
   color: gray;
 }
 
+.rooms .no-results {
+  padding: 60px;
+  font-size: xx-large;
+  color: gray;
+}
+
 .room {
   background-color: white;
   padding: 50px;

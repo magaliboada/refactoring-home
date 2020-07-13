@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Room;
+use App\Entity\User;
+
+use Symfony\Component\Security\Core\User\UserInterface;
 use App\Form\RoomType;
 use App\Repository\RoomRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,6 +22,7 @@ use App\Model\Scraper;
  */
 class RoomController extends AbstractController
 {
+
     /**
      * @Route("/", name="room_index", methods={"GET"})
      */
@@ -30,9 +34,15 @@ class RoomController extends AbstractController
         //     echo 'holi';
         // }
 
-        return $this->render('room/index.html.twig', [
-            'rooms' => $roomRepository->findAll(),
-        ]);
+        $user = $this->getUser();
+
+        if($user != null){
+            return $this->render('room/index.html.twig', [
+                'rooms' => $roomRepository->findByUserField($user->getId()),
+            ]);
+        } else {
+            return $this->redirectToRoute('app_login');
+        }
     }
 
     /**

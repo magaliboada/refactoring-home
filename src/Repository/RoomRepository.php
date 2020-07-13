@@ -22,19 +22,19 @@ class RoomRepository extends ServiceEntityRepository
     // /**
     //  * @return Room[] Returns an array of Room objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findByUserField($user_id)
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('r.userId = :user_id')
+            ->setParameter('user_id', $user_id)
             ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
+            // ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Room

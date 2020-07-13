@@ -9,7 +9,7 @@
     <div class="container">
         <div class="home-header">
             <h1>Home</h1>
-            <a href="{{ path('room_new') }}">Create new</a>
+            <a href="{{ path('room_new') }}">Add Room</a>
         </div>
     </div>
 </div>
@@ -37,7 +37,12 @@
         </div>
         {% else %}
             <div>
-                <span colspan="6">no records found</span>
+                <div class="no-results">
+                Start your project creating a Room.
+
+                Once you you got it, start adding your items to it!
+
+                </div>
             </div>
         {% endfor %}
     </div>

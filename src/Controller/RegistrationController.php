@@ -42,7 +42,7 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $user->setUsername('user' . $user->getId());
+            $user->setUsername($user->getEmail());
 
             $user->setIsVerified(true);
 

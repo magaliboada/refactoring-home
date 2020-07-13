@@ -60,7 +60,6 @@ class EmailVerifier
         );
 
         // $this->mailer->send($email);
-        // $transport = new GmailSmtpTransport('boadamagali@gmail.com', 'dfx59zUPg!');
         // $mailer = new Mailer($transport);
 
         $transport = new EsmtpTransport('localhost');

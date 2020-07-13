@@ -153,6 +153,14 @@ class RoomController extends AbstractController
             // return $this->redirectToRoute('room_index');
         }
 
+        $items = $room->getItems()->toArray();
+         // Asc sort
+         usort($items, function($first, $second) {
+            return strtolower($first->getName()) > strtolower($second->getName());
+        });
+
+        $room->setItems($items);
+
         return $this->render('room/edit.html.twig', [
             'room' => $room,
             'form' => $form->createView(),

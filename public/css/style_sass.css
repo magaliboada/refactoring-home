@@ -363,6 +363,17 @@ div#item-list img {
   padding-right: 15px;
 }
 
+.user-menu .account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.user-menu .account a {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 button.btn.btn-danger {
   margin-bottom: 7rem;
 }

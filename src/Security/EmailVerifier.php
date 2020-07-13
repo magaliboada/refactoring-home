@@ -9,6 +9,11 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
+use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
+
+
 
 class EmailVerifier
 {
@@ -35,9 +40,33 @@ class EmailVerifier
         $context['signedUrl'] = $signatureComponents->getSignedUrl();
         $context['expiresAt'] = $signatureComponents->getExpiresAt();
 
-        $email->context($context);
+    
+        $email->context($context)
+        ->from('contact@magaliboada.com')
+        ->subject('Verify your account!')
+        ->html(
+            "<h1>Hi! Please confirm your email!</h1>
 
-        $this->mailer->send($email);
+            <p>
+                Please confirm your email address by clicking the following link: <br><br>
+                <a href=". $context['signedUrl']  .">Confirm my Email</a>.
+                This link expires in ".  'one' ." hour.
+            </p>
+
+            <p>
+                Cheers!
+            </p>"
+
+        );
+
+        // $this->mailer->send($email);
+        // $transport = new GmailSmtpTransport('boadamagali@gmail.com', 'dfx59zUPg!');
+        // $mailer = new Mailer($transport);
+
+        $transport = new EsmtpTransport('localhost');
+        $mailer = new Mailer($transport);
+
+        $mailer->send($email);
     }
 
     /**

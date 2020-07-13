@@ -140,8 +140,9 @@ img {
         a {
             font-size: x-large;
             color: gray;
-        }
+        }        
     }
+    
 }
 
 .element{
@@ -329,6 +330,15 @@ div#item-list {
         height: 40px !important;
         width: auto !important;
             padding-right: 15px;
+        }
+    }
+
+    .account {
+        display: flex;
+        
+        a {
+            padding-left: 5px;
+            padding-right: 5px;
         }
     }
 }

@@ -5,13 +5,8 @@ $(document).ready(function () {
     $( window ).resize(function() {
         setConteinerHeight();
     });
-
     
-    var buttonHeight = $('.edit-form .content').height() + $('.header').height() + 10;
-    $('#room_save').css('top', buttonHeight);
-    $('.edit.btn-warning').css('top', buttonHeight);
-    $('.btn-danger.delete').css('top', buttonHeight);
-    
+    placeButton();    
 })
 
 function setConteinerHeight() {

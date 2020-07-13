@@ -29,6 +29,11 @@ class Room
      */
     private $Image;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $userId;
+
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -73,6 +78,18 @@ class Room
     public function setImage(string $Image): self
     {
         $this->Image = $Image;
+
+        return $this;
+    }
+
+    public function getUserId(): ?int
+    {
+        return $this->UserId;
+    }
+
+    public function setUserId(string $UserId): self
+    {
+        $this->UserId = $UserId;
 
         return $this;
     }

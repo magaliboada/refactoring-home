@@ -33,6 +33,10 @@
         </div>
 
         <div class="elements offset-sm-1 col-sm-10 panel edit" id="item-list" data-prototype="{{ form_widget(form.Items.vars.prototype)|e('html_attr') }}">
+        <div class="working-with"><i> 
+        You can group items by assigning the same name. </br>
+        Currently we only support Amazon, Maisons du Monde, Ikea and Leroy Merlin.</i></div>
+       
         {% for row in form.Items %}
             <div class="panel edit panel-warning shadow mb-4 item">
                 <div class="panel-heading">
@@ -44,6 +48,13 @@
                 </div>
             </div>
         {% endfor %}
-        </div>
+         </div>
+         
     </div>
+    <style>
+        .working-with {
+        color: gray;
+        padding: 20px;
+}   </style>
+    
 {{ form_end(form) }}

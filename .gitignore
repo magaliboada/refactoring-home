@@ -64,3 +64,4 @@ yarn-error.log
 *.pdf
 .env
 .env
+env

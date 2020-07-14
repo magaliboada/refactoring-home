@@ -45,13 +45,16 @@ class RoomController extends AbstractController
      */
     public function new(Request $request)
     {
+        $user = $this->getUser();
+
+        if($user == null) {
+            return $this->redirectToRoute('app_login');
+        } 
+
         $room = new Room();
         $form = $this->createForm(RoomType::class, $room);
         $form->handleRequest($request);
-
-        
-        
-
+         
         if ($form->isSubmitted() && $form->isValid()) {
 
 
@@ -78,9 +81,7 @@ class RoomController extends AbstractController
                 }
             }
 
-            $user = $this->getUser();
-
-        $room->setUserId($user->getId());
+            $room->setUserId($user->getId());
             
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($room);
@@ -100,6 +101,14 @@ class RoomController extends AbstractController
      */
     public function show(Room $room): Response
     {
+        $user = $this->getUser();
+
+        if($user == null) {
+            return $this->redirectToRoute('app_login');
+        } elseif ($user->getId() != $room->getUserId()) {
+            return $this->redirectToRoute('room_index');
+        }
+
         $items = $room->getItems()->toArray();
 
         foreach ($items as &$item) {
@@ -130,6 +139,14 @@ class RoomController extends AbstractController
     {
         $form = $this->createForm(RoomType::class, $room);
         $form->handleRequest($request);
+
+        $user = $this->getUser();
+        
+        if($user == null) {
+            return $this->redirectToRoute('app_login');
+        } elseif ($user->getId() != $room->getUserId()) {
+            return $this->redirectToRoute('room_index');
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -182,6 +199,14 @@ class RoomController extends AbstractController
      */
     public function delete(Request $request, Room $room): Response
     {
+        $user = $this->getUser();
+
+        if($user == null) {
+            return $this->redirectToRoute('app_login');
+        } elseif ($user->getId() != $room->getUserId()) {
+            return $this->redirectToRoute('room_index');
+        }
+        
         if ($this->isCsrfTokenValid('delete'.$room->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($room);

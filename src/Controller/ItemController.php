@@ -10,14 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/item")
- */
 class ItemController extends AbstractController
 {
-    /**
-     * @Route("/", name="item_index", methods={"GET"})
-     */
     public function index(ItemRepository $itemRepository): Response
     {
         return $this->render('item/index.html.twig', [
@@ -25,9 +19,6 @@ class ItemController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="item_new", methods={"GET","POST"})
-     */
     public function new(Request $request): Response
     {
         $item = new Item();
@@ -48,9 +39,6 @@ class ItemController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="item_show", methods={"GET"})
-     */
     public function show(Item $item): Response
     {
         return $this->render('item/show.html.twig', [
@@ -58,9 +46,6 @@ class ItemController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="item_edit", methods={"GET","POST"})
-     */
     public function edit(Request $request, Item $item): Response
     {
         $form = $this->createForm(ItemType::class, $item);
@@ -78,9 +63,6 @@ class ItemController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="item_delete", methods={"DELETE"})
-     */
     public function delete(Request $request, Item $item): Response
     {
         if ($this->isCsrfTokenValid('delete'.$item->getId(), $request->request->get('_token'))) {

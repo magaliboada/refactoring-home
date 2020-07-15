@@ -56,8 +56,6 @@ class RoomController extends AbstractController
         $form->handleRequest($request);
          
         if ($form->isSubmitted() && $form->isValid()) {
-
-
             $imageName = $form->get('Image')->getData();
             if(isset($imageName))
             {    
@@ -109,24 +107,10 @@ class RoomController extends AbstractController
             return $this->redirectToRoute('room_index');
         }
 
-        $items = $room->getItems()->toArray();
-
-        foreach ($items as &$item) {
-            $scraper = new Scraper($item->getLink());
-            $item->setPrice($scraper->getPrice());
-            $item->setImage($scraper->getImage());
-            $item->store = $scraper->getSite();
-        }
-
-
+        
 
         // Asc sort
-        usort($items, function($first, $second) {
-            return strtolower($first->getName()) > strtolower($second->getName());
-        });
-
-        $room->setItems($items);
-
+        
         return $this->render('room/show.html.twig', [
             'room' => $room,
         ]);
@@ -148,7 +132,21 @@ class RoomController extends AbstractController
             return $this->redirectToRoute('room_index');
         }
 
+        
+
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            
+
+            foreach ($room->getItems() as &$item) {
+                $item = $this->refreshScraperValues($item);
+            }
+
+            $items = $room->getItems()->toArray();
+    
+            usort($items, function($first, $second) {
+                return strtolower($first->getName()) > strtolower($second->getName());
+            });
 
             $imageName = $form->get('Image')->getData();
             if(isset($imageName))
@@ -172,12 +170,12 @@ class RoomController extends AbstractController
                 }
             }
 
+            
 
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('room_show', ['id' => $room->getId()]);
 
-            // return $this->redirectToRoute('room_index');
         }
 
         $items = $room->getItems()->toArray();
@@ -214,5 +212,20 @@ class RoomController extends AbstractController
         }
 
         return $this->redirectToRoute('room_index');
+    }
+
+    public function refreshScraperValues($item) {
+        
+        $scraper = new Scraper($item->getLink());
+
+        if ($scraper->getImage() != '') 
+            $item->setImage($scraper->getImage());
+
+        if ($scraper->getPrice() != 0)
+            $item->setPrice($scraper->getPrice());
+            
+        $item->setStore($scraper->getSite());        
+
+        return $item;
     }
 }

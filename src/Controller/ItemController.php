@@ -33,6 +33,9 @@ class ItemController extends AbstractController
             return $this->redirectToRoute('item_index');
         }
 
+  
+
+
         return $this->render('item/new.html.twig', [
             'item' => $item,
             'form' => $form->createView(),
@@ -51,6 +54,7 @@ class ItemController extends AbstractController
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
 
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 

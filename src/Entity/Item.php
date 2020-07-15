@@ -24,6 +24,11 @@ class Item
      */
     private $Name;
 
+     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Store;
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -94,6 +99,18 @@ class Item
     public function setLink(?string $Link): self
     {
         $this->Link = $Link;
+
+        return $this;
+    }
+
+    public function getStore(): ?string
+    {
+        return $this->Store;
+    }
+
+    public function setStore(?string $Store): self
+    {
+        $this->Store = $Store;
 
         return $this;
     }

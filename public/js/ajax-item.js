@@ -92,6 +92,7 @@ function addRemoveButton($panel) {
 
 }
 
+//Place buttons bellow form
 function placeButton() {
     var buttonHeight = $('.edit-form .content').height() + $('.header').height() ;
     $('#room_save').css('top', buttonHeight);

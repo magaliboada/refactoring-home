@@ -4,7 +4,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
     <div class="header">
-        <img src="{{ absolute_url(asset('images/roof.jpg')) }}" class=""  alt="header">
+        {# <img src="{{ absolute_url(asset('images/roof.jpg')) }}" class=""  alt="header"> #}
         <div class="container">
             <div class="home-header">
                 <h1>{{room.Name}}</h1>
@@ -34,9 +34,12 @@
         {% for row in room.Items %}
                 <a href="{{(row.Link)}}" target="_blank">
                 <div class="panel panel-warning item shadow pt-4 pl-4 pr-4 mb-4 bg-white">
+
+                    
                     <div class="panel-heading">
                         {{(row.Name)}}
                     </div>
+
                     <div class="panel-body row body-item pl-2">      
                         
                             <div class="image col-sm-3">

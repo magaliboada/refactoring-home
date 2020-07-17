@@ -46,7 +46,8 @@ class ItemType extends AbstractType
             //     'required' => false
             // ])
             ->add('Link', TextType::class, [
-                'required' => true
+                'required' => true,
+                'attr' => ['class' => 'item-link'],
             ])
         ;
     }

@@ -474,3 +474,7 @@ input#registration_form_agreeTerms {
     margin-left: 10%;
 }
 
+input:disabled {
+    border: none;
+    background: #8080801c;
+  }

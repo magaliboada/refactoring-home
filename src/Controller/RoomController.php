@@ -13,8 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\String\Slugger\SluggerInterface;
+use App\Model\CronManager;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\ProcessBuilder;
+
 use App\Model\Scraper;
 
 /**
@@ -54,8 +57,9 @@ class RoomController extends AbstractController
         $room = new Room();
         $form = $this->createForm(RoomType::class, $room);
         $form->handleRequest($request);
-         
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $imageName = $form->get('Image')->getData();
             if(isset($imageName))
             {    
@@ -85,6 +89,9 @@ class RoomController extends AbstractController
             $entityManager->persist($room);
             $entityManager->flush();
 
+            $process = new Process(['./execute.sh']);
+            $process->run();
+
             return $this->redirectToRoute('room_index');
         }
 
@@ -108,6 +115,14 @@ class RoomController extends AbstractController
         }
 
         
+
+        $items = $room->getItems()->toArray();
+         // Asc sort
+         usort($items, function($first, $second) {
+            return strtolower($first->getName()) > strtolower($second->getName());
+        });
+
+        $room->setItems($items);
 
         // Asc sort
         
@@ -136,17 +151,7 @@ class RoomController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             
-            
-
-            foreach ($room->getItems() as &$item) {
-                $item = $this->refreshScraperValues($item);
-            }
-
-            $items = $room->getItems()->toArray();
-    
-            usort($items, function($first, $second) {
-                return strtolower($first->getName()) > strtolower($second->getName());
-            });
+            CronManager::refreshNull($this->getDoctrine()->getManager());
 
             $imageName = $form->get('Image')->getData();
             if(isset($imageName))
@@ -170,21 +175,24 @@ class RoomController extends AbstractController
                 }
             }
 
-            
-
             $this->getDoctrine()->getManager()->flush();
+            // $process = new Process(['./execute.sh']);
+            // $process->run();
+
+
+            $commandProcess=new Process(['/usr/bin/php /var/www/refactoring-home/bin/console app:fill-null']);
+            // $commandProcess->setWorkingDirectory('./../');
+            $commandProcess->disableOutput();
+            // $commandProcess->setTimeout(1);
+            $commandProcess->start();
+
+
+            // Process::fromShellCommandline('/usr/bin/php /var/www/refactoring-home/bin/console app:fill-null')->start();
 
             return $this->redirectToRoute('room_show', ['id' => $room->getId()]);
 
         }
 
-        $items = $room->getItems()->toArray();
-         // Asc sort
-         usort($items, function($first, $second) {
-            return strtolower($first->getName()) > strtolower($second->getName());
-        });
-
-        $room->setItems($items);
 
         return $this->render('room/edit.html.twig', [
             'room' => $room,

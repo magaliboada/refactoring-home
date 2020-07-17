@@ -516,4 +516,9 @@ input#registration_form_agreeTerms {
   margin-right: 10%;
   margin-left: 10%;
 }
+
+input:disabled {
+  border: none;
+  background: #8080801c;
+}
 /*# sourceMappingURL=style_sass.css.map */

@@ -8,6 +8,8 @@ $(document).ready( function() {
 
     $(".new input#room_Image").prop('required',true);
 
+    $('.existing .item .item-link').prop('disabled', true);
+
     $( window ).resize(function() {
         placeButton();
     });

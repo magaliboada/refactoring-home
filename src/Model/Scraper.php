@@ -5,6 +5,7 @@ namespace App\Model;
 use App\Repository\ItemRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Form\FormTypeInterface;
+use App\Model\MyCurl;
 
 class Scraper
 {
@@ -37,12 +38,17 @@ class Scraper
 
         $html = $price = '';
         try {
-            $html = file_get_contents($this->url);
-        $price = $this->get_string_between($html, '<span id="priceblock_ourprice" class="a-size-medium a-color-price priceBlockBuyingPriceString">', '</span>');
-        $price = str_replace(",", ".", $price);
+            // $html = file_get_contents($this->url);
+
+            $myCurl = new MyCurl($this->url, true, 30, 4, false, true, false);
+            $myCurl->createCurl($this->url);
+            $html = $myCurl->__tostring();
+
+            $price = $this->get_string_between($html, '<span id="priceblock_ourprice" class="a-size-medium a-color-price priceBlockBuyingPriceString">', '</span>');
+            $price = str_replace(",", ".", $price);
         
 
-        $html = file_get_contents($this->url);
+        // $html = file_get_contents($this->url);
         
         } catch (\Throwable $th) {
             //throw $th;
@@ -55,13 +61,13 @@ class Scraper
     private function handleIkea(): void
     {
         // $this->url = urlencode($this->url);
-
-        $html = file_get_contents($this->url);
+        $myCurl = new MyCurl($this->url, true, 30, 4, false, true, false);
+        $myCurl->createCurl($this->url);
+        $html = $myCurl->__tostring();
         $price = $this->get_string_between($html, '<span class="product-pip__price__value">', '</span>');
         $price = str_replace(",", ".", $price);
         $this->price = floatval($price);
 
-        $html = file_get_contents($this->url);
         $this->image = $this->get_string_between($html, 'og:image" content="', '" />');
     }
 
@@ -69,22 +75,63 @@ class Scraper
     {
         // $this->url = urlencode($this->url);
 
-        $html = file_get_contents($this->url);
+        $myCurl = new MyCurl($this->url, true, 30, 4, false, true, false);
+        $myCurl->createCurl($this->url);
+        $html = $myCurl->__tostring();
         $price = $this->get_string_between($html, '<div class="price ">', '</span>');
         $price = str_replace(",", ".", $price);
         $this->price = floatval($price);
 
-        $html = file_get_contents($this->url);
+        
         $this->image = $this->get_string_between($html, '"image_src" href="', '<meta');
         $this->image = str_replace('"/>', '', $this->image);
 
         // echo var_export($this->image, true);
     }
 
+    private function handleCasa(): void
+    {
+        // $this->url = urlencode($this->url);
+
+        $myCurl = new MyCurl($this->url, true, 30, 4, false, true, false);
+        $myCurl->createCurl($this->url);
+        $html = $myCurl->__tostring();
+        $integer = $this->get_string_between($html, '<span class="c-price__base">', '</span>');
+        $decimal =  $this->get_string_between($html, '</span> <span class="c-price__mod">', '</span>');
+        $price = $integer. ',' . $decimal;
+        $price = str_replace(",", ".", $price);
+        $this->price = floatval($price);
+
+        $this->image = $this->get_string_between($html, '"image_src" href="', '<meta');
+        $this->image = str_replace('"/>', '', $this->image);
+
+        // echo var_export($this->image, true);
+    }
+
+    private function handleCorte(): void
+    {
+        // $this->url = urlencode($this->url);
+
+        $myCurl = new MyCurl($this->url, true, 30, 4, false, true, false);
+        $myCurl->createCurl($this->url);
+        $html = $myCurl->__tostring();
+        $price = $this->get_string_between($html, '<p class="price', '<span class="js-currency">€');
+        $price = str_replace(",", ".", $price);
+        $this->price = floatval($price);
+
+        // $html = file_get_contents($this->url);
+        // $this->image = $this->get_string_between($html, '"image_src" href="', '<meta');
+        // $this->image = str_replace('"/>', '', $this->image);
+
+        // echo var_export($this->price, true);
+    }
+
     private function handleMaison(): void
     {
         // $this->url = urlencode($this->url);
-        $html = file_get_contents($this->url);
+        $myCurl = new MyCurl($this->url, true, 30, 4, false, true, false);
+        $myCurl->createCurl($this->url);
+        $html = $myCurl->__tostring();
         $price = $this->get_string_between($html, 'base-price font-weight-semibold', '</b>');
         $price = $this->get_string_between($price, '>', '€');
 
@@ -93,7 +140,7 @@ class Scraper
         $price = str_replace(",", ".", $price);
         $this->price = floatval($price);
         //<meta property="og:image" content="https://medias.maisonsdumonde.com/image/upload/q_auto,f_auto/w_500/img/farolillo-de-bambu-y-cristal-1000-4-19-195589_1.jpg" ="true">
-        $html = file_get_contents($this->url);
+
         $this->image = $this->get_string_between($html, 'og:image" content="', '"><meta data-n-head="');
         $this->image = str_replace('"/>', '', $this->image);
 
@@ -126,7 +173,9 @@ class Scraper
             $this->site = 'Ikea';
         } elseif (strpos($this->url, 'maisonsdumonde') !== false) {
             $this->site = 'Maison';
-        }elseif (strpos($this->url, 'ikea') !== false) {
+        } elseif (strpos($this->url, 'corteingles') !== false) {
+            $this->site = 'Corte';
+        } elseif (strpos($this->url, 'ikea') !== false) {
             $this->site = 'Ikea';
         } else {
             $this->site = '';
@@ -143,6 +192,8 @@ class Scraper
         $len = strpos($string, $end, $ini) - $ini;
         return substr($string, $ini, $len);
     }
+
+    
 
 
 }

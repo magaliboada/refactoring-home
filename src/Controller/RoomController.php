@@ -61,36 +61,16 @@ class RoomController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             
             $imageName = $form->get('Image')->getData();
-            if(isset($imageName))
-            {    
-                $originalFilename = pathinfo($imageName->getClientOriginalName(), PATHINFO_FILENAME);
-                // $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $originalFilename.'-'.uniqid().'.'.$imageName->guessExtension();
             
-                // Move the file to the directory where images are stored
-                try {
-                    $imageName->move(
-                        $this->getParameter('images_directory'),
-                        $newFilename
-                    );
-
-                    $fullPath = 'images'.'/'.$newFilename;
-                    $room->setImage($fullPath);
-
-                    
-                } catch (FileException $e) {
-                    echo var_export( $e, true);
-                }
-            }
-
+            $room = $this->handleImage($imageName, $room);  
             $room->setUserId($user->getId());
             
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($room);
             $entityManager->flush();
 
-            $process = new Process(['./execute.sh']);
-            $process->run();
+            
+            CronManager::refreshNull($this->getDoctrine()->getManager());
 
             return $this->redirectToRoute('room_index');
         }
@@ -145,52 +125,17 @@ class RoomController extends AbstractController
             return $this->redirectToRoute('app_login');
         } elseif ($user->getId() != $room->getUserId()) {
             return $this->redirectToRoute('room_index');
-        }
+        }        
 
-        
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            
-            CronManager::refreshNull($this->getDoctrine()->getManager());
+        if ($form->isSubmitted() && $form->isValid()) {            
 
             $imageName = $form->get('Image')->getData();
-            if(isset($imageName))
-            {    
-                $originalFilename = pathinfo($imageName->getClientOriginalName(), PATHINFO_FILENAME);
-                $newFilename = $originalFilename.'-'.uniqid().'.'.$imageName->guessExtension();
-            
-                // Move the file to the directory where images are stored
-                try {
-                    $imageName->move(
-                        $this->getParameter('images_directory'),
-                        $newFilename
-                    );
-
-                    $fullPath = 'images'.'/'.$newFilename;
-                    $room->setImage($fullPath);
-
-                    
-                } catch (FileException $e) {
-                    echo var_export( $e, true);
-                }
-            }
+            $room = $this->handleImage($imageName, $room);            
 
             $this->getDoctrine()->getManager()->flush();
-            // $process = new Process(['./execute.sh']);
-            // $process->run();
-
-
-            $commandProcess=new Process(['/usr/bin/php /var/www/refactoring-home/bin/console app:fill-null']);
-            // $commandProcess->setWorkingDirectory('./../');
-            $commandProcess->disableOutput();
-            // $commandProcess->setTimeout(1);
-            $commandProcess->start();
-
-
-            // Process::fromShellCommandline('/usr/bin/php /var/www/refactoring-home/bin/console app:fill-null')->start();
+            CronManager::refreshNull($this->getDoctrine()->getManager());
 
             return $this->redirectToRoute('room_show', ['id' => $room->getId()]);
-
         }
 
 
@@ -222,18 +167,29 @@ class RoomController extends AbstractController
         return $this->redirectToRoute('room_index');
     }
 
-    public function refreshScraperValues($item) {
-        
-        $scraper = new Scraper($item->getLink());
-
-        if ($scraper->getImage() != '') 
-            $item->setImage($scraper->getImage());
-
-        if ($scraper->getPrice() != 0)
-            $item->setPrice($scraper->getPrice());
+    public function handleImage($imageName, Room $room) {
+        if(isset($imageName))
+            {    
+                $originalFilename = pathinfo($imageName->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename.'-'.uniqid().'.'.$imageName->guessExtension();
             
-        $item->setStore($scraper->getSite());        
+                // Move the file to the directory where images are stored
+                try {
+                    $imageName->move(
+                        $this->getParameter('images_directory'),
+                        $newFilename
+                    );
 
-        return $item;
+                    $fullPath = 'images'.'/'.$newFilename;
+                    $room->setImage($fullPath);
+
+                    
+                } catch (FileException $e) {
+                    echo var_export( $e, true);
+                }
+            }
+
+        return $room;
     }
+   
 }

@@ -26,7 +26,7 @@ class CronManager
         $repo = $em->getRepository("App:Item");
         
         // B. Search using regular methods.
-        $nullScraps = $repo->findByNullPrice();
+        $nullScraps = $repo->findByNullField();
 
         foreach ($nullScraps as $item) {
             do {
@@ -35,6 +35,7 @@ class CronManager
 
             $item->setPrice($scraper->getPrice());
             $item->setImage($scraper->getImage());
+            $item->setStore($scraper->getSite());
 
             // C. Persist and flush
             $em->persist($item);

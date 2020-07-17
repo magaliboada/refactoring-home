@@ -23,11 +23,12 @@ class ItemRepository extends ServiceEntityRepository
     //  * @return Item[] Returns an array of Item objects
     //  */
     
-    public function findByNullPrice()
+    public function findByNullField()
     {
         return $this->createQueryBuilder('i')
-            ->andWhere('i.Price = :val')
+            ->Where('i.Price = :val OR i.Image = :image OR i.Store is NULL ')
             ->setParameter('val', 0)
+            ->setParameter('image', '')
             ->orderBy('i.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()

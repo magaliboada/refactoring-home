@@ -26,9 +26,8 @@ class ItemRepository extends ServiceEntityRepository
     public function findByNullField()
     {
         return $this->createQueryBuilder('i')
-            ->Where('i.Price = :val OR i.Image = :image OR i.Store is NULL ')
+            ->Where('i.Price = :val OR i.Image is NULL OR i.Store is NULL ')
             ->setParameter('val', 0)
-            ->setParameter('image', '')
             ->orderBy('i.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()

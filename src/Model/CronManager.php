@@ -7,19 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Form\FormTypeInterface;
 use App\Entity\Item;
 use App\Model\Scraper;
-
-// 1. Import the ORM EntityManager Interface
 use Doctrine\ORM\EntityManagerInterface;
 
 
 class CronManager
 {
-
-    public function __construct() {
-        
-
-        
-    }
 
     public static function refreshNull(EntityManagerInterface $em) {
         // A. Access repositories

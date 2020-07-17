@@ -50,6 +50,21 @@ class Item
      */
     private $Room;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $created;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated;
+
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -123,6 +138,30 @@ class Item
     public function setRoom(?Room $Room): self
     {
         $this->Room = $Room;
+
+        return $this;
+    }
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(\DateTimeInterface $created): self
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    public function getUpdated(): ?\DateTimeInterface
+    {
+        return $this->updated;
+    }
+
+    public function setUpdated(\DateTimeInterface $updated): self
+    {
+        $this->updated = $updated;
 
         return $this;
     }

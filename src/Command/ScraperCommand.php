@@ -43,7 +43,7 @@ class ScraperCommand extends Command
         $repo = $em->getRepository("App:Item");
         
         // B. Search using regular methods.
-        $nullScraps = $repo->findByNullPrice();
+        $nullScraps = $repo->findByNullField();
 
         foreach ($nullScraps as $item) {
             do {

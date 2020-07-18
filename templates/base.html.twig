@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <link rel="icon" type="image/x-icon" href="{{ absolute_url(asset('images/favicon.png')) }}" />
-
+        <meta property="og:image" content="{{ absolute_url(asset('images/metatag.jpg')) }}">
         </meta>
         <title>{% block title %}Welcome!{% endblock %}</title>
 
@@ -21,6 +21,16 @@
         
         <script src="{{ asset('js/ajax-item.js') }}"></script>
         <script src="{{ asset('js/main.js') }}"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VLVFN1JXS5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-VLVFN1JXS5');
+        </script>
 
     </head>
     <body>
@@ -40,7 +50,7 @@
                 <a href="/user/admin">Admin</a> |
 
                 {% endif %}
-                            
+
                 <a href="/user/profile">
                     Hello {{app.user.name}}!
                 </a> 

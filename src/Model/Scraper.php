@@ -79,7 +79,8 @@ class Scraper
         $myCurl = new MyCurl($this->url, true, 30, 4, false, true, false);
         $myCurl->createCurl($this->url);
         $html = $myCurl->__tostring();
-        $price = $this->get_string_between($html, '<div class="price ">', '</span>');
+        $price = $this->get_string_between($html, '  &#34;price&#34;: &#34;', '&#34');
+        // echo var_export($price, true);
         $price = str_replace(",", ".", $price);
         $this->price = floatval($price);
 
@@ -87,7 +88,7 @@ class Scraper
         $this->image = $this->get_string_between($html, '"image_src" href="', '<meta');
         $this->image = str_replace('"/>', '', $this->image);
 
-        // echo var_export($this->image, true);
+        // echo var_export($html, true);
     }
 
     private function handleCasa(): void

@@ -197,6 +197,7 @@ div#item-list {
     padding: 20px;
     margin-top: 30px;
     margin-bottom: 100px;
+    
 
     .item {
         width: 100%;
@@ -264,6 +265,9 @@ div#item-list {
 
     img {
         border: 1px solid #c3bb9359;
+        max-height: 250px;
+        width: auto !important;
+        margin-left: 55px;
     }
 
     

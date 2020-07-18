@@ -13,12 +13,14 @@ use Doctrine\ORM\EntityManagerInterface;
 class CronManager
 {
 
-    public static function refreshNull(EntityManagerInterface $em) {
+    public static function refreshNull(EntityManagerInterface $em, $user_id) {
         // A. Access repositories
         $repo = $em->getRepository("App:Item");
         
-        // B. Search using regular methods.
-        $nullScraps = $repo->findByNullField();
+        if ($user_id != null)
+            $nullScraps = $repo->findByNullFieldByUser($user_id);
+        else
+            $nullScraps = $repo->findByNullField();
 
         foreach ($nullScraps as $item) {
             do {

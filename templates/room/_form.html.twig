@@ -42,9 +42,16 @@
                 <div class="panel-heading">
                     {{row.vars.value.name}}
                 </div>
-                <div class="panel-body main-information">                    
+                <div class="panel-body main-information row">        
+                    <div class="col-sm-10">
                         {{form_row(row.Name)}}
                         {{form_row(row.Link)}}
+                    </div>
+                    <div class="col-sm-2">
+                        <img src="{{row.vars.value.image}}" alt="">
+                    </div>
+                        
+                        
                 </div>
             </div>
         {% endfor %}

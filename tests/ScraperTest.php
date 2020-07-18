@@ -29,16 +29,16 @@ final class ScraperTest extends TestCase
     //     $this->assertNotEmpty($scraper->getPrice());
     // }
 
-    // public function testScrapperLeroy(): void
-    // {            
-    //     $url = 'https://www.leroymerlin.es/fp/81962931/pavimento-heritage-33-15x33-15-grey-c3';
-    //     $scraper = new Scraper($url);
+    public function testScrapperLeroy(): void
+    {            
+        $url = 'https://www.leroymerlin.es/fp/17654896/cana-partida-beige-1-5x5-m';
+        $scraper = new Scraper($url);
 
-    //     // echo var_export($scraper, true);
+        echo var_export($scraper, true);
 
-    //     $this->assertNotEmpty($scraper->getImage());
-    //     $this->assertNotEmpty($scraper->getPrice());
-    // }
+        $this->assertNotEmpty($scraper->getImage());
+        $this->assertNotEmpty($scraper->getPrice());
+    }
 
     // public function testScrapperAmazon(): void
     // {            
@@ -72,17 +72,17 @@ final class ScraperTest extends TestCase
     //     // $this->assertNotEmpty($scraper->getPrice());
     // }
 
-     public function testScrapperCasa(): void
-    {            
-        $url = 'https://es.casashops.com/es/productos/velura-taburete-gris%2c-dorado-a-41-cm%3b-%c3%b8-36-cm/635992/';
-        // $scraper = new Scraper($url);
+    //  public function testScrapperCasa(): void
+    // {            
+    //     $url = 'https://es.casashops.com/es/productos/velura-taburete-gris%2c-dorado-a-41-cm%3b-%c3%b8-36-cm/635992/';
+    //     // $scraper = new Scraper($url);
 
 
-        $scraper = new Scraper($url);
+    //     $scraper = new Scraper($url);
 
-        echo var_export($scraper, true);
+    //     echo var_export($scraper, true);
 
-        $this->assertNotEmpty($scraper->getImage());
-        $this->assertNotEmpty($scraper->getPrice());
-    }
+    //     $this->assertNotEmpty($scraper->getImage());
+    //     $this->assertNotEmpty($scraper->getPrice());
+    // }
 }

@@ -26,25 +26,24 @@ class ItemRepository extends ServiceEntityRepository
     public function findByNullField()
     {
         return $this->createQueryBuilder('i')
-            ->Where('i.Price = :val OR i.Image is NULL OR i.Store is NULL ')
+            ->Where('i.Price = :val OR i.Image is NULL OR i.Store is NULL')
             ->setParameter('val', 0)
-            ->orderBy('i.id', 'ASC')
-            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByNullFieldByUser($user_id)
+    {
+        return $this->createQueryBuilder('i')
+            ->Where('i.Price = 0 OR i.Image is NULL OR i.Store is NULL')
+            ->leftJoin('i.Room', 'room')
+            ->andWhere('room.userId = :user')
+            ->setParameter('user', $user_id)
             ->getQuery()
             ->getResult()
         ;
     }
     
 
-    /*
-    public function findOneBySomeField($value): ?Item
-    {
-        return $this->createQueryBuilder('i')
-            ->andWhere('i.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

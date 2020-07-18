@@ -55,14 +55,33 @@ class Room
      */
     private $Items;
 
+     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $created;
+
+
     public function __construct()
     {
+        $this->created = new \DateTime();
         $this->Items = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(\DateTimeInterface $created): self
+    {
+        $this->created = $created;
+
+        return $this;
     }
 
     public function getName(): ?string

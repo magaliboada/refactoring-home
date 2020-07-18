@@ -61,7 +61,8 @@
             <tr>
                 <th>Name</th>
                 <th>User Id</th>          
-                <th>Items</th>       
+                <th>Items</th>     
+                <th>Created</th>  
             </tr>
         </thead>
         <tbody>
@@ -74,6 +75,7 @@
                     {{ item.id }}, 
                 {% endfor %}      
                 </td>
+                <td>{{ room.created  |date("m/d/Y H:i", "Europe/Paris")}}</td>
             </tr>                
             {% endfor %}
         </tbody>

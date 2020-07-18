@@ -50,6 +50,7 @@ body {
     background-image: url(http://www.homerefactor.com/images/roof.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    
 }
 
 .container {
@@ -108,6 +109,7 @@ body {
         height: 250px;
         background-position: center center;
         background-repeat: no-repeat;
+        background-position: center;
 
         div {
             height: 100%;
@@ -266,7 +268,7 @@ div#item-list {
     img {
         border: 1px solid #c3bb9359;
         max-height: 250px;
-        width: auto !important;
+        // width: auto !important;
         margin-left: 55px;
     }
 

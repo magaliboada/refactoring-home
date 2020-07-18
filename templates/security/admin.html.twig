@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.jqueryui.min.css">
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.jqueryui.min.js"></script>
+
+<form method="post">
+    <div class="header">
+        {# <img src="{{ absolute_url(asset('images/roof.jpg')) }}" class=""  alt="header"> #}
+        <div class="container">
+            <div class="home-header">
+                <h1>
+                    Sign In    
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="content container panel panel-body">
+       <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Last login</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.last|date('Y-m-d  G:i') }}</td>
+                </tr>                
+                {% endfor %}
+            </tbody>
+        </table>        
+    </div>
+</form>
+
+<script>
+$(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+
+</script>
+{% endblock %}

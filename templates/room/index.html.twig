@@ -22,7 +22,7 @@
             <a href="{{ path('room_show', {'id': room.id}) }}">
             <div class="room panel shadow">
                 <div class="image" >
-                    <div style="background-image: url('{{ asset(room.Image) }}'); background-size: cover;"></div>
+                    <div style="background-image: url('{{ asset(room.Image) }}'); background-size: cover; background-position: center;"></div>
                 </div>
                 <div class="title">
                     <h2>{{ room.Name }}</h2>

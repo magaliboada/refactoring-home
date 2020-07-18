@@ -32,6 +32,7 @@ final class ScraperTest extends TestCase
     public function testScrapperLeroy(): void
     {            
         $url = 'https://www.leroymerlin.es/fp/17654896/cana-partida-beige-1-5x5-m';
+        $url = 'https://www.leroymerlin.es/fp/82413009/silla-azul-bustelo-52x44x86-5';
         $scraper = new Scraper($url);
 
         echo var_export($scraper, true);

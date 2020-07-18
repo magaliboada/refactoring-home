@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,6 +19,8 @@ class SecurityController extends AbstractController
         //     return $this->redirectToRoute('target_path');
         // }
 
+        
+
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -27,6 +30,25 @@ class SecurityController extends AbstractController
             'last_username' => $lastUsername,
             'error' => $error
         ]);
+    }
+
+    /**
+     * @Route("/user/admin", name="admin")
+     */
+    public function admin(UserRepository $userRepository): Response
+    {
+        $user = $this->getUser();
+
+        if($user == null) {
+            return $this->redirectToRoute('app_login');
+        } elseif ($user->getId() != 1) {
+            return $this->redirectToRoute('room_index');
+        }
+
+        return $this->render('security/admin.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
+
     }
 
     public function encodePassword($raw, $salt)

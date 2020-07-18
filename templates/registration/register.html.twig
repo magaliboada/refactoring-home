@@ -27,6 +27,8 @@
             label: 'Password'
         }) }}
 
+        {{ form_row(registrationForm.name) }}
+
         <div class="action-button">
             {{ form_row(registrationForm.agreeTerms) }}         
             <button type="submit" class="btn btn-warning btn-lg g-recaptcha" data-sitekey="6Lc6BbEZAAAAACiI12d4emSiFKbBZWbaPCOG_ecn" data-callback='onSubmit' data-action='submit'>Register</button>

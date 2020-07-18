@@ -45,6 +45,16 @@ class User implements UserInterface, \Serializable
      */
     private $isVerified = false;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $last;
+
+    /**
+     * @ORM\Column(type="string", length=400, nullable=true)
+     */
+    private $Name;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -137,6 +147,47 @@ class User implements UserInterface, \Serializable
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getIsActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->isVerified;
+    }
+
+    public function getLast(): ?\DateTimeInterface
+    {
+        return $this->last;
+    }
+
+    public function setLast(?\DateTimeInterface $last): self
+    {
+        $this->last = $last;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->Name;
+    }
+
+    public function setName(?string $Name): self
+    {
+        $this->Name = $Name;
 
         return $this;
     }

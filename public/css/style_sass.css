@@ -111,6 +111,7 @@ body {
   height: 250px;
   background-position: center center;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .room .image div {
@@ -287,7 +288,6 @@ div#item-list .body-item .row a {
 div#item-list img {
   border: 1px solid #c3bb9359;
   max-height: 250px;
-  width: auto !important;
   margin-left: 55px;
 }
 

@@ -12,6 +12,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\ItemRepository;
+use App\Repository\RoomRepository;
 
 class SecurityController extends AbstractController
 {
@@ -40,7 +42,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/user/admin", name="admin")
      */
-    public function admin(UserRepository $userRepository): Response
+    public function admin(UserRepository $userRepository, RoomRepository $roomRepository, ItemRepository $itemRepository): Response
     {
         $user = $this->getUser();
 
@@ -52,6 +54,8 @@ class SecurityController extends AbstractController
 
         return $this->render('security/admin.html.twig', [
             'users' => $userRepository->findAll(),
+            'rooms' => $roomRepository->findAll(),
+            'items' => $itemRepository->findAll(),
         ]);
 
     }

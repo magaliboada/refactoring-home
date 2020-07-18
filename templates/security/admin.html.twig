@@ -14,39 +14,106 @@
         <div class="container">
             <div class="home-header">
                 <h1>
-                    Sign In    
+                    Admin    
                 </h1>
             </div>
         </div>
     </div>
 
+
     <div class="content container panel panel-body">
-       <table id="table_id" class="display">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Last login</th>                    
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in users %}
-                <tr>
-                    <td>{{ user.name }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>
-                    {{ user.last|date("m/d/Y H:i", "Europe/Paris") }}
-                    </td>
-                </tr>                
-                {% endfor %}
-            </tbody>
-        </table>        
+
+    <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="true">Users</a>
+    <a class="nav-item nav-link" id="rooms-tab" data-toggle="tab" href="#rooms" role="tab" aria-controls="rooms" aria-selected="false">Rooms</a>
+    <a class="nav-item nav-link" id="items-tab" data-toggle="tab" href="#items" role="tab" aria-controls="items" aria-selected="false">Items</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Last login</th>                    
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                {{ user.last|date("m/d/Y H:i", "Europe/Paris") }}
+                </td>
+            </tr>                
+            {% endfor %}
+        </tbody>
+    </table>   
+  </div>
+  <div class="tab-pane fade" id="rooms" role="tabpanel" aria-labelledby="rooms-tab"><table id="rooms" class="display">
+    <table id="table_id2" class="display">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>User Id</th>          
+                <th>Items</th>       
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+            <tr>
+                <td>{{ room.name }}</td>
+                <td>{{ room.userId }}</td> 
+                <td>    
+                {% for item in room.items %}                
+                    {{ item.id }}, 
+                {% endfor %}      
+                </td>
+            </tr>                
+            {% endfor %}
+        </tbody>
+    </table>     
+        
     </div>
+  <div class="tab-pane fade" id="items" role="tabpanel" aria-labelledby="items-tab">
+    <table id="table_id3" class="display">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Created</th>
+                <th>Site</th>     
+                <th>Room</th>
+                <th>User Id</th>            
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{item.created |date("m/d/Y H:i", "Europe/Paris")}}</td>
+                <td>{{ item.store }}</td>
+                <td>{{ item.room.name }} | {{ item.room.id }}</td>     
+                <td>{{ item.room.userid}}</td>
+            </tr>                
+            {% endfor %}
+        </tbody>
+    </table>   
+  </div>
+</div>
+              
+          
+    </div>
+
 </form>
 
 <script>
 $(document).ready( function () {
-    $('#table_id').DataTable();
+    $('#table_id, #table_id2, #table_id3').DataTable();
 } );
 
 </script>

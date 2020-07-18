@@ -6,7 +6,7 @@ $background-general: #ffffffe3;
 }
 
 label {
-    min-width: 100px;
+    min-width: 155px;
 }
 
 input {
@@ -203,6 +203,12 @@ div#item-list {
 
     .item {
         width: 100%;
+        .name div,
+        .link div {
+            display: flex;
+            width: 100%;
+            align-items: baseline;
+        }
     }
 
     .panel-heading {
@@ -247,6 +253,11 @@ div#item-list {
         }
     }
 
+    .main-information {
+        
+        margin-right: 20px;
+    }
+
     .body-item {
         font-size: x-large;
 
@@ -256,7 +267,8 @@ div#item-list {
         }
 
         .row {
-            margin-left: 0px;
+            // margin-left: 0px;
+            margin-right: 20px;
 
             a {            
                 display: flex;
@@ -268,8 +280,10 @@ div#item-list {
     img {
         border: 1px solid #c3bb9359;
         max-height: 250px;
+        height: 130px !important;
+        width: auto !important;
         // width: auto !important;
-        margin-left: 55px;
+        // margin-left: 55px;
     }
 
     
@@ -422,9 +436,6 @@ input[type="checkbox"] {
     margin-left: 20px;
 }
 
-.field, [name="registration_form"] > div label {
-    min-width: 155px;
-}
 
 button.btn.btn-lg.btn-warning {
     clear: both;
@@ -484,3 +495,30 @@ input:disabled {
     border: none;
     background: #8080801c;
   }
+
+  div#user {
+
+    div {
+        display: flex;
+        align-items: baseline;
+        font-size: larger;
+        justify-content: space-evenly;
+        color: gray;
+        padding: 10px;
+        /* border-bottom: 1px solid gray; */
+    }
+
+    input {
+        border-bottom: 1px solid gray;
+        padding-left: 25px !important;
+        padding: 10px;
+        background-color: transparent;
+    }
+
+    button#user_save {
+        font-size: large;
+        padding-right: 35px;
+        padding-left: 35px;
+        margin-top: 40px;
+    }
+}

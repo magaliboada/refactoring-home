@@ -34,7 +34,9 @@
                 <tr>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
-                    <td>{{ user.last|date('Y-m-d  G:i') }}</td>
+                    <td>
+                    {{ user.last|date("m/d/Y H:i", "Europe/Paris") }}
+                    </td>
                 </tr>                
                 {% endfor %}
             </tbody>

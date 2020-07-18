@@ -34,10 +34,10 @@
             <div class="account">
 
                 {% if app.user %}
-                Hello!
-                {# <a href="/user/profile">
-                    
-                </a> #}
+                
+                <a href="/user/profile">
+                    Hello {{app.user.name}}!
+                </a> 
                 {% else %}
                 <a href="/user/login">
                     Sign In

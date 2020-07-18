@@ -5,7 +5,7 @@
 }
 
 label {
-  min-width: 100px;
+  min-width: 155px;
 }
 
 input {
@@ -207,6 +207,17 @@ div#item-list .item {
   width: 100%;
 }
 
+div#item-list .item .name div,
+div#item-list .item .link div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
 div#item-list .panel-heading {
   background-color: #ffffffe3 !important;
   font-size: x-large;
@@ -263,6 +274,10 @@ div#item-list .price .col-sm-4 {
           justify-content: center;
 }
 
+div#item-list .main-information {
+  margin-right: 20px;
+}
+
 div#item-list .body-item {
   font-size: x-large;
 }
@@ -273,7 +288,7 @@ div#item-list .body-item div {
 }
 
 div#item-list .body-item .row {
-  margin-left: 0px;
+  margin-right: 20px;
 }
 
 div#item-list .body-item .row a {
@@ -288,7 +303,8 @@ div#item-list .body-item .row a {
 div#item-list img {
   border: 1px solid #c3bb9359;
   max-height: 250px;
-  margin-left: 55px;
+  height: 130px !important;
+  width: auto !important;
 }
 
 .main-information {
@@ -454,10 +470,6 @@ input[type="checkbox"] {
   margin-left: 20px;
 }
 
-.field, [name="registration_form"] > div label {
-  min-width: 155px;
-}
-
 button.btn.btn-lg.btn-warning {
   clear: both;
 }
@@ -523,5 +535,35 @@ input#registration_form_agreeTerms {
 input:disabled {
   border: none;
   background: #8080801c;
+}
+
+div#user div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  font-size: larger;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  color: gray;
+  padding: 10px;
+  /* border-bottom: 1px solid gray; */
+}
+
+div#user input {
+  border-bottom: 1px solid gray;
+  padding-left: 25px !important;
+  padding: 10px;
+  background-color: transparent;
+}
+
+div#user button#user_save {
+  font-size: large;
+  padding-right: 35px;
+  padding-left: 35px;
+  margin-top: 40px;
 }
 /*# sourceMappingURL=style_sass.css.map */

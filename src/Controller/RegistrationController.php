@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
+
+use App\Form\UserType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
@@ -68,6 +70,42 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+        ]);
+    }
+
+     /**
+     * @Route("/user/profile", name="profile", methods={"GET","POST"})
+     */
+
+    public function profile(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+          
+        if($user == null) {
+            return $this->redirectToRoute('app_login');
+        }     
+
+        if ($form->isSubmitted() && $form->isValid()) {            
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+            return $this->redirectToRoute('room_index');
+        }
+
+
+        return $this->render('security/profile.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
 

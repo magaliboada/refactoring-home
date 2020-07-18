@@ -43,11 +43,15 @@
                     {{row.vars.value.name}}
                 </div>
                 <div class="panel-body main-information row">        
-                    <div class="col-sm-10">
-                        {{form_row(row.Name)}}
-                        {{form_row(row.Link)}}
+                    <div class="col-md-10 col-sm-12 row item">
+                        <div class="col-sm-12 name">
+                            {{form_row(row.Name)}}  
+                        </div>
+                        <div class="col-sm-12 link">
+                            {{form_row(row.Link)}}
+                        </div>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-md-2 col-sm-12">
                         <img src="{{row.vars.value.image}}" alt="">
                     </div>
                         

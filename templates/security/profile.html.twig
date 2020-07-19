@@ -19,7 +19,15 @@
     
 
         {{ form(form) }}
+
+        <div class="actions">
+            <a href="{{ path('delete_user', {id: user.id}) }}" class="btn btn-danger">
+                Delete Account
+            </a>
+        </div>
         
     </div>
+
+
 </form>
 {% endblock %}

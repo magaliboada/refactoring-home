@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Admin{% endblock %}
 
 {% block body %}
 
@@ -38,7 +38,8 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Last login</th>                    
+                <th>Last login</th>    
+                <th>Remove</th>                
             </tr>
         </thead>
         <tbody>
@@ -50,6 +51,7 @@
                 <td>
                 {{ user.last|date("m/d/Y H:i", "Europe/Paris") }}
                 </td>
+                <td><a href="/user/{{user.id}}/delete">Remove</a></td>
             </tr>                
             {% endfor %}
         </tbody>

@@ -116,9 +116,6 @@ class RoomController extends AbstractController
      */
     public function edit(Request $request, Room $room): Response
     {
-        $form = $this->createForm(RoomType::class, $room);
-        $form->handleRequest($request);
-
         $user = $this->getUser();
         
         if($user == null) {
@@ -126,6 +123,9 @@ class RoomController extends AbstractController
         } elseif ($user->getId() != $room->getUserId()) {
             return $this->redirectToRoute('room_index');
         }        
+
+        $form = $this->createForm(RoomType::class, $room);
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {            
 

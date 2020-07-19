@@ -7,8 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\User;
 use App\Form\UserType;
@@ -58,6 +57,33 @@ class SecurityController extends AbstractController
             'items' => $itemRepository->findAll(),
         ]);
 
+    }
+
+    /**
+     * @Route("/user/{id}/delete", name="delete_user", methods={"GET"})
+     */
+    public function delete(User $userSelected, RoomRepository $roomRepository, TokenStorageInterface$tokenStorage, Request $request): Response
+    {
+        $user = $this->getUser();
+
+        if($user == null) {
+            return $this->redirectToRoute('app_login');
+        } elseif ($user->getId() != 1 && $user->getId() != $userSelected->getId()) {
+            return $this->redirectToRoute('room_index');
+        }
+
+        $roomRepository->deleteByUser($user->getId());      
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($userSelected);
+        $entityManager->flush();
+
+        if  ($user->getId() == 1)
+            return $this->redirectToRoute('admin');
+        else{
+            $tokenStorage->setToken(null);
+            return $this->redirectToRoute('app_login');
+        }
     }
 
     public function encodePassword($raw, $salt)

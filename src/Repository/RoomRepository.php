@@ -34,10 +34,23 @@ class RoomRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function deleteByUser($user_id) {
+
+        $qb = $this->createQueryBuilder('r');
+        $query = $qb->delete('App:Room', 'r')
+        ->Where('r.userId = :user_id')
+        ->setParameter('user_id', $user_id)
+        ->getQuery();
+
+        $query->execute();
+    
+    }
+    
     
 
     /*
-    public function findOneBySomeField($value): ?Room
+    publir funrtion findOneBySomeField($value): ?Room
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.exampleField = :val')

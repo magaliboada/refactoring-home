@@ -21,12 +21,19 @@
         {{ form(form) }}
 
         <div class="actions">
-            <a href="{{ path('delete_user', {id: user.id}) }}" class="btn btn-danger">
+            <a href="{{ path('delete_user', {id: user.id}) }}" class="btn btn-danger" id="delete_user"  onclick="return confirm_click();">
                 Delete Account
             </a>
         </div>
         
     </div>
+
+    <script>
+    function confirm_click()
+    {
+        return confirm("If you delete your account, all your data will be lost. \nAre you sure you want to proceed?");
+    }
+    </script>
 
 
 </form>

@@ -70,7 +70,7 @@ class RoomController extends AbstractController
             $entityManager->flush();
 
             
-            CronManager::refreshNull($this->getDoctrine()->getManager(), true);
+            CronManager::refreshNull($this->getDoctrine()->getManager(), $user->getId());
 
             return $this->redirectToRoute('room_index');
         }
@@ -133,7 +133,7 @@ class RoomController extends AbstractController
             $room = $this->handleImage($imageName, $room);            
 
             $this->getDoctrine()->getManager()->flush();
-            CronManager::refreshNull($this->getDoctrine()->getManager(), true);
+            CronManager::refreshNull($this->getDoctrine()->getManager(), $user->getId());
 
             return $this->redirectToRoute('room_show', ['id' => $room->getId()]);
         }

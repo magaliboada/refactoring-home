@@ -47,7 +47,8 @@ class Scraper
             $price = $this->get_string_between($html, '<span id="priceblock_ourprice" class="a-size-medium a-color-price priceBlockBuyingPriceString">', '</span>');
             $price = str_replace(",", ".", $price);
             $this->price = floatval($price);
-            $this->image = $this->get_string_between($html, 'data-old-hires="', '" onload');
+            $html = $myCurl->__tostring();
+            $this->image = $this->get_string_between($html, '"main":{"', '":[');
         
 
         // $html = file_get_contents($this->url);

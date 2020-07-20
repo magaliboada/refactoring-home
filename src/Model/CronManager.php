@@ -17,14 +17,21 @@ class CronManager
         // A. Access repositories
         $repo = $em->getRepository("App:Item");
         
-        if ($user_id != null)
+        if ($user_id != NULL)
             $nullScraps = $repo->findByNullFieldByUser($user_id);
         else
             $nullScraps = $repo->findByNullField();
 
         foreach ($nullScraps as $item) {
+            $start_time = time();
+
             do {
                 $scraper = new Scraper($item->getLink());
+                if ((time() - $start_time) > 10) 
+                    break; // timeout, function took longer than 10 seconds
+
+                    sleep(1);
+
             } while($scraper->getPrice() == 0);
 
             $item->setPrice($scraper->getPrice());

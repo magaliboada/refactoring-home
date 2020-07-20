@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <link rel="icon" type="image/x-icon" href="{{ absolute_url(asset('images/favicon.png')) }}" />
         <meta property="og:image" content="{{ absolute_url(asset('images/metatag.jpg')) }}">
-        </meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /></meta>
         <title>{% block title %}Welcome!{% endblock %}</title>
 
         {% block stylesheets %}{% endblock %}
@@ -42,7 +42,7 @@
                     <img src="{{ absolute_url(asset('images/main-header.png')) }}" alt="">
                 </a>
             </div>
-            <div class="account">
+            <div class="account row">
                 
                 {% if app.user %}    
 
@@ -52,11 +52,11 @@
 
                 {% endif %}
 
-                <a href="/user/profile">
+                <a href="/user/profile" class="">
                     Hello {{app.user.name}}!
                 </a> 
                 {% else %}
-                <a href="/user/login">
+                <a href="/user/login" class="">
                     Sign In
                 </a>
                 {% endif %}

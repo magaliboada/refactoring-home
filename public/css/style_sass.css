@@ -603,4 +603,71 @@ div#user button#user_save {
   padding-left: 35px;
   margin-top: 40px;
 }
+
+@media (max-width: 767px) {
+  label {
+    min-width: 99px;
+  }
+  div#user > div input,
+  [name="registration_form"] > div input,
+  .field input {
+    margin-left: 0px;
+    width: 100%;
+    font-size: medium;
+    padding-left: 10px !important;
+  }
+  div#user > div,
+  .field,
+  [name="registration_form"] > div {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+            flex-direction: row !important;
+    -webkit-box-align: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .field {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .remember label {
+    padding-left: 0px;
+  }
+  .content.container.panel.panel-body {
+    min-height: 800px !important;
+  }
+  .user-menu {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .user-menu .home img {
+    padding-right: 15px;
+  }
+  .user-menu .account {
+    font-size: small;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .home-header {
+    top: 120px !important;
+    min-width: 260px !important;
+  }
+  .home-header h1 {
+    font-size: x-large !important;
+  }
+  .home-header a {
+    font-size: large !important;
+    color: gray;
+  }
+}
 /*# sourceMappingURL=style_sass.css.map */

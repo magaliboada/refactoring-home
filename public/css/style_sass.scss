@@ -28,6 +28,12 @@ h1 {
     border-color: transparent !important;
   }
 
+  .btn-danger {
+    color: #fff;
+    border-color: transparent !important;
+    background-color: #e95a68eb !important;
+}
+
 .content.container {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -49,13 +55,13 @@ input:focus {
 }
 
 .btn-warning {
-    color: #fff;
+    color: gray;
     background-color: #f0ad4e;
     border-color: #eea236;
 }
 
 .btn-warning:hover {
-    color: #fff;
+    color: gray;
     background-color: #ec971f;
     border-color: #d58512;
 }
@@ -102,6 +108,10 @@ body {
         color: gray;
         font-weight: 100;
         font-style: italic;
+    }
+
+    span.measure {
+        font-size: smaller;
     }
 }
 

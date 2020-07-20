@@ -12,18 +12,24 @@ h1 {
 }
 
 .btn-success {
-  background-color: #5da284;
+  background-color: #79bea0;
   border-color: transparent;
 }
 
 .btn-info {
-  background-color: #68a2b5;
+  background-color: #79c5dd;
   border-color: transparent;
 }
 
 .btn-warning {
-  background-color: #f1d199 !important;
+  background-color: #fadba4 !important;
   border-color: transparent !important;
+}
+
+.btn-danger {
+  color: #fff;
+  border-color: transparent !important;
+  background-color: #e95a68eb !important;
 }
 
 .content.container {
@@ -46,13 +52,13 @@ input:focus {
 }
 
 .btn-warning {
-  color: #fff;
+  color: gray;
   background-color: #f0ad4e;
   border-color: #eea236;
 }
 
 .btn-warning:hover {
-  color: #fff;
+  color: gray;
   background-color: #ec971f;
   border-color: #d58512;
 }
@@ -100,6 +106,10 @@ body {
   color: gray;
   font-weight: 100;
   font-style: italic;
+}
+
+.rooms span.measure {
+  font-size: smaller;
 }
 
 .room {

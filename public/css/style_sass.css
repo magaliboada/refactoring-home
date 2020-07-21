@@ -407,6 +407,14 @@ div#item-list img {
           justify-content: center;
 }
 
+.terms.col-sm-12 {
+  -webkit-text-decoration: underline solid #fadba4;
+          text-decoration: underline solid #fadba4;
+  color: gray;
+  font-style: oblique;
+  font-size: large;
+}
+
 .user-menu {
   position: fixed;
   background: white;
@@ -532,11 +540,12 @@ button.btn.btn-lg.btn-warning {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-right: 60px;
+  margin-right: 10rem;
 }
 
 input#registration_form_agreeTerms {
-  margin-left: 0px;
+  margin-left: 10px;
+  margin-bottom: 5px;
 }
 
 .action-button {
@@ -545,15 +554,32 @@ input#registration_form_agreeTerms {
   display: flex;
   /* padding-left: 15px; */
   float: left;
-  margin-left: 50px;
+  margin-left: 0px;
 }
 
 .footer {
   background-color: white;
   color: gray;
-  text-align: center;
   width: 100%;
   padding: 10px;
+}
+
+.footer .copy {
+  text-align: center;
+}
+
+.footer .info-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.footer .info-links div a {
+  padding: 10px;
+  color: gray;
 }
 
 .new-form .btn-warning.edit,
@@ -682,6 +708,121 @@ div#user button#user_save {
   .home-header a {
     font-size: large !important;
     color: gray;
+  }
+}
+
+.cookies .buttons {
+  width: 100%;
+  padding-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.cookies .buttons .banner-retail .buttons .button {
+  border: grey solid 0.1px;
+  padding: 10px;
+  min-width: 140px;
+  text-align: center;
+  background: white;
+  cursor: pointer;
+  color: grey;
+}
+
+.cookies .btn.btn-course {
+  background: white;
+  border-radius: initial;
+  color: #79bea0;
+  font-size: x-large;
+}
+
+.cookies .banner-retail .buttons .button {
+  border: grey solid 0.1px;
+  padding: 10px;
+  min-width: 140px;
+  text-align: center;
+  background: white;
+  cursor: pointer;
+  color: grey;
+}
+
+.cookies .banner-retail {
+  display: block;
+  position: fixed;
+  top: 13%;
+  margin: 13%;
+  /* min-height: 300px; */
+  opacity: 1;
+  background: #79bea0db;
+  border: #fff solid 2px;
+  padding: 25px 90px;
+  clear: both;
+  width: auto;
+  color: white;
+  z-index: 999;
+  right: 50%;
+  margin-right: -350px;
+  width: 700px;
+}
+
+.cookies .innerBanner .text {
+  text-align: center;
+}
+
+.cookies .innerBanner .text p {
+  margin: 10px 0;
+}
+
+.cookies .banner-retail .button:hover {
+  background: gray !important;
+  color: white;
+}
+
+.cookies .buttons {
+  padding-top: 10px;
+}
+
+.cookies .buttons div {
+  margin: 20px;
+}
+
+.cookies .hola {
+  font-weight: bold;
+  font-size: 25px;
+  padding-right: 5px;
+}
+
+@media (max-width: 767px) {
+  .cookies .banner-retail {
+    width: 100%;
+    margin: 0;
+    right: 0;
+    padding-top: 10px;
+    padding-left: 55px;
+    padding-right: 55px;
+    padding-bottom: 10px;
+  }
+  .cookies .innerBanner {
+    margin-right: -38px;
+    margin-left: -34px;
+  }
+  .cookies .btn.btn-course {
+    font-size: large !important;
+  }
+  .cookies p {
+    font-size: larger;
+  }
+  .cookies .btn.btn-course {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 7px;
   }
 }
 /*# sourceMappingURL=style_sass.css.map */

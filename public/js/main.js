@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-    placeButton();
-
     $('.sf-display-none').remove()
     setConteinerHeight();
 

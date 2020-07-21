@@ -60,6 +60,24 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * @Route("/info/terms", name="terms")
+     */
+    public function legal(): Response
+    {
+        return $this->render('legal/terms.html.twig', [
+        ]);
+    }
+
+    /**
+     * @Route("/info/privacy", name="legal")
+     */
+    public function privacy(): Response
+    {
+        return $this->render('legal/privacy.html.twig', [
+        ]);
+    }
+
+    /**
      * @Route("/user/{id}/delete", name="delete_user", methods={"GET"})
      */
     public function delete(User $userSelected, RoomRepository $roomRepository, TokenStorageInterface$tokenStorage, Request $request): Response

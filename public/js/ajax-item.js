@@ -115,16 +115,16 @@ function placeButton() {
         buttonWidth = $('.edit-form .content').width() - $('#room_save').width() -  $('.edit.btn-warning').width() - $('.btn-danger.delete').width();
     }
 
-    buttonWidth /= 5;
+    buttonWidth /= 4;
 
 
-    leftValue = windowMargin + buttonWidth;
+    leftValue = windowMargin  + buttonWidth*1.5;
     $('#room_save').css('left', leftValue);
 
-    leftValue += $('#room_save').width() + buttonWidth;
+    leftValue += $('#room_save').width() + buttonWidth/2;
     $('.edit.btn-warning').css('left', leftValue);
 
-    leftValue += $('.edit.btn-warning').width() + buttonWidth;
+    leftValue += $('.edit.btn-warning').width() + buttonWidth/2;
     $('.btn-danger.delete').css('left', leftValue);
     console.log('asd');
 }

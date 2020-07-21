@@ -25,6 +25,7 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>                
         <link  rel="stylesheet" href="{{ asset('css/style_sass.css') }}">
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
         
         <script src="{{ asset('js/ajax-item.js') }}"></script>
         <script src="{{ asset('js/main.js') }}"></script>
@@ -78,12 +79,66 @@
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
         <div class="footer">
-            <div class="copy">© Magalí Boada 2020</div>
-            <div class="contact">
-
-            </div>
+            
+            <div class="info-links">
+                <div class="privacy "><a href="/info/privacy">Privacy Policy</a></div>
+                <div class="terms "><a href="/info/terms">Terms of service</a></div>
+                <div class="contact  ">
+                </div>
+            </div>       
+            <div class="copy col-sm-12">© Magalí Boada 2020</div>
         </div>
+
+
+
+        <div class="container cookies" style="display: none;">
+            <div class="banner-retail" >
+              <div class="innerBanner row">
+                <span class = "text col-sm-12">  
+                  <p><span class="hola">Hello!</span>If you continue to browse, we’ll use cookies that make our site work, improve performance, and customise your experience.</p> 
+                      
+                </span>
+                <div class="buttons">
+                  <div class="btn btn-course button-cerrar" href="/">Agree</div>
+                  <div class="btn btn-course button-readmore" href="/">Read More</div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+      
+        <style>
+        
+        
+      
+      
+      </style>
     </body>
 </html>
 
 
+<script>
+    initalizeRetailBanner();
+
+
+$( ".button-cerrar" ).click(function() {
+  Cookies.set('popup', 'seen');
+  $('.banner-retail').css('display', 'none');
+  $('body .home, .main-content').css('opacity', '1');
+});
+
+$( ".button-readmore" ).click(function() {
+  
+  var url = "/info/privacy";    
+  $(location).attr('href',url);  
+});
+  
+  function initalizeRetailBanner() {
+      let cookie = Cookies.get('popup');
+
+      console.log(cookie);
+
+        if((window.location.pathname != '/info/privacy' && window.location.pathname != '/info/terms') && cookie == null)
+            $('.cookies').css('display', 'block');
+  }
+</script>

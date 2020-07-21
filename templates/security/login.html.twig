@@ -3,6 +3,7 @@
 {% block title %}Refactor Home{% endblock %}
 
 {% block body %}
+<script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -51,11 +52,18 @@
         </div>
         
         <div class="submit-button">
-            <button class="btn btn-lg btn-warning" type="submit">
+            
+            <button class="btn btn-lg btn-warning" type="submit" data-sitekey="6Lc6BbEZAAAAACiI12d4emSiFKbBZWbaPCOG_ecn" data-callback='onSubmit' data-action='submit'>
                 Sign in
             </button>
         </div>
         
     </div>
 </form>
+
+<script>
+    function onSubmit(token) {
+      $("form").submit();
+    }
+  </script>
 {% endblock %}

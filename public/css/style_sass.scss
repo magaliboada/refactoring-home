@@ -50,7 +50,7 @@ h1 {
 }
 
 label {
-    min-width: 155px;
+    min-width: 130px;
 }
 
 input {
@@ -340,14 +340,19 @@ div#item-list {
 .main-information {
     border: 4px solid white;
     background: white;
-
+    label {
+        font-size: larger;
+        color: gray;
+    }
 
     input {
         background-color: transparent;
     }
 
-    div {
-        padding: 8px;
+    > div {
+        padding: 20px;
+        padding-bottom: 20px;
+        padding-top: 20px;
     }
     
     .row div {
@@ -355,6 +360,7 @@ div#item-list {
         display: flex;
         justify-content: space-around;
         font-size: large;
+        align-items: baseline;
     }
 
     .row {
@@ -369,6 +375,10 @@ div#item-list {
 
 .measure div::after {
     content: '   cm';
+}
+
+.measures input {
+    text-align: center;
 }
 
 // button#room_save {

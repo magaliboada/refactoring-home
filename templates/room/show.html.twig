@@ -16,9 +16,9 @@
 
     <div class="content container panel panel-body">
         <div class="main-information">            
-            {% if room.Image != null %}
+            {% if room.Image != null %}        
             <div class="form-preview-image">
-                <img src="{{ asset(room.Image) }}" alt="" style="height:500px; width:auto;">
+                <div style="background-image: url('{{ asset(room.Image) }}'); background-size: cover; background-position: center; height: 500px;"></div>
             </div>
             {% endif %}
             <div class="row">

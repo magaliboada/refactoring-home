@@ -5,6 +5,7 @@ var $addNewItem = $('<div href="#" class="btn btn-info">Add new Item</div>');
 
 $(document).ready( function() {
 
+    
 
     $(".new input#room_Image").prop('required',true);
 
@@ -73,7 +74,7 @@ function addNewForm() {
 
 function addRemoveButton($panel) {
 
-    placeButton();
+    
 
     //remove button
     var $removeButton = $('<div class="btn btn-danger m-4">Remove Item</div>');
@@ -92,6 +93,8 @@ function addRemoveButton($panel) {
     //append foote to banner
     $panel.append($panelFooter);
 
+    placeButton();
+
 }
 
 //Place buttons bellow form
@@ -106,15 +109,14 @@ function placeButton() {
     var windowMargin = $( window ).width() - $('.edit-form .content').width();
     windowMargin /= 2;
 
-    if($('h1')[0].innerText != 'New Room') {
-        buttonWidth = $('.edit-form .content').width() - $('#room_save').width() -  $('.edit.btn-warning').width() - $('.btn-danger.delete').width();
-
+    if ($(document).find(".edit-form.new").length) {
+        buttonWidth = $('.edit-form .content').width() - $('#room_save').width() -  $('.edit.btn-warning').width();        
     } else {
-        buttonWidth = $('.edit-form .content').width() - $('#room_save').width() -  $('.edit.btn-warning').width();
-        
+        buttonWidth = $('.edit-form .content').width() - $('#room_save').width() -  $('.edit.btn-warning').width() - $('.btn-danger.delete').width();
     }
-    
+
     buttonWidth /= 5;
+
 
     leftValue = windowMargin + buttonWidth;
     $('#room_save').css('left', leftValue);
@@ -124,5 +126,5 @@ function placeButton() {
 
     leftValue += $('.edit.btn-warning').width() + buttonWidth;
     $('.btn-danger.delete').css('left', leftValue);
-    
+    console.log('asd');
 }

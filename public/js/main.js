@@ -1,11 +1,15 @@
 $(document).ready(function () {
 
+    placeButton();
+
     $('.sf-display-none').remove()
     setConteinerHeight();
 
     $( window ).resize(function() {
         setConteinerHeight();
     });
+
+    console.log('holi');
     
     placeButton();    
 })

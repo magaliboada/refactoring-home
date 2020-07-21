@@ -38,7 +38,7 @@ h1 {
 }
 
 label {
-  min-width: 155px;
+  min-width: 130px;
 }
 
 input {
@@ -349,12 +349,19 @@ div#item-list img {
   background: white;
 }
 
+.main-information label {
+  font-size: larger;
+  color: gray;
+}
+
 .main-information input {
   background-color: transparent;
 }
 
-.main-information div {
-  padding: 8px;
+.main-information > div {
+  padding: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 .main-information .row div {
@@ -365,6 +372,9 @@ div#item-list img {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   font-size: large;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
 }
 
 .main-information .row {
@@ -382,6 +392,10 @@ div#item-list img {
 
 .measure div::after {
   content: '   cm';
+}
+
+.measures input {
+  text-align: center;
 }
 
 .action-buttons {

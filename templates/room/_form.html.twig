@@ -19,15 +19,18 @@
     <div class="content container panel panel-body">
         <div class="main-information">
             <div class="name">{{ form_row(form.Name) }}</div>
-            <div class="">{{ form_row(form.Width) }}</div>
-            <div class="">{{ form_row(form.Height) }}</div>
-            <div class="">{{ form_row(form.Depth) }}</div>
+            <div class="row measures">
+                <div class="col-md-4 col-sm-12">{{ form_row(form.Width) }} cm</div>
+                <div class="col-md-4 col-sm-12">{{ form_row(form.Height) }} cm</div>
+                <div class="col-md-4 col-sm-12">{{ form_row(form.Depth) }} cm</div>
+            </div>
+            
             <div class="form-image">
                 {{ form_row(form.Image) }}
             </div>
             {% if room.Image != null %}
             <div class="form-preview-image">
-                <img src="{{ asset(room.Image) }}" alt="" style="height:500px; width:auto;">
+                <div style="background-image: url('{{ asset(room.Image) }}'); background-size: cover; background-position: center; height: 500px;"></div>
             </div>
             {% endif %}
         </div>

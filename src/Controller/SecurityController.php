@@ -80,6 +80,66 @@ class SecurityController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("/info/contact", name="terms")
+     */
+    public function contact(Request $request): Response
+    {
+        $response = '';
+
+        if( strlen($request->request->get('email')) > 0) {
+            // $formFields = ['name', 'email', 'subject', 'agree'];
+            // foreach ($formFields as $field) {
+            //     echo var_export($request->request->get($field));
+            // }
+
+            $mail = new PHPMailer();
+            $mail->IsSMTP();
+            $mail->Mailer = "smtp";
+
+            $mail->SMTPAuth   = TRUE;
+            $mail->SMTPSecure = "ssl";
+            $mail->Port       = 465 ;
+            
+
+            $mail->IsHTML(true);
+            $mail->AddAddress('refactorhome@gmail.com', "recipient-name");
+            $mail->SetFrom("contact@homerefactor.com", "Home Refactor");
+            $mail->AddReplyTo($request->request->get('email'), "Reply to");
+            $mail->Subject = $request->request->get('subject');
+            
+            $content = 
+            "<p> Name: " . $request->request->get('name') . "<p>" .
+            "<p> Email: " . $request->request->get('email') . "<p>" .
+            "<p> Message: " . $request->request->get('message') . "<p>"            
+            ;
+
+            $mail->MsgHTML($content); 
+            if(!$mail->Send()) {
+            echo "Error while sending Email.";
+                $response = '<div class="alert alert-danger text-center">The message was not sent.</div>';
+            } else {
+                $response = '<div class="alert alert-success text-center">The message was sent.</div>';
+            };
+
+            
+        }
+
+
+
+        // if ($form->isSubmitted() && $form->isValid()) { 
+
+        
+        // }
+
+        // $response = 'Message sent successfully.';
+
+        return $this->render('legal/contact.html.twig', [
+            'message' => $response,
+        ]);
+    }
+
+
     /**
      * @Route("/user/{id}/delete", name="delete_user", methods={"GET"})
      */
@@ -105,6 +165,42 @@ class SecurityController extends AbstractController
             $tokenStorage->setToken(null);
             return $this->redirectToRoute('app_login');
         }
+    }
+
+
+    /**
+     * @Route("/user/test-mail", name="test")
+     */
+    public function sendEmail()
+    {
+        // $user = $this->getUser();
+
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+        $mail->Mailer = "smtp";
+
+        $mail->SMTPDebug  = 1;  
+        $mail->SMTPAuth   = TRUE;
+        $mail->SMTPSecure = "ssl";
+        $mail->Port       = 465 ;
+
+        $mail->IsHTML(true);
+        $mail->AddAddress('refactorhome@gmail.com', "recipient-name");
+        $mail->SetFrom("contact@homerefactor.com", "Home Refactor");
+        // $mail->AddReplyTo($mail->Username, "reply-to-name");
+        $mail->Subject = "Verify your account!";
+        $content = "<h1>Hi! Please confirm your email!</h1>";
+
+        $mail->MsgHTML($content); 
+        if(!$mail->Send()) {
+          echo "Error while sending Email.";
+        //   var_dump($mail);
+        } else {
+          echo "Email sent successfully";
+        };
+        
+        if(false)
+            return $this->redirectToRoute('admin');
     }
 
     public function encodePassword($raw, $salt)

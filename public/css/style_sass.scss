@@ -91,7 +91,7 @@ img {
 }
 
 body {
-    background-image: url(http://www.homerefactor.com/images/roof.jpg);
+    background-image: url(/images/roof.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     
@@ -693,6 +693,68 @@ input:disabled {
         }
     }
 
+  }
+
+  .contact {
+    .row {
+        /* width: 80%; */
+        display: flex;
+        justify-content: center;
+        padding-left: 50px;
+        padding-right: 50px;
+
+        @include respond-below(sm) {
+
+            padding-left: 0px; 
+            padding-right: 0px;
+        }
+    }
+    a.btn.btn-primary.btn-warning {
+        padding: 10px;
+        font-size: large;
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+    form#contact-form {
+        margin-bottom: 50px;
+    }
+
+    .form-control {
+        background-color: transparent;
+        border: transparent;
+        border-bottom: 1px solid black;
+        border-radius: 0;
+    }
+
+    input {
+        margin-bottom: 25px;
+    }
+
+    .intro {
+        margin-top: 30px;
+        margin-bottom: 60px !important;
+    }
+
+    .md-form.agree label {
+        display: flex;
+        align-items: center;
+        
+    }
+
+    input#agree {
+        margin-bottom: 0px;
+    }
+
+    .md-form.agree a {
+        padding: 20px;
+        text-decoration: underline solid #fadba4
+    }
+
+    .alert-danger {
+        top: 0px;
+    }
+    
   }
 
   .cookies {

@@ -83,7 +83,7 @@ img {
 }
 
 body {
-  background-image: url(https://www.homerefactor.com/images/roof.jpg);
+  background-image: url(/images/roof.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -709,6 +709,75 @@ div#user button#user_save {
     font-size: large !important;
     color: gray;
   }
+}
+
+.contact .row {
+  /* width: 80%; */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+@media (max-width: 767px) {
+  .contact .row {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.contact a.btn.btn-primary.btn-warning {
+  padding: 10px;
+  font-size: large;
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+.contact form#contact-form {
+  margin-bottom: 50px;
+}
+
+.contact .form-control {
+  background-color: transparent;
+  border: transparent;
+  border-bottom: 1px solid black;
+  border-radius: 0;
+}
+
+.contact input {
+  margin-bottom: 25px;
+}
+
+.contact .intro {
+  margin-top: 30px;
+  margin-bottom: 60px !important;
+}
+
+.contact .md-form.agree label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.contact input#agree {
+  margin-bottom: 0px;
+}
+
+.contact .md-form.agree a {
+  padding: 20px;
+  -webkit-text-decoration: underline solid #fadba4;
+          text-decoration: underline solid #fadba4;
+}
+
+.contact .alert-danger {
+  top: 0px;
 }
 
 .cookies .buttons {

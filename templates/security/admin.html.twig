@@ -88,6 +88,7 @@
     <table id="table_id3" class="display">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Name</th>
                 <th>Created</th>
                 <th>Site</th>     
@@ -98,9 +99,10 @@
         <tbody>
             {% for item in items %}
             <tr>
-                <td>{{ item.name }}</td>
                 <td>{{item.created |date("m/d/Y H:i", "Europe/Paris")}}</td>
-                <td>{{ item.store }}</td>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>                
+                <td><a href="{{item.link}}" target="_blank">{{ item.store }}</a></td>
                 <td>{{ item.room.name }} | {{ item.room.id }}</td>     
                 <td>{{ item.room.userid}}</td>
             </tr>                

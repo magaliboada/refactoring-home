@@ -12,6 +12,8 @@ use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 
 
@@ -28,44 +30,61 @@ class EmailVerifier
         $this->entityManager = $manager;
     }
 
+    /**
+     * @Route(name="app_verify_email")
+     */
+
     public function sendEmailConfirmation(string $verifyEmailRouteName, UserInterface $user, TemplatedEmail $email): void
     {
-        $signatureComponents = $this->verifyEmailHelper->generateSignature(
-            $verifyEmailRouteName,
-            $user->getEmail(),
-            $user->getEmail()
-        );
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+        $mail->Mailer = "smtp";
 
-        $context = $email->getContext();
-        $context['signedUrl'] = $signatureComponents->getSignedUrl();
-        $context['expiresAt'] = $signatureComponents->getExpiresAt();
+        $mail->SMTPDebug  = 1;  
+        $mail->SMTPAuth   = TRUE;
+        $mail->SMTPSecure = "tls";
+        $mail->Port       = 587;
+        $mail->Host       = "smtp.ionos.es";
+        
 
-    
-        $email->context($context)
-        ->from('contact@magaliboada.com')
-        ->subject('Verify your account!')
-        ->html(
-            "<h1>Hi! Please confirm your email!</h1>
+        $mail->IsHTML(true);
+        $mail->AddAddress($user->getEmail(), "recipient-name");
+        $mail->SetFrom($mail->Username, "Home Refactor");
+        $mail->AddReplyTo($mail->Username, "reply-to-name");
 
-            <p>
-                Please confirm your email address by clicking the following link: <br><br>
-                <a href=". $context['signedUrl']  .">Confirm my Email</a>.
-                This link expires in ".  'one' ." hour.
-            </p>
+        $emailhash = hash('md5', $user->getEmail().$user->getId(), false);
 
-            <p>
-                Cheers!
-            </p>"
+        $verifyLink = 'https://www.homerefactor.com/verify/email/'.$emailhash.'/'.$user->getId();
+        
+        $mail->Subject = "Verify your account!";
+        $content = 
+        
+        
+        '<h1>Hi! Please confirm your email!</h1>
 
-        );
+        <p>
+            Please confirm your email address by clicking the following link: <br><br>
+            '. $verifyLink  .' <br><br>
+        </p>
 
-        // $this->mailer->send($email);
-        // $mailer = new Mailer($transport);
+        <p>
+            Cheers!
+        </p>';
 
-        $transport = new EsmtpTransport('localhost');
-        $mailer = new Mailer($transport);
 
-        $mailer->send($email);
+        $mail->AltBody = $content;
+        $mail->Body = $content;
+        $mail->isHTML(true);
+
+
+
+        if(!$mail->Send()) {
+        //   echo "Error while sending Email.";
+        //   var_dump($mail);
+        } else {
+        //   echo "Email sent successfully";
+        };
+
     }
 
     /**
@@ -76,7 +95,7 @@ class EmailVerifier
         $this->verifyEmailHelper->validateEmailConfirmation($request->getUri(), $user->getEmail(), $user->getEmail());
 
         $user->setIsVerified(true);
-
+        
         $this->entityManager->persist($user);
         $this->entityManager->flush();
     }

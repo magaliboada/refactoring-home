@@ -14,6 +14,9 @@ use App\Form\UserType;
 use App\Repository\ItemRepository;
 use App\Repository\RoomRepository;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class SecurityController extends AbstractController
 {
     /**
@@ -103,36 +106,6 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
     }
-
-
-    // /**
-    //  * @Route("/user/test-mail", name="test")
-    //  */
-    // public function sendEmail(\Swift_Mailer $mailer)
-    // {
-    //     $user = $this->getUser();
-
-    //     $container->loadFromExtension('swiftmailer', [
-    //         'transport' => 'gmail',
-    //         'username'  => 'your_gmail_username',
-    //         'password'  => 'your_gmail_password',
-    //     ]);
-
-    //     $message = (new \Swift_Message('Hello Email'))
-    //         ->setFrom('contact@homerefactor.com')
-    //         ->setTo('boadamagali@gmail.com')
-    //         ->setBody('You should see me from the profiler!')
-    //     ;
-    
-    //     $mailer->send($message);
-        
-    //     echo var_export($mailer->send($message));
-
-    //     if  ($user->getId() == 2)
-    //         return $this->redirectToRoute('admin');
-    
-    //     // ...
-    // }
 
     public function encodePassword($raw, $salt)
     {

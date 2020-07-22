@@ -7,9 +7,6 @@ $(document).ready(function () {
         setConteinerHeight();
     });
 
-    console.log('holi');
-    
-    placeButton();    
 })
 
 function setConteinerHeight() {

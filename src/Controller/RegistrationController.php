@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
-
+use App\Repository\UserRepository;
 use App\Form\UserType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -46,7 +46,7 @@ class RegistrationController extends AbstractController
 
             $user->setUsername($user->getEmail());
 
-            $user->setIsVerified(true);
+            $user->setIsVerified(false);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -54,13 +54,13 @@ class RegistrationController extends AbstractController
 
 
 
-            // $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-            //     (new TemplatedEmail())
-            //         ->from(new Address('contact@homerefactor.com', 'Refactoring Home'))
-            //         ->to($user->getEmail())
-            //         ->subject('Please Confirm your Email')
-            //         ->htmlTemplate('registration/confirmation_email.html.twig')
-            // );
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                (new TemplatedEmail())
+                    ->from(new Address('contact@homerefactor.com', 'Refactoring Home'))
+                    ->to($user->getEmail())
+                    ->subject('Please Confirm your Email')
+                    ->htmlTemplate('registration/confirmation_email.html.twig')
+            );
             
 
             return $this->redirectToRoute('room_index');
@@ -97,6 +97,7 @@ class RegistrationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+            
             return $this->redirectToRoute('room_index');
         }
 
@@ -106,26 +107,24 @@ class RegistrationController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+    
     /**
-     * @Route("/verify/email", name="app_verify_email")
+     * @Route("/verify/email/{id}/{user}", name="registration_confirmation_route", methods={"GET"})
      */
-    public function verifyUserEmail(Request $request): Response
+    public function verifyUserEmail(Request $request, UserRepository $userRepository): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $userRepository->find($request->attributes->get('user'));
 
-        // validate email confirmation link, sets User::isVerified=true and persists
-        try {
-            $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
-        } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $exception->getReason());
+        if ($request->attributes->get('id') == hash('md5', $user->getEmail().$user->getId(), false)) {
 
-            return $this->redirectToRoute('app_register');
+            $user->setIsVerified(true);        
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Your e-mail address has been verified.');
         }
-
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
-
-        return $this->redirectToRoute('app_register');
+                
+        return $this->redirectToRoute('app_login');
     }
 }

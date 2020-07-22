@@ -5,7 +5,8 @@ var $addNewItem = $('<div href="#" class="btn btn-info">Add new Item</div>');
 
 $(document).ready( function() {
 
-    
+        
+    placeButton();    
 
     $(".new input#room_Image").prop('required',true);
 

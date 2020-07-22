@@ -65,3 +65,4 @@ yarn-error.log
 .env
 .env
 env
+src/Security/EmailVerifier.php

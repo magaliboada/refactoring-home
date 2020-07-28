@@ -46,5 +46,16 @@ class ItemRepository extends ServiceEntityRepository
         ;
     }
     
+    public function deleteByRoom($room) {
+
+        $qb = $this->createQueryBuilder('i');
+        $query = $qb->delete('App:Item', 'i')
+        ->Where('i.Room = :room')
+        ->setParameter('room', $room)
+        ->getQuery();
+
+        $query->execute();
+    
+    }
 
 }

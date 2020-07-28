@@ -34,24 +34,24 @@ class Scraper
 
     private function handleAmazon(): void
     {
-        // $this->url = urlencode($this->url);
-
         $html = $price = '';
         try {
             // $html = file_get_contents($this->url);
 
+            
             $myCurl = new MyCurl($this->url, true, 30, 4, false, true, false);
             $myCurl->createCurl($this->url);
             $html = $myCurl->__tostring();
+            echo var_export($html, true);
 
-            $price = $this->get_string_between($html, '<span id="priceblock_ourprice" class="a-size-medium a-color-price priceBlockBuyingPriceString">', '</span>');
+            $price = $this->get_string_between($html, 'priceBlockBuyingPriceString">', '</span>');
             $price = str_replace(",", ".", $price);
             $this->price = floatval($price);
             $html = $myCurl->__tostring();
             $this->image = $this->get_string_between($html, '"main":{"', '":[');
         
 
-        // $html = file_get_contents($this->url);
+            
         
         } catch (\Throwable $th) {
             //throw $th;

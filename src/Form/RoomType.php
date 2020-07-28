@@ -38,7 +38,7 @@ class RoomType extends AbstractType
                     new File([
                         'maxSize' => '2048k',
                         'mimeTypes' => [
-                            'image/jpeg',
+                            'image/jpeg' , 'image/png',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid Image',
                     ])

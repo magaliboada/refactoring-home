@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Room;
 use App\Entity\User;
 
-use Symfony\Component\Security\Core\User\UserInterface;
 use App\Form\RoomType;
 use App\Repository\RoomRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,9 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use App\Model\CronManager;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\ProcessBuilder;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use App\Model\Scraper;
 
@@ -109,6 +106,30 @@ class RoomController extends AbstractController
         return $this->render('room/show.html.twig', [
             'room' => $room,
         ]);
+    }
+
+
+    /**
+     * @Route("/room/change-room-privacity", name="room_privacity", methods={"GET","POST"})
+     */
+    public function changePrivacity(Request $request, RoomRepository $roomRepository) : JsonResponse
+    {
+        if($request->request->get('privacity')){
+
+            $roomArray = $request->request->get('privacity');
+            //Look for existing room
+            $room = $roomRepository->find($roomArray['room']);
+            
+            if($room) {                
+                $room->setPublic($roomArray['public']);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($room);
+                $entityManager->flush();
+            }          
+
+            $status = ['output' => $room->getPublic()];
+            return new JsonResponse($status);
+        }
     }
 
     /**

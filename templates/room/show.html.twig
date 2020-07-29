@@ -89,20 +89,35 @@
 
     </div>
 
-    <style>
-   
-
-    </style>
 
     <script>
-    // for decoration
-document.getElementById('switchy').addEventListener('click', function() {
-	if ( document.getElementById('switchy').checked ) {
-		document.body.classList.add('active');
-	} else {
-		document.body.classList.remove('active');
-	}
-});
+    document.getElementById('switchy').addEventListener('click', function() {
+        if ( document.getElementById('switchy').checked ) {
+            document.body.classList.add('active');
+            var publicRoom = 0;
+            
+        } else {
+            document.body.classList.remove('active');
+            var publicRoom = 1;
+        }
+
+         $.ajax({
+            url:'/room/change-room-privacity',
+            type: "POST",
+            dataType: "json",
+            data: {
+                "privacity": {
+                    "room": {{ room.id }},
+                    "public": publicRoom,
+                }
+            },
+            async: true,
+            success: function (data)
+            {
+            }
+        }); 
+
+    });
     </script>
 
 {% endblock %}

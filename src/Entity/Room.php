@@ -60,6 +60,11 @@ class Room
      */
     private $created;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $Public;
+
 
     public function __construct()
     {
@@ -188,6 +193,18 @@ class Room
                 $item->setRoom(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPublic(): ?bool
+    {
+        return $this->Public;
+    }
+
+    public function setPublic(?bool $Public): self
+    {
+        $this->Public = $Public;
 
         return $this;
     }

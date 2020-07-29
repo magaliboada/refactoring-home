@@ -308,11 +308,14 @@ div#item-list {
 
     .body-item {
         font-size: x-large;
+        display: flex;
+        justify-content: space-between;
 
         div {
             padding: 8px;
             color: #6b6464;
         }
+
 
         .row {
             // margin-left: 0px;
@@ -327,9 +330,10 @@ div#item-list {
 
     img {
         border: 1px solid #c3bb9359;
-        max-height: 250px;
-        height: 130px !important;
-        width: auto !important;
+        // max-height: 250px;
+        // width: auto !important;
+        // height: 130px !important;
+        // width: auto !important;
         // width: auto !important;
         // margin-left: 55px;
     }

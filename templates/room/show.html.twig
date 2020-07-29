@@ -22,10 +22,19 @@
             </div>
             {% endif %}
             <div class="row">
+                <b>Change privacity:  </b>
+                {% if room.Public %}
+                Public
+                {% else %}
+                Private
+                {% endif %}
+            </div>
+            <div class="row">
                 <div class="measure col-sm-3"><b>Width: </b>{{ ( room.Width/100 )|number_format(2, ',', '.') }} m</div>
                 <div class="measure col-sm-3"><b>Height: </b>{{ ( room.Height/100 )|number_format(2, ',', '.') }} m</div>
                 <div class="measure col-sm-3"><b>Depth: </b>{{ ( room.Depth/100 )|number_format(2, ',', '.') }} m</div>
             </div>
+
         </div>
 
         <div class="elements offset-sm-1 col-sm-10 mb-4">
@@ -44,10 +53,9 @@
 
                     <div class="panel-body row body-item pl-2">      
                         
-                            <div class="image col-sm-3">
+                            <div class="image col-sm-5">
                                 <img src="{{(row.Image)}}" alt="">
-                            </div>  
-                            <div class="col-sm-5"></div>                      
+                            </div>                      
                             <div class=" col-sm-4">
                                 <div class="price center-values">
                                     {{ (row.Price)|number_format(2, ',', '.') }} €

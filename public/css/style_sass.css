@@ -317,6 +317,12 @@ div#item-list .main-information {
 
 div#item-list .body-item {
   font-size: x-large;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 div#item-list .body-item div {
@@ -339,9 +345,6 @@ div#item-list .body-item .row a {
 
 div#item-list img {
   border: 1px solid #c3bb9359;
-  max-height: 250px;
-  height: 130px !important;
-  width: auto !important;
 }
 
 .main-information {

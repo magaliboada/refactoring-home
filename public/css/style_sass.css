@@ -164,6 +164,17 @@ body {
   width: 100%;
 }
 
+.row.privacity {
+  border: 0.5px solid gray;
+  /* padding: 20px; */
+  margin: 2rem;
+}
+
+.row.privacity .input-switch label {
+  min-width: 45px;
+  font-size: large !important;
+}
+
 .header {
   height: 202px;
   overflow: hidden;

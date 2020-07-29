@@ -5,6 +5,9 @@
 {% block body %}
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
+<link  rel="stylesheet" href="{{ asset('css/room_privacity_switch.css') }}">
+        
+
     <div class="header">
         {# <img src="{{ absolute_url(asset('images/roof.jpg')) }}" class=""  alt="header"> #}
         <div class="container">
@@ -21,13 +24,21 @@
                 <div style="background-image: url('{{ asset(room.Image) }}'); background-size: cover; background-position: center; height: 500px;"></div>
             </div>
             {% endif %}
-            <div class="row">
-                <b>Change privacity:  </b>
-                {% if room.Public %}
-                Public
-                {% else %}
-                Private
-                {% endif %}
+            <div class="row privacity">
+                <div class="col-sm-12">
+                <b>Change visibility:  </b>
+                </div>
+                
+                <div class="input-switch">
+                    <label for="switchy">Public</label>
+                    <input type="checkbox" id="switchy" class="input" 
+                    {% if not room.Public %}  
+                          checked
+                    {% endif %}/>
+                    <label for="switchy" class="switch"></label>
+                    <label for="switchy">Private</label>
+                </div>
+                
             </div>
             <div class="row">
                 <div class="measure col-sm-3"><b>Width: </b>{{ ( room.Width/100 )|number_format(2, ',', '.') }} m</div>
@@ -77,5 +88,21 @@
         
 
     </div>
+
+    <style>
+   
+
+    </style>
+
+    <script>
+    // for decoration
+document.getElementById('switchy').addEventListener('click', function() {
+	if ( document.getElementById('switchy').checked ) {
+		document.body.classList.add('active');
+	} else {
+		document.body.classList.remove('active');
+	}
+});
+    </script>
 
 {% endblock %}

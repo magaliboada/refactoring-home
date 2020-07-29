@@ -175,6 +175,17 @@ body {
     }
 }
 
+.row.privacity {
+
+    border: 0.5px solid gray;
+        /* padding: 20px; */
+        margin: 2rem;
+    .input-switch label {
+        min-width: 45px;
+        font-size: large !important;
+    }
+}
+
 
 
 .header {
@@ -302,6 +313,7 @@ div#item-list {
     }
 
     .main-information {
+        
         
         margin-right: 20px;
     }
@@ -860,6 +872,7 @@ input:disabled {
 
             
         }
-    }
+    }    
+    
 }
   

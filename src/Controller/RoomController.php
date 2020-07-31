@@ -24,7 +24,7 @@ class RoomController extends AbstractController
 {
 
     /**
-     * @Route("/", name="room_index", methods={"GET"})
+     * @Route("/room", name="room_index", methods={"GET"})
      */
     public function index(RoomRepository $roomRepository): Response
     {
@@ -84,13 +84,18 @@ class RoomController extends AbstractController
     public function show(Room $room): Response
     {
         $user = $this->getUser();
+        $owner = false;
 
-        if($user == null) {
-            return $this->redirectToRoute('app_login');
-        } elseif ($user->getId() != $room->getUserId()) {
-            return $this->redirectToRoute('room_index');
+        // if($user == null) {
+        //     return $this->redirectToRoute('app_login');
+        // } elseif ($user->getId() != $room->getUserId()) {
+        //     return $this->redirectToRoute('room_index');
+        // }
+
+        
+        if ($user && $user->getId() == $room->getUserId()) {
+            $owner = true;
         }
-
         
 
         $items = $room->getItems()->toArray();
@@ -105,6 +110,7 @@ class RoomController extends AbstractController
         
         return $this->render('room/show.html.twig', [
             'room' => $room,
+            'owner' => $owner,
         ]);
     }
 

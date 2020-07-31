@@ -47,7 +47,12 @@
     <body>
         <div class="user-menu">
             <div class="home">
-                <a href="/">
+              {% if app.user %}    
+                <a href="{{ path('room_index') }}">
+                  {% else %}
+                  <a href="/">
+                  {% endif %}
+
                     <img src="{{ absolute_url(asset('images/main-header.png')) }}" alt="">
                 </a>
             </div>
@@ -101,9 +106,9 @@
           </div> #}
          
             <div class="info-links">
-                <div class="privacy "><a href="/info/privacy">Privacy Policy</a></div>
-                <div class="terms "><a href="/info/terms">Terms of service</a></div>
-                <div class="contact"><a href="/info/contact">Contact</a></div>
+                <div class="privacy "><a href="{{ path('legal') }}">Privacy Policy</a></div>
+                <div class="terms "><a href="{{ path('terms') }}">Terms of service</a></div>
+                <div class="contact"><a href="{{ path('contact') }}">Contact</a></div>
             </div>       
             <div class="copy col-sm-12">© Magalí Boada 2020</div>
         </div>

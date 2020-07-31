@@ -24,6 +24,8 @@
                 <div style="background-image: url('{{ asset(room.Image) }}'); background-size: cover; background-position: center; height: 500px;"></div>
             </div>
             {% endif %}
+
+            {% if owner %}
             <div class="row privacity">
                 <div class="col-sm-12">
                 <b>Change visibility:  </b>
@@ -37,9 +39,9 @@
                     {% endif %}/>
                     <label for="switchy" class="switch"></label>
                     <label for="switchy">Private</label>
-                </div>
-                
+                </div>                
             </div>
+            {% endif %}
             <div class="row">
                 <div class="measure col-sm-3"><b>Width: </b>{{ ( room.Width/100 )|number_format(2, ',', '.') }} m</div>
                 <div class="measure col-sm-3"><b>Height: </b>{{ ( room.Height/100 )|number_format(2, ',', '.') }} m</div>
@@ -79,9 +81,17 @@
                 </div>
             </a>
         {% endfor %}
-        <div class="action-buttons">
+        <div class="action-buttons">    
+            {% if owner %}
             <a class="btn btn-info m-2" href="/{{room.id}}/edit">Edit</a> 
+            {% endif %}
+
+            {% if owner %}
             <a class="btn btn-warning m-2" href="{{ path('room_index') }}">Back to list</a> 
+            {% else %}
+            <a class="btn btn-warning m-2" href="{{ path('home_index') }}">Back to list</a> 
+            {% endif %}
+            
         </div>
         </div>
     

@@ -55,7 +55,7 @@
           
                 </a>
                     {% if home %}
-                    <div class="made" style="color:gray">
+                    <div class="made cl-effect-6" style="color:gray">
                         <i>Room by <a href="/{{room.userId}}/rooms">{{ room.username }}</a></i>
                     </div>
                     {% endif %}
@@ -81,8 +81,63 @@
     a {
         display: initial;
     }
-
+    .made  a {
+        position: relative;
+        display: inline-block;
+        margin: 15px 25px;
+        outline: none;
+        color: #79bea0;
+        text-decoration: none;
+        letter-spacing: 1px;
+        text-shadow: 0 0 1px rgba(255,255,255,0.3);
+        font-size: 1em;
+    }
     
+    .made  a:hover,
+    .made  a:focus {
+        outline: none;
+    }
+
+    /* Effect 5: same word slide in and border bottom */
+.cl-effect-6 a {
+    margin: 0px 7px;
+    padding: 2px 5px;
+}
+
+.cl-effect-6 a::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: #79bea0;
+	content: '';
+	-webkit-transition: top 0.3s;
+	-moz-transition: top 0.3s;
+	transition: top 0.3s;
+}
+
+.cl-effect-6 a::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 2px;
+	height: 2px;
+	background: #79bea0;
+	content: '';
+	-webkit-transition: height 0.3s;
+	-moz-transition: height 0.3s;
+	transition: height 0.3s;
+}
+
+.cl-effect-6 a:hover::before {
+	top: 100%;
+	opacity: 1;
+}
+
+.cl-effect-6 a:hover::after {
+	height: 100%;
+} 
     
 </style>
 

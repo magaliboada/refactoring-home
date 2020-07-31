@@ -126,12 +126,11 @@ body {
 
 .room {
 
-    .made a {
-        text-decoration: underline solid #79bea0;
-        color: gray;
-
-        &:hover {
-            text-shadow: 1.2rem 0rem 0.8rem rgba(1, 2, 2, 0.5) !important;
+    .made {
+        padding-top: 30px;
+        a {
+            // text-decoration: underline solid #79bea0;
+            color: gray;
         }
         
     }
@@ -278,6 +277,13 @@ div#item-list {
             display: flex;
             width: 100%;
             align-items: baseline;
+        }
+
+        .price-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
     }
 

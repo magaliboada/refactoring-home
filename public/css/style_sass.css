@@ -118,14 +118,12 @@ body {
   margin-bottom: 30px;
 }
 
-.room .made a {
-  -webkit-text-decoration: underline solid #79bea0;
-          text-decoration: underline solid #79bea0;
-  color: gray;
+.room .made {
+  padding-top: 30px;
 }
 
-.room .made a:hover {
-  text-shadow: 1.2rem 0rem 0.8rem rgba(1, 2, 2, 0.5) !important;
+.room .made a {
+  color: gray;
 }
 
 .room.row {
@@ -274,6 +272,22 @@ div#item-list .item .link div {
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
+}
+
+div#item-list .item .price-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 div#item-list .panel-heading {

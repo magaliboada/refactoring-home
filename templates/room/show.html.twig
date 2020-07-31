@@ -66,8 +66,9 @@
 
                     <div class="panel-body row body-item pl-2">      
                         
-                            <div class="image col-sm-5">
-                                <img src="{{(row.Image)}}" alt="">
+                            <div class="image col-sm-5 h-100" style="height: 250px !important;">
+                                <div  class="h-100" style="background-image: url('{{ asset(row.Image) }}'); background-size: contain; background-position: center;background-repeat: no-repeat;"></div>
+
                             </div>                      
                             <div class=" col-sm-4">
                                 <div class="price center-values">

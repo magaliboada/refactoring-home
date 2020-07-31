@@ -118,6 +118,16 @@ body {
   margin-bottom: 30px;
 }
 
+.room .made a {
+  -webkit-text-decoration: underline solid #79bea0;
+          text-decoration: underline solid #79bea0;
+  color: gray;
+}
+
+.room .made a:hover {
+  text-shadow: 1.2rem 0rem 0.8rem rgba(1, 2, 2, 0.5) !important;
+}
+
 .room.row {
   padding: inherit;
 }
@@ -284,22 +294,6 @@ div#item-list .store {
 
 div#item-list .panel-warning {
   border-color: #c3bb9359 !important;
-}
-
-div#item-list .row.body-item div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 div#item-list .center-values {

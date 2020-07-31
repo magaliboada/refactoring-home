@@ -125,6 +125,17 @@ body {
 }
 
 .room {
+
+    .made a {
+        text-decoration: underline solid #79bea0;
+        color: gray;
+
+        &:hover {
+            text-shadow: 1.2rem 0rem 0.8rem rgba(1, 2, 2, 0.5) !important;
+        }
+        
+    }
+
     background-color: white;
     padding: 50px;
     margin-bottom: 30px;
@@ -291,10 +302,10 @@ div#item-list {
     }
 
     .row.body-item div {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
+        // display: flex;
+        // align-items: center;
+        // flex-direction: column;
+        // justify-content: center;
     }
 
     .center-values {
@@ -360,6 +371,8 @@ div#item-list {
         font-size: larger;
         color: gray;
     }
+
+    
 
     input {
         background-color: transparent;

@@ -143,9 +143,14 @@ body {
         padding: inherit;
     }
 
-    .title, .info {
+    .title{
         padding-top: 15px;
     }
+
+    .info {
+        padding-top: 0px !important;
+        padding-bottom: 15px;
+    }    
 
     .view {
         margin-top: 30px;

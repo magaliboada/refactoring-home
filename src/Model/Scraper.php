@@ -88,6 +88,8 @@ class Scraper
         
         $this->image = $this->get_string_between($html, '"image_src" href="', '<meta');
         $this->image = str_replace('"/>', '', $this->image);
+        $this->image = str_replace('?$lmesBgMobile$', '', $this->image);
+        $this->image = trim($this->image);
 
         // echo var_export($html, true);
     }

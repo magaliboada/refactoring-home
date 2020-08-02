@@ -10,7 +10,8 @@
         <div class="container">
             <div class="home-header">
                 <h1>
-                    <div class="name">{{ form_row(form.Name) }}</div>         
+                    <div class="name">{{ form_row(form.Name) }}
+      </div>         
                 </h1>
             </div>
         </div>
@@ -124,10 +125,22 @@ span.select2-selection.select2-selection--single {
     align-items: center;
 }
 
+span.select2-selection__arrow {
+        background: #fadba4;
+    position: sticky !important;
+    height: initial !important;
+    width: auto !important;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+
 </style>
 
 <script>
 $('.select2').select2();
+$('span.select2-selection__arrow').html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="button-btn-icon button-btn-icon-create absolute-center">  <path d="M3 17.25v3.75h3.75l11.06-11.06-3.75-3.75-11.06 11.06zm17.71-10.21c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="#fff"/>     <path d="M0 0h24v24h-24z" fill="none"/>   </svg>');
+
 </script>
 
 
@@ -181,12 +194,13 @@ $('.select2').select2();
             async: true,
             success: function (data)
             {
-                console.log(data);
             }
         }); 
 
     });
 
     </script>
+
+
     
 {{ form_end(form) }}

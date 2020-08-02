@@ -2,7 +2,7 @@ initalizeRetailBanner();
 
 
 $( ".button-cerrar" ).click(function() {
-  Cookies.set('popup', 'seen');
+  // Cookies.set('popup', 'seen');
   $('.banner-retail').css('display', 'none');
   $('body .home, .main-content').css('opacity', '1');
 });

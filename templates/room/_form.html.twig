@@ -1,16 +1,16 @@
 {{ form_start(form) }}
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="{{ asset('js/ajax-item.js') }}"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<link  rel="stylesheet" href="{{ asset('css/room_privacity_switch.css') }}">
+
     <div class="header">
         {# <img src="{{ absolute_url(asset('images/roof.jpg')) }}" class=""  alt="header"> #}
         <div class="container">
             <div class="home-header">
                 <h1>
-                    {% if room.Name is not empty %}
-                        {{room.Name}}
-                    {% else %}
-                        New Room
-                    {% endif %}           
+                    <div class="name">{{ form_row(form.Name) }}</div>         
                 </h1>
             </div>
         </div>
@@ -18,13 +18,13 @@
 
     <div class="content container panel panel-body">
         <div class="main-information">
-            <div class="name">{{ form_row(form.Name) }}</div>
+            
             <div class="row measures">
                 <div class="col-md-4 col-sm-12">{{ form_row(form.Width) }} cm</div>
                 <div class="col-md-4 col-sm-12">{{ form_row(form.Height) }} cm</div>
                 <div class="col-md-4 col-sm-12">{{ form_row(form.Depth) }} cm</div>
             </div>
-            
+
             <div class="form-image">
                 {{ form_row(form.Image) }}
             </div>
@@ -32,6 +32,24 @@
             <div class="form-preview-image">
                 <div style="background-image: url('{{ asset(room.Image) }}'); background-size: cover; background-position: center; height: 500px;"></div>
             </div>
+
+            <div class="row privacity">
+                <div class="col-sm-12">
+                <b>Change visibility:  </b>
+                </div>
+                
+                <div class="input-switch">
+                    <label for="switchy">Public</label>
+                    <input type="checkbox" id="switchy" class="input" 
+                    {% if not room.Public %}  
+                          checked
+                    {% endif %}/>
+                    <label for="switchy" class="switch"></label>
+                    <label for="switchy">Private</label>
+                </div>                
+            </div>
+            
+            
             {% endif %}
         </div>
 
@@ -70,5 +88,105 @@
         color: gray;
         padding: 20px;
 }   </style>
+
+<style>
+.select2-container .select2-selection--single{
+    height:34px !important;
+}
+.select2-container--default .select2-selection--single{
+         border: 1px solid #ccc !important; 
+     border-radius: 0px !important; 
+}
+
+span.select2-selection.select2-selection--single {
+
+    border: none !important;
+    text-decoration: underline solid #fadba4;
+    color: gray;
+    width: 100%;
+}
+
+span.select2.select2-container.select2-container--default {
+    width: 100% !important;
+}
+
+.header .name label {
+    display: none;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: gray;
+    line-height: initial;
+}
+
+span.select2-selection.select2-selection--single {
+    display: flex;
+    align-items: center;
+}
+
+</style>
+
+<script>
+$('.select2').select2();
+</script>
+
+
+<script>
+    document.getElementById('switchy').addEventListener('click', function() {
+        if ( document.getElementById('switchy').checked ) {
+            document.body.classList.add('active');
+            var publicRoom = 0;
+            
+        } else {
+            document.body.classList.remove('active');
+            var publicRoom = 1;
+        }
+
+        $.ajax({
+            url:'/room/change-field',
+            type: "POST",
+            dataType: "json",
+            data: {
+                "value_change": {
+                    "room": {{ room.id }},
+                    "value": publicRoom,
+                    "field": 'Public',
+                }
+            },
+            async: true,
+            success: function (data)
+            {
+            }
+        }); 
+
+    });
+
+    $(".header .name select").change(function(){
+        var selectedRoom = $(this).children("option:selected").val();
+
+
+   
+
+        $.ajax({
+            url:'/room/change-field',
+            type: "POST",
+            dataType: "json",
+            data: {
+                "value_change": {
+                    "room": {{ room.id }},
+                    "value": selectedRoom,
+                    "field": 'Name',
+                }
+            },
+            async: true,
+            success: function (data)
+            {
+                console.log(data);
+            }
+        }); 
+
+    });
+
+    </script>
     
 {{ form_end(form) }}

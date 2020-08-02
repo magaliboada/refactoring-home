@@ -5,7 +5,7 @@
 {% block body %}
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
-<link  rel="stylesheet" href="{{ asset('css/room_privacity_switch.css') }}">
+
         
 
     <div class="header">
@@ -25,23 +25,6 @@
             </div>
             {% endif %}
 
-            {% if owner %}
-            <div class="row privacity">
-                <div class="col-sm-12">
-                <b>Change visibility:  </b>
-                </div>
-                
-                <div class="input-switch">
-                    <label for="switchy">Public</label>
-                    <input type="checkbox" id="switchy" class="input" 
-                    {% if not room.Public %}  
-                          checked
-                    {% endif %}/>
-                    <label for="switchy" class="switch"></label>
-                    <label for="switchy">Private</label>
-                </div>                
-            </div>
-            {% endif %}
             <div class="row">
                 <div class="measure col-sm-3"><b>Width: </b>{{ ( room.Width/100 )|number_format(2, ',', '.') }} m</div>
                 <div class="measure col-sm-3"><b>Height: </b>{{ ( room.Height/100 )|number_format(2, ',', '.') }} m</div>
@@ -101,34 +84,6 @@
     </div>
 
 
-    <script>
-    document.getElementById('switchy').addEventListener('click', function() {
-        if ( document.getElementById('switchy').checked ) {
-            document.body.classList.add('active');
-            var publicRoom = 0;
-            
-        } else {
-            document.body.classList.remove('active');
-            var publicRoom = 1;
-        }
-
-         $.ajax({
-            url:'/room/change-room-privacity',
-            type: "POST",
-            dataType: "json",
-            data: {
-                "privacity": {
-                    "room": {{ room.id }},
-                    "public": publicRoom,
-                }
-            },
-            async: true,
-            success: function (data)
-            {
-            }
-        }); 
-
-    });
-    </script>
+    
 
 {% endblock %}

@@ -127,5 +127,4 @@ function placeButton() {
 
     leftValue += $('.edit.btn-warning').width() + buttonWidth/2;
     $('.btn-danger.delete').css('left', leftValue);
-    console.log('asd');
 }

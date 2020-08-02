@@ -8,7 +8,7 @@ use App\Form\ItemType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -18,7 +18,25 @@ class RoomType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder            
-            ->add('Name')
+            ->add('Name', ChoiceType::class, [
+                'choices' => [
+                    'Living Room' => 'Living Room',
+                    'Bedroom' => 'Bedroom',
+                    'Bathroom' => 'Bathroom',
+                    'Kitchen' => 'Kitchen',
+                    'Dining room' => 'Dining room',
+                    'Study' => 'Study',
+                    'Guest Room' => 'Guest Room',
+                    'Utily Room' => 'Utily Room',                    
+                    'Garden' => 'Garden',
+                    'Balcony' => 'Balcony',
+                    'Garage' => 'Garage',            
+                ],
+
+                'attr' => [
+                    'class' => 'select2',
+                ],
+            ])
             ->add('Height')
             ->add('Depth')
             ->add('Width')

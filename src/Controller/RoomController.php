@@ -126,27 +126,33 @@ class RoomController extends AbstractController
     }
 
 
-    /**
-     * @Route("/room/change-room-privacity", name="room_privacity", methods={"GET","POST"})
-     */
-    public function changePrivacity(Request $request, RoomRepository $roomRepository) : JsonResponse
-    {
-        if($request->request->get('privacity')){
 
-            $roomArray = $request->request->get('privacity');
+
+    /**
+     * @Route("/room/change-field", name="room_change", methods={"GET","POST"})
+     */
+    public function updateRoom(Request $request, RoomRepository $roomRepository) : JsonResponse
+    {
+
+        
+        if($request->request->get('value_change')){
+
+            $roomArray = $request->request->get('value_change');
             //Look for existing room
             $room = $roomRepository->find($roomArray['room']);
             
             if($room) {                
-                $room->setPublic($roomArray['public']);
+                $room->{'set'.$roomArray['field']}($roomArray['value']);
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($room);
                 $entityManager->flush();
             }          
 
             $status = ['output' => $room->getPublic()];
-            return new JsonResponse($status);
+            
         }
+
+        return new JsonResponse('asd');
     }
 
     /**

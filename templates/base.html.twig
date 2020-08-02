@@ -56,29 +56,21 @@
                     <img src="{{ absolute_url(asset('images/main-header.png')) }}" alt="">
                 </a>
             </div>
-            <div class="account row">
-                
-                {% if app.user %}    
+            <div class="account">
 
-                {% if app.user.id == 1%}
 
-                <a href="/user/admin">Admin</a> |
+                  {% if app.user and app.user.id == 1%}
 
-                {% endif %}
+                    <a href="/user/admin">Admin</a> |
 
-                <a href="/user/profile" class="">
-                    Hello {{app.user.name}}!
-                </a> 
-                {% else %}
-                <a href="/user/login" class="">
-                    Sign In
-                </a>
-                {% endif %}
-                
+                  {% endif %}
+               
                 
                 {% if app.user %}
+                        <a href="/user/profile" class="">Account</a> 
                     |    <a href="/user/logout">Logout</a>
                 {% else %}
+                    <a href="/user/login" class="">Sign In</a>
                     |    <a href="/user/register">Register</a>
                 {% endif %}
                 

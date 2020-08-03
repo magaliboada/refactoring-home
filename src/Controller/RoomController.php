@@ -132,9 +132,7 @@ class RoomController extends AbstractController
      * @Route("/room/change-field", name="room_change", methods={"GET","POST"})
      */
     public function updateRoom(Request $request, RoomRepository $roomRepository) : JsonResponse
-    {
-
-        
+    {        
         if($request->request->get('value_change')){
 
             $roomArray = $request->request->get('value_change');
@@ -153,6 +151,37 @@ class RoomController extends AbstractController
         }
 
         return new JsonResponse('asd');
+    }
+
+    /**
+     * @Route("/room/upload-image", name="upload_image", methods={"GET","POST"})
+     */
+    public function uploadImage(Request $request, RoomRepository $roomRepository) : JsonResponse
+    {
+        $file = $request->files->get('file');
+        $status = array('status' => "success","fileUploaded" => false);
+       
+        // If a file was uploaded
+        if($file){
+            $room = $roomRepository->find($request->request->get('room'));
+            
+            if($room) {                
+
+                $filename = uniqid().".".$file->getClientOriginalExtension();
+                $path = 'images'.'/';
+                $file->move($path,$filename); // move the file to a path
+                $status = array('status' => "success","fileUploaded" => true);
+
+
+                $room->setImage($path.$filename);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($room);
+                $entityManager->flush();
+            }             
+        }
+        
+        // return new JsonResponse($status);
+        return new JsonResponse($path.$filename);
     }
 
     /**

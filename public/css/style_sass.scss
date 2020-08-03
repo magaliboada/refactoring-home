@@ -9,7 +9,26 @@ $breakpoints: (
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+@mixin respond-below($breakpoint) {
 
+    // If the breakpoint exists in the map.
+    @if map-has-key($breakpoints, $breakpoint) {
+  
+      // Get the breakpoint value.
+      $breakpoint-value: map-get($breakpoints, $breakpoint);
+  
+      // Write the media query.
+      @media (max-width: ($breakpoint-value - 1)) {
+        @content;
+      }
+  
+    // If the breakpoint doesn't exist in the map.
+    } @else {
+  
+      // Log a warning.
+      @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+  }
 
 html * {
     font-family: 'Montserrat', sans-serif;
@@ -51,13 +70,24 @@ h1 {
 
 label {
     min-width: 130px;
+
+    @include respond-below(sm) {
+        font-size: medium !important;
+    }
 }
 
 input {
     border: none;
     border-bottom: 1px solid black;
     width:70%;    
+
+    @include respond-below(sm) {
+        width: 100%; 
+    }
 }
+
+
+
 
 input:focus {
     background-color: white;
@@ -193,11 +223,25 @@ body {
 .row.privacity {
 
     border: 0.5px solid gray;
-        /* padding: 20px; */
-        margin: 2rem;
+    margin: 2rem;
+
     .input-switch label {
         min-width: 45px;
         font-size: large !important;
+    }
+
+    @include respond-below(sm) {
+        
+        .input-switch label {
+            font-size: medium !important;
+        }
+
+        margin: 1rem;
+        padding: 10px;
+        b {
+            font-size: medium !important;
+        }
+        
     }
 }
 
@@ -256,6 +300,13 @@ body {
   /* border: 1px solid grey; */
   margin: 10px;
   background-color: #ffffff9e;
+
+    @include respond-below(sm) {
+        margin: 0px;
+        > div {
+            max-height: 120px;
+        }    
+    }
 }
 
 .form-image div {
@@ -274,6 +325,17 @@ div#item-list {
     margin-top: 30px;
     margin-bottom: 100px;
     
+    * {
+        @include respond-below(sm) {
+            font-size: medium !important;          
+        }
+    }
+    
+    .working-with {
+        @include respond-below(sm) {
+            font-size: small !important;          
+        }
+    }
 
     .item {
         width: 100%;
@@ -289,6 +351,12 @@ div#item-list {
             flex-direction: column;
             align-items: center;
             justify-content: center;
+        }
+
+        @include respond-below(sm) {
+            .main-information > div {
+                padding: 0px;
+            }            
         }
     }
 
@@ -334,11 +402,6 @@ div#item-list {
         }
     }
 
-    .main-information {
-        
-        
-        margin-right: 20px;
-    }
 
     .body-item {
         font-size: x-large;
@@ -393,6 +456,8 @@ div#item-list {
         padding: 20px;
         padding-bottom: 20px;
         padding-top: 20px;
+
+        
     }
     
     .row div {
@@ -644,26 +709,7 @@ input:disabled {
     }
 }
 
-@mixin respond-below($breakpoint) {
 
-    // If the breakpoint exists in the map.
-    @if map-has-key($breakpoints, $breakpoint) {
-  
-      // Get the breakpoint value.
-      $breakpoint-value: map-get($breakpoints, $breakpoint);
-  
-      // Write the media query.
-      @media (max-width: ($breakpoint-value - 1)) {
-        @content;
-      }
-  
-    // If the breakpoint doesn't exist in the map.
-    } @else {
-  
-      // Log a warning.
-      @warn 'Invalid breakpoint: #{$breakpoint}.';
-    }
-  }
 
   @include respond-below(sm) {
     label {

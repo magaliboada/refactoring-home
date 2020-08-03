@@ -18,21 +18,25 @@
     </div>
 
     <div class="content container panel panel-body">
-        <div class="main-information">
+        <div class="main-information room-main">
             
+            
+            <div class="form-image">
+                <label for="upload">Image</label>
+                <input type="file" name="upload" id="sortpicture" />
+            </div>
+            {% if room.Image != null %}
+            <div class="form-preview-image">
+                <div id="display-image" style="background-image: url('{{ asset(room.Image) }}'); background-size: cover; background-position: center; height: 500px;"></div>
+            </div>
+
             <div class="row measures">
                 <div class="col-md-4 col-sm-12">{{ form_row(form.Width) }} cm</div>
                 <div class="col-md-4 col-sm-12">{{ form_row(form.Height) }} cm</div>
                 <div class="col-md-4 col-sm-12">{{ form_row(form.Depth) }} cm</div>
             </div>
 
-            <div class="form-image">
-                {{ form_row(form.Image) }}
-            </div>
-            {% if room.Image != null %}
-            <div class="form-preview-image">
-                <div style="background-image: url('{{ asset(room.Image) }}'); background-size: cover; background-position: center; height: 500px;"></div>
-            </div>
+            
 
             <div class="row privacity">
                 <div class="col-sm-12">
@@ -201,6 +205,56 @@ $('span.select2-selection__arrow').html('<svg xmlns="http://www.w3.org/2000/svg"
 
     </script>
 
+<script>
 
+    $(function() {
+        $("input:file").change(function (){
+            var file_data = $('#sortpicture').prop('files')[0];   
+            console.log(file_data);
+            var form_data = new FormData();                  
+            form_data.append('file', file_data);
+            form_data.append('room', {{ room.id }});
+            // or with jQuery
+            //var form = $("#myform")[0];
+    
+            $.ajax({
+            url:"/room/upload-image",
+            data:
+                form_data,
+            
+            // the formData function is available in almost all new browsers.
+            type:"post",
+            contentType:false,
+            processData:false,
+            cache:false,
+            dataType:"json", // Change this according to your response from the server.
+            error:function(err){
+                    console.error(err);
+            },
+            success:function(data){
+                $style = "url('/".concat(data, "')");
+                $('#display-image').css("background-image", $style);    
+                console.log(data); 
+                console.log($style)
+            },
+            complete:function(){
+                
+            console.log("Request finished.");
+    
+            }
+            });
+            
+
+
+
+
+
+        });
+     });
+
+    $('#upload').on('click', function() {
+        
+    });
+</script>
     
 {{ form_end(form) }}

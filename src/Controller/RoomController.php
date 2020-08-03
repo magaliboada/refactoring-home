@@ -33,7 +33,7 @@ class RoomController extends AbstractController
 
         if($user){
             return $this->render('room/index.html.twig', [
-                'rooms' => $roomRepository->findByUserField($user->getId()),
+                'rooms' => $roomRepository->findByUserField($user->getId(), 'false'),
                 'home' => false,
                 'user_name' => $user->getName(),
             ]);
@@ -52,7 +52,7 @@ class RoomController extends AbstractController
               
             
             return $this->render('room/index.html.twig', [
-                'rooms' => $roomRepository->findByUserField($userRoom->getId()),
+                'rooms' => $roomRepository->findByUserField($userRoom->getId(), 'true'),
                 'home' => false,
                 'user_name' => $userRoom->getName(),
             ]);

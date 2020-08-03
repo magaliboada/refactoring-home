@@ -23,16 +23,35 @@ class RoomRepository extends ServiceEntityRepository
     //  * @return Room[] Returns an array of Room objects
     //  */
     
-    public function findByUserField($user_id)
+    // public function findByUserField($user_id)
+    // {
+    //     return $this->createQueryBuilder('r')
+    //         ->andWhere('r.userId = :user_id')
+    //         ->setParameter('user_id', $user_id)
+    //         ->orderBy('r.id', 'ASC')
+    //         // ->setMaxResults(10)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+
+        
+    // }
+
+    public function findByUserField($user_id, $public)
     {
-        return $this->createQueryBuilder('r')
+        $query = $this->createQueryBuilder('r')
             ->andWhere('r.userId = :user_id')
-            ->setParameter('user_id', $user_id)
-            ->orderBy('r.id', 'ASC')
+            ->setParameter('user_id', $user_id)            
+            ->orderBy('r.id', 'ASC');
             // ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        if ($public) {
+            $query->andWhere('r.Public = :public')
+            ->setParameter('public', true);
+        }
+
+        return $query->getQuery()
+        ->getResult()
+    ;
     }
 
     public function deleteByUser($user_id) {
@@ -44,8 +63,22 @@ class RoomRepository extends ServiceEntityRepository
         ->getQuery();
 
         $query->execute();
-    
+
     }
+
+
+    public function findByPublic()
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.Public = :public')
+            ->setParameter('public', true)
+            ->orderBy('r.id', 'ASC')
+            // ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     
     
 

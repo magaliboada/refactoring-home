@@ -234,21 +234,13 @@ $('span.select2-selection__arrow').html('<svg xmlns="http://www.w3.org/2000/svg"
             success:function(data){
                 $style = "url('/".concat(data, "')");
                 $('#display-image').css("background-image", $style);    
-                console.log(data); 
-                console.log($style)
+
             },
             complete:function(){
                 
-            console.log("Request finished.");
     
             }
             });
-            
-
-
-
-
-
         });
      });
 </script>

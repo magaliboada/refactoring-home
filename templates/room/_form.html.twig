@@ -251,10 +251,35 @@ $('span.select2-selection__arrow').html('<svg xmlns="http://www.w3.org/2000/svg"
 
         });
      });
+</script>
 
-    $('#upload').on('click', function() {
+
+<script>
+
+        $(".measures input")
+          .focusout(function() {
+              var value = $(this).val();
+              var name = $('label[for="' + $(this).attr('id') + '"]').html();
+
+              $.ajax({
+                url:'/room/change-field',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "value_change": {
+                        "room": {{ room.id }},
+                        "value": value,
+                        "field": name,
+                    }
+                },
+                async: true,
+                success: function (data)
+                {
+                }
+            }); 
+
+          });
         
-    });
 </script>
     
 {{ form_end(form) }}

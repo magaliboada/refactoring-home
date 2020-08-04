@@ -23,20 +23,19 @@
     <div class="container row room-filters">
 
         <div class="select_mate" data-mate-select="active" >
-            <select name="" onchange="" onclick="return false;" id="">
-            <option value="">Show all Room Types </option>
-            <option value="1">Living Room</option>
-            <option value="2">Bedroom</option>
-            <option value="3">Bathroom</option>
-            <option value="3">Kitchen</option>
-            <option value="3">Dining Room</option>
-            <option value="3">Study</option>
-            <option value="3">Guest Room</option>
-            <option value="3">Utility Room</option>
-            <option value="3">Garden</option>
-            <option value="3">Balcony</option>
-            <option value="3">Garage</option>
-
+            <select name="" onchange="" onclick="return false;" id="room_type">
+                <option value="All">Show all Room Types </option>
+                <option value="Living Room">Living Room</option>
+                <option value="Bedroom">Bedroom</option>
+                <option value="Bathroom">Bathroom</option>
+                <option value="Kitchen">Kitchen</option>
+                <option value="Dining Room">Dining Room</option>
+                <option value="Study">Study</option>
+                <option value="Guest Room">Guest Room</option>
+                <option value="Utility Room">Utility Room</option>
+                <option value="Garden">Garden</option>
+                <option value="Balcony">Balcony</option>
+                <option value="Garage">Garage</option>
             </select>
             <p class="selecionado_opcion"  onclick="open_select(this)" ></p><span onclick="open_select(this)" class="icon_select_mate" ><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
@@ -213,7 +212,23 @@ document.querySelector("[data-indx-select='"+e+"']  > .selecionado_opcion ").inn
 li[i].setAttribute('data-index',i);
 li[i].setAttribute('data-selec-index',e);
 // funcion click al selecionar 
-li[i].addEventListener( 'click', function(){  _select_option(this.getAttribute('data-index'),this.getAttribute('data-selec-index')); });
+li[i].addEventListener( 'click', function(){  _select_option(this.getAttribute('data-index'),this.getAttribute('data-selec-index'));
+    console.log($(this).text());
+    var room = $(this).text();
+    $.ajax({
+        method: "POST",
+        url: "/room-filter",
+        dataType: 'json',
+        data: {
+            "type": room, //Aquí van las variables que deseas enviar
+        },
+        async: true,
+        success: function (data)
+        {
+            console.log(data);
+        }
+    });
+ });
 
 li[i].innerHTML = select_optiones[i].innerHTML;
 ul_cont[0].appendChild(li[i]);
@@ -292,6 +307,13 @@ select_optiones[indx].selected = true;
 
 </script>
 
+
+
+<script>
+
+
+
+</script>
 
 {% endblock %}
 

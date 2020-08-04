@@ -79,6 +79,18 @@ class RoomRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findByType($type)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.Name = :name')
+            ->setParameter('name', $type)
+            ->orderBy('r.id', 'ASC')
+            // ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     
     
 

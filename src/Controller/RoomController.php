@@ -150,7 +150,7 @@ class RoomController extends AbstractController
             
         }
 
-        return new JsonResponse('asd');
+        return new JsonResponse('');
     }
 
     /**

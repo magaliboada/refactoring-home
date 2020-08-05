@@ -72,7 +72,7 @@ class RoomRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('r')
             ->andWhere('r.Public = :public')
             ->setParameter('public', true)
-            ->orderBy('r.id', 'ASC')
+            ->orderBy('RAND()')
             // ->setMaxResults(10)
             ->getQuery()
             ->getResult()

@@ -25,7 +25,7 @@ class RoomController extends AbstractController
 {
 
     /**
-     * @Route("/{username}/rooms", name="user_rooms", methods={"GET"})
+     * @Route("/{username}", name="user_rooms", methods={"GET"})
      */
     public function userRooms(String $username, RoomRepository $roomRepository, UserRepository $userRepository): Response
     {
@@ -33,14 +33,21 @@ class RoomController extends AbstractController
         $user = $this->getUser();
 
         $owner = false;
-        
+
+        $rooms =  $roomRepository->findByUserField($userRoom->getId(), 'true');
+        foreach ($rooms as &$room) {
+            $userRoom = $userRepository->find($room->getUserId());
+            $room->username = $userRoom->getName();
+            $room->userslug = $userRoom->getUsername();
+        }
+
         if ($user && $user->getId() == $userRoom->getId()) {
             $owner = true;
         }
         
         
         return $this->render('room/index.html.twig', [
-            'rooms' => $roomRepository->findByUserField($userRoom->getId(), 'true'),
+            'rooms' => $rooms,
             'home' => false,
             'user_name' => $userRoom->getName(),
             'owner' => $owner,
@@ -77,7 +84,7 @@ class RoomController extends AbstractController
             
             CronManager::refreshNull($this->getDoctrine()->getManager(), $user->getId());
 
-            return $this->redirectToRoute('room_index');
+            return $this->redirectToRoute('home_index');
         }
 
         return $this->render('room/new.html.twig', [
@@ -186,7 +193,7 @@ class RoomController extends AbstractController
         if($user == null) {
             return $this->redirectToRoute('app_login');
         } elseif ($user->getId() != $room->getUserId()) {
-            return $this->redirectToRoute('room_index');
+            return $this->redirectToRoute('home_index');
         }        
 
         $form = $this->createForm(RoomType::class, $room);
@@ -220,7 +227,7 @@ class RoomController extends AbstractController
         if($user == null) {
             return $this->redirectToRoute('app_login');
         } elseif ($user->getId() != $room->getUserId()) {
-            return $this->redirectToRoute('room_index');
+            return $this->redirectToRoute('home_index');
         }
         
         if ($this->isCsrfTokenValid('delete'.$room->getId(), $request->request->get('_token'))) {
@@ -229,7 +236,7 @@ class RoomController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('room_index');
+        return $this->redirectToRoute('home_index');
     }
 
     public function handleImage($imageName, Room $room) {

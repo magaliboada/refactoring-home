@@ -29,12 +29,11 @@ class HomeController extends AbstractController
             $room->userslug = $userRoom->getUsername();
         }
         
-        $user = $this->getUser();
 
         return $this->render('room/index.html.twig', [
             'rooms' => $roomRepository->findByPublic(),
             'home' => true,
-            'user' => $user,
+            'user' => $this->getUser(),
         ]);
     }
 

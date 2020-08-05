@@ -108,7 +108,7 @@ class AppCustomAuthenticator extends AbstractFormLoginAuthenticator
         }
         
 
-        return new RedirectResponse($this->urlGenerator->generate('room_index'));
+        return new RedirectResponse($this->urlGenerator->generate('home_index'));
     }
 
     protected function getLoginUrl()

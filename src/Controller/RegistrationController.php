@@ -63,7 +63,7 @@ class RegistrationController extends AbstractController
             );
             
 
-            return $this->redirectToRoute('room_index');
+            return $this->redirectToRoute('home_index');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -100,7 +100,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             
-            return $this->redirectToRoute('room_index');
+            return $this->redirectToRoute('home_index');
         }
 
 

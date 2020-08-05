@@ -51,6 +51,6 @@ class HomeController extends AbstractController
             'home' => true,
         ]);
 
-        return new JsonResponse(strval ($html));        
+        return new JsonResponse(strval($html));        
     }
 }

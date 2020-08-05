@@ -71,7 +71,7 @@
             {% endif %}
 
             {% if owner %}
-            <a class="btn btn-warning m-2" href="{{ path('room_index') }}">Back to list</a> 
+            <a class="btn btn-warning m-2" href="{{ path('user_rooms',{'username': user.username }) }}">Back to list</a> 
             {% else %}
             <a class="btn btn-warning m-2" href="{{ path('home_index') }}">Back to list</a> 
             {% endif %}

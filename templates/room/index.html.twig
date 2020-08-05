@@ -9,11 +9,13 @@
     <div class="container">
         <div class="home-header">
             {% if home %}
-            <h1>Home</h1>            
-            <a href="{{ path('room_index') }}">My Rooms</a>
-            {% else %}
-            <h1>{{ user_name }}</h1>     
-            <a href="{{ path('room_new') }}">Add Room</a>
+                <h1>Home</h1>                            
+                    <a href="{% if app.user %}{{ path('user_rooms',{'username': user.username }) }}{% else %} {{path('app_login')}} {% endif %}">My Rooms</a>                
+                {% else %}
+                <h1>{{ user_name }}</h1>     
+                {% if owner %}
+                <a href="{{ path('room_new') }}">Add Room</a>
+                {% endif %}
             {% endif %}           
         </div>
     </div>

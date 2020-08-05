@@ -26,12 +26,15 @@ class HomeController extends AbstractController
         foreach ($rooms as &$room) {
             $userRoom = $userRepository->find($room->getUserId());
             $room->username = $userRoom->getName();
+            $room->userslug = $userRoom->getUsername();
         }
         
+        $user = $this->getUser();
 
         return $this->render('room/index.html.twig', [
             'rooms' => $roomRepository->findByPublic(),
             'home' => true,
+            'user' => $user,
         ]);
     }
 
@@ -44,6 +47,7 @@ class HomeController extends AbstractController
         foreach ($rooms as &$room) {
             $userRoom = $userRepository->find($room->getUserId());
             $room->username = $userRoom->getName();
+            $room->userslug = $userRoom->getUsername();
         }
 
         $html = $this->renderView('room/room-item.html.twig', [

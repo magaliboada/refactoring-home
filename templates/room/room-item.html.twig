@@ -2,7 +2,7 @@
 <div class="col-sm-12 col-md-12 col-lg-6">          
     
     <div class="room panel shadow">
-        <a href="{{ path('room_show', {'id': room.id}) }}">
+        <a href="{{ path('room_show', {'username': room.userslug,'id': room.id}) }}">
             <div class="image" >
                 <div style="background-image: url('{{ asset(room.Image) }}'); background-size: cover; background-position: center;"></div>
             </div>
@@ -25,9 +25,11 @@
         </a>
         {% if home %}
         <div class="made cl-effect-6" style="color:gray">
-            <i>Room by <a href="/{{room.userId}}/rooms">{{ room.username }}</a></i>
+            <i>Room by <a href="/{{ room.userslug }}/rooms">{{ room.username }}</a></i>
         </div>
         {% endif %}         
+
+        
 
     </div>            
 </div>

@@ -16,6 +16,7 @@ use App\Model\CronManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use App\Model\Scraper;
+use App\Repository\UserRepository;
 
 /**
  * @Route("/")
@@ -24,39 +25,27 @@ class RoomController extends AbstractController
 {
 
     /**
-     * @Route("/room", name="room_index", methods={"GET"})
+     * @Route("/{username}/rooms", name="user_rooms", methods={"GET"})
      */
-    public function index(RoomRepository $roomRepository): Response
+    public function userRooms(String $username, RoomRepository $roomRepository, UserRepository $userRepository): Response
     {
+        $userRoom = $userRepository->findByUsername($username);
         $user = $this->getUser();
-               
 
-        if($user){
-            return $this->render('room/index.html.twig', [
-                'rooms' => $roomRepository->findByUserField($user->getId(), 'false'),
-                'home' => false,
-                'user_name' => $user->getName(),
-            ]);
-        } else {
-            return $this->redirectToRoute('app_login');
+        $owner = false;
+        
+        if ($user && $user->getId() == $userRoom->getId()) {
+            $owner = true;
         }
+        
+        
+        return $this->render('room/index.html.twig', [
+            'rooms' => $roomRepository->findByUserField($userRoom->getId(), 'true'),
+            'home' => false,
+            'user_name' => $userRoom->getName(),
+            'owner' => $owner,
+        ]);
     }
-
-    /**
-     * @Route("/{id}/rooms", name="user_rooms", methods={"GET"})
-     */
-    public function userRooms(User $userRoom, RoomRepository $roomRepository): Response
-    {
-            $user = $this->getUser();
-            $owner = false;
-              
-            
-            return $this->render('room/index.html.twig', [
-                'rooms' => $roomRepository->findByUserField($userRoom->getId(), 'true'),
-                'home' => false,
-                'user_name' => $userRoom->getName(),
-            ]);
-        }
 
     /**
      * @Route("/new", name="room_new", methods={"GET","POST"})
@@ -98,12 +87,13 @@ class RoomController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="room_show", methods={"GET"})
+     * @Route("/{username}/rooms/{id}", name="room_show", methods={"GET"})
      */
-    public function show(Room $room): Response
+    public function show(String $username, Room $room, UserRepository $userRepository): Response
     {
         $user = $this->getUser();
         $owner = false;
+        $userRoom = $userRepository->findByUsername($username);
         
         if ($user && $user->getId() == $room->getUserId()) {
             $owner = true;
@@ -123,6 +113,7 @@ class RoomController extends AbstractController
         return $this->render('room/show.html.twig', [
             'room' => $room,
             'owner' => $owner,
+            'user' => $userRoom,
         ]);
     }
 

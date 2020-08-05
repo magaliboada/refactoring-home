@@ -19,7 +19,7 @@
     </div>
 </div>
 <div class="content container">
-    
+    {% if home %}
      <div class="container row room-filters">
         <div class="wrapper typo">Show 
             <div class="list"><span class="placeholder" style="opacity: 1;">All Room Types</span>
@@ -40,40 +40,12 @@
             </div>            
         </div>
     </div>
-     
+     {% endif %}
     <div class="rooms row">
-        {% for room in rooms %}
-        <div class="col-sm-12 col-md-12 col-lg-6">          
-            
-            <div class="room panel shadow">
-                <a href="{{ path('room_show', {'id': room.id}) }}">
-                    <div class="image" >
-                        <div style="background-image: url('{{ asset(room.Image) }}'); background-size: cover; background-position: center;"></div>
-                    </div>
-                    
-                    <div class="title">
-                        <h2>{{ room.Name }}</h2>
-                    </div>                    
-                    
-                    <div class="info">
-                        {% if room.Height %}
-                        <span class="measure"><div><b>Height:</b> {{ room.Height }}</div> </span>
-                        {% endif %}
-                        {% if room.Depth %}
-                        <span class="measure"><div><b>Depth:</b> {{ room.Depth }}</div> </span>
-                        {% endif %}
-                        {% if room.Width %}
-                        <span class="measure"><div><b>Width:</b> {{ room.Width }}</div> </span>
-                        {% endif %}
-                    </div>                 
-                </a>
-                {% if home %}
-                <div class="made cl-effect-6" style="color:gray">
-                    <i>Room by <a href="/{{room.userId}}/rooms">{{ room.username }}</a></i>
-                </div>
-                {% endif %}          
-            </div>            
-        </div>
+        {% if rooms %}
+
+        {% include '/room/room-item.html.twig' with {'rooms': rooms, 'home' : home} only %}
+
         {% else %}
         <div>
             <div class="no-results">
@@ -83,7 +55,7 @@
                 
             </div>
         </div>
-        {% endfor %}
+        {% endif %}
     </div>
 </div>
 

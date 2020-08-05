@@ -982,6 +982,7 @@ div#item-list {
             .list__ul {
                 background-color: #ffffffde;
                 max-height: 400px;
+                min-width: 250px;
                 overflow-y: scroll;
                 padding: 5px !important;
                 padding-left: 25px !important;

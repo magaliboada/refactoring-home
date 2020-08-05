@@ -79,7 +79,8 @@ class RoomController extends AbstractController
             
             $room = $this->handleImage($imageName, $room);  
             $room->setUserId($user->getId());
-            
+            $room->setPublic(false);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($room);
             $entityManager->flush();

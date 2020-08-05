@@ -19,23 +19,6 @@ class RoomRepository extends ServiceEntityRepository
         parent::__construct($registry, Room::class);
     }
 
-    // /**
-    //  * @return Room[] Returns an array of Room objects
-    //  */
-    
-    // public function findByUserField($user_id)
-    // {
-    //     return $this->createQueryBuilder('r')
-    //         ->andWhere('r.userId = :user_id')
-    //         ->setParameter('user_id', $user_id)
-    //         ->orderBy('r.id', 'ASC')
-    //         // ->setMaxResults(10)
-    //         ->getQuery()
-    //         ->getResult()
-    //     ;
-
-        
-    // }
 
     public function findByUserField($user_id, $public)
     {
@@ -81,28 +64,20 @@ class RoomRepository extends ServiceEntityRepository
 
     public function findByType($type)
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.Name = :name')
-            ->setParameter('name', $type)
-            ->orderBy('r.id', 'ASC')
-            // ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $query = $this->createQueryBuilder('r')
+        ->andWhere('r.Public = :public')
+        ->setParameter('public', true);     
+
+        if (strpos($type, 'Types') == false) {
+            $query->andWhere('r.Name = :name')
+            ->setParameter('name', $type);
+        }
+
+        return $query
+        ->orderBy('RAND()')
+        ->getQuery()
+        ->getResult();
     }
 
     
-    
-
-    /*
-    publir funrtion findOneBySomeField($value): ?Room
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

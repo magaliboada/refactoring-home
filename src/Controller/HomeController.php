@@ -41,21 +41,16 @@ class HomeController extends AbstractController
     public function roomFilter(Request $request, RoomRepository $roomRepository, UserRepository $userRepository) : JsonResponse
     {
         $rooms = $roomRepository->findByType($request->request->get('type'));
-        // foreach ($rooms as &$room) {
-        //     $userRoom = $userRepository->find($room->getUserId());
-        //     $room->username = $userRoom->getName();
-        // }
+        foreach ($rooms as &$room) {
+            $userRoom = $userRepository->find($room->getUserId());
+            $room->username = $userRoom->getName();
+        }
 
-        // $rooms = json_encode($rooms);
+        $html = $this->renderView('room/room-item.html.twig', [
+            'rooms' => $rooms,
+            'home' => true,
+        ]);
 
-
-
-        return new JsonResponse( $rooms);
-        
-
-        // return $this->render('room/index.html.twig', [
-        //     'rooms' => $roomRepository->findByPublic(),
-        //     'home' => true,
-        // ]);
+        return new JsonResponse(strval ($html));        
     }
 }

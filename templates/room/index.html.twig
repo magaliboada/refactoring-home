@@ -50,22 +50,17 @@
 
     <div class="rooms row">
         {% for room in rooms %}
-        <div class="col-sm-12 col-md-12 col-lg-6">
-            
+        <div class="col-sm-12 col-md-12 col-lg-6">          
+
                 <div class="room panel shadow">
                     <a href="{{ path('room_show', {'id': room.id}) }}">
                     <div class="image" >
-                        
-                            <div style="background-image: url('{{ asset(room.Image) }}'); background-size: cover; background-position: center;"></div>
-                        
+                        <div style="background-image: url('{{ asset(room.Image) }}'); background-size: cover; background-position: center;"></div>
                     </div>
 
                     <div class="title">
                         <h2>{{ room.Name }}</h2>
-                    </div>
-                    
-              
-                    
+                    </div>                    
                     
                     <div class="info">
                         {% if room.Height %}
@@ -77,20 +72,14 @@
                         {% if room.Width %}
                         <span class="measure"><div><b>Width:</b> {{ room.Width }}</div> </span>
                         {% endif %}
-                        
-                        
-                    </div>       
-          
+                    </div>                 
                 </a>
                     {% if home %}
                     <div class="made cl-effect-6" style="color:gray">
                         <i>Room by <a href="/{{room.userId}}/rooms">{{ room.username }}</a></i>
                     </div>
-                    {% endif %}
-                    
-                    
-                </div>
-            
+                    {% endif %}          
+                </div>            
         </div>
         {% else %}
         <div>
@@ -226,6 +215,7 @@ li[i].addEventListener( 'click', function(){  _select_option(this.getAttribute('
         success: function (data)
         {
             console.log(data);
+            $('.rooms').html(data);
         }
     });
  });

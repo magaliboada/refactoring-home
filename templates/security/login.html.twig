@@ -5,9 +5,7 @@
 {% block body %}
 <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
 <form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    
 
     {% if app.user %}
         <div class="mb-3">
@@ -24,6 +22,12 @@
                 </h1>
             </div>
         </div>
+    </div>
+
+    <div class="container  panel panel-body">
+    {% if error %}
+        <div class="alert alert-danger" style="top:0; margin-bottom: 0px; top: 15px;">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
     </div>
 
     <div class="content container panel panel-body">

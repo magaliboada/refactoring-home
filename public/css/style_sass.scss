@@ -614,9 +614,17 @@ div#item-list {
         //   width: 8%;
         // }
         
+
         .field {
             padding-left: 90px !important;
             padding-right: 90px !important;
+        }
+
+
+        [name="registration_form"] ul li {
+            list-style: none;
+            color: #e95a68eb;
+            font-size: 1rem;
         }
         
         .field,

@@ -604,6 +604,12 @@ button.btn.btn-danger {
   padding-right: 90px !important;
 }
 
+[name="registration_form"] ul li {
+  list-style: none;
+  color: #e95a68eb;
+  font-size: 1rem;
+}
+
 .field,
 [name="registration_form"] > div {
   display: -webkit-box;

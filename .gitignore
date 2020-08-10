@@ -69,3 +69,5 @@ src/Security/EmailVerifier.php
 src/Controller/SecurityController.php
 homerefactor.com.csr
 homerefactor.com.key
+*.cache
+.env.local.php

@@ -44,7 +44,7 @@
     </div>
      {% endif %}
 
-    {% if bc_items %}
+    {% if bc_items is defined %}
     <div class="row breadcrumb">
         {% include '/breadcrumb.html.twig' with {'items': bc_items} only %}
     </div>

@@ -25,7 +25,7 @@ class RoomController extends AbstractController
 {
 
     /**
-     * @Route("/{username}", name="user_rooms", methods={"GET"})
+     * @Route("/u/{username}", name="user_rooms", methods={"GET"})
      */
     public function userRooms(String $username, RoomRepository $roomRepository, UserRepository $userRepository): Response
     {
@@ -55,7 +55,7 @@ class RoomController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="room_new", methods={"GET","POST"})
+     * @Route("/room/new", name="room_new", methods={"GET","POST"})
      */
     public function new(Request $request)
     {
@@ -94,7 +94,7 @@ class RoomController extends AbstractController
     }
 
     /**
-     * @Route("/{username}/rooms/{id}", name="room_show", methods={"GET"})
+     * @Route("/u/{username}/rooms/{id}", name="room_show", methods={"GET"})
      */
     public function show(String $username, Room $room, UserRepository $userRepository): Response
     {

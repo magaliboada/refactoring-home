@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Home Refactor | Rooms{% endblock %}
+{% block title %} Home Refactor | {{ 'Rooms'|trans({}, 'room') }}{% endblock %}
 
 {% block body %}
 
@@ -10,11 +10,11 @@
         <div class="home-header">
             {% if home %}
                 <h1>Home</h1>                            
-                    <a href="{% if app.user %}{{ path('user_rooms',{'username': user.username }) }}{% else %} {{path('app_login')}} {% endif %}">My Rooms</a>                
+                    <a href="{% if app.user %}{{ path('user_rooms',{'username': user.username }) }}{% else %} {{path('app_login')}} {% endif %}">{{ 'My Rooms'|trans({}, 'room') }} </a>                
                 {% else %}
                 <h1>{{ user_name }}</h1>     
                 {% if owner %}
-                <a href="{{ path('room_new') }}">Add Room</a>
+                <a href="{{ path('room_new') }}">{{ 'Add Room'|trans({}, 'room') }}</a>
                 {% endif %}
             {% endif %}           
         </div>
@@ -23,21 +23,22 @@
 <div class="content container">
     {% if home %}
      <div class="container row room-filters">
-        <div class="wrapper typo">Show 
-            <div class="list"><span class="placeholder" style="opacity: 1;">All Room Types</span>
+        <div class="wrapper typo">{{ 'Show'|trans({}, 'room') }}
+            <div class="list"><span class="placeholder" style="opacity: 1;">{{ 'All Room Types'|trans({}, 'room') }}</span>
                 <ul class="list__ul shadow" style="display: none;">
-                    <li><a href="">All Room Types</a></li>
-                    <li><a href="">Living Room</a></li>
-                    <li><a href="">Bedroom</a></li>
-                    <li><a href="">Bathroom</a></li>
-                    <li><a href="">Kitchen</a></li>
-                    <li><a href="">Dining Room</a></li>
-                    <li><a href="">Study</a></li>
-                    <li><a href="">Utility Room</a></li>
-                    <li><a href="">Garage</a></li>
-                    <li><a href="">Garden</a></li>
-                    <li><a href="">Balcony</a></li>
-                    <li><a href="">Garage</a></li>
+                    <li><a class="All Room Types" href="">{{ 'All Room Types'|trans({}, 'room') }}</a></li>
+                    <li><a class="Living Room"href="">{{ 'Living Room'|trans({}, 'room') }}</a></li>
+                    <li><a class="Bedroom" href="">{{ 'Bedroom'|trans({}, 'room') }}</a></li>
+                    <li><a class="Bathroom" href="">{{ 'Bathroom'|trans({}, 'room') }}</a></li>
+                    <li><a class="Kitchen" href="">{{ 'Kitchen'|trans({}, 'room') }}</a></li>
+                    <li><a class="Receiver" href="">{{ 'Receiver'|trans({}, 'room') }}</a></li>
+                    <li><a class="Dining Room" href="">{{ 'Dining Room'|trans({}, 'room') }}</a></li>
+                    <li><a class="Dressing Room" href="">{{ 'Dressing Room'|trans({}, 'room') }}</a></li>
+                    <li><a class="Study" href="">{{ 'Study'|trans({}, 'room') }}</a></li>
+                    <li><a class="Utility Room" href="">{{ 'Utility Room'|trans({}, 'room') }}</a></li>
+                    <li><a class="Garden" href="">{{ 'Garden'|trans({}, 'room') }}</a></li>
+                    <li><a class="Balcony" href="">{{ 'Balcony'|trans({}, 'room') }}</a></li>
+                    <li><a class="Garage" href="">{{ 'Garage'|trans({}, 'room') }}</a></li>
                 </ul>
             </div>            
         </div>
@@ -87,7 +88,7 @@
         $('.placeholder').text( $(this).text() ).css('opacity', '1');
         
         var room = $('.list__ul').find('li').eq(index).html();
-        room = $(room).text();
+        room = $(room).attr('class');
         
         $('.list__ul').find('li').eq(index).prependTo('.list__ul');
         $('.list__ul').toggle();   
@@ -102,7 +103,6 @@
             async: true,
             success: function (data)
             {
-                console.log(data);
                 $('.rooms').html(data); 
             }
         });
@@ -114,6 +114,7 @@
         
         // Set text on placeholder hidden element
         $('.placeholder').text(this.value);
+        
         
         // Animate select width as placeholder
         $(this).animate({width: $('.placeholder').width() + 'px' });

@@ -48,12 +48,7 @@
     <body>
         <div class="user-menu">
             <div class="home">
-              {% if app.user %}    
                 <a href="{{ path('home_index') }}">
-                  {% else %}
-                  <a href="/">
-                  {% endif %}
-
                     <img src="{{ absolute_url(asset('images/main-header.png')) }}" alt="">
                 </a>
             </div>
@@ -68,11 +63,11 @@
                
                 
                 {% if app.user %}
-                        <a href="/user/profile" class="">Account</a> 
-                    |    <a href="/user/logout">Logout</a>
+                        <a href="{{ path('profile')}}" class="">{{ 'Account'|trans({}, 'room') }}</a> 
+                    |    <a href="{{ path('app_logout')}}">{{ 'Logout'|trans({}, 'room') }}</a>
                 {% else %}
-                    <a href="/user/login" class="">Sign In</a>
-                    |    <a href="/user/register">Register</a>
+                    <a href="{{ path('app_login')}}" class="">{{ 'Sign In'|trans({}, 'room') }}</a>
+                    |    <a href="{{ path('app_register')}}">{{ 'Register'|trans({}, 'room') }}</a>
                 {% endif %}
                 
             </div>
@@ -99,9 +94,9 @@
           </div> #}
          
             <div class="info-links">
-                <div class="privacy "><a href="{{ path('legal') }}">Privacy Policy</a></div>
-                <div class="terms "><a href="{{ path('terms') }}">Terms of service</a></div>
-                <div class="contact"><a href="{{ path('contact') }}">Contact</a></div>
+                <div class="privacy "><a href="{{ path('privacy') }}">{{ 'Privacy Policy'|trans({}, 'room') }}</a></div>
+                <div class="terms "><a href="{{ path('terms') }}">{{ 'Terms of service'|trans({}, 'room') }}</a></div>
+                <div class="contact"><a href="{{ path('contact') }}">{{ 'Contact'|trans({}, 'room') }}</a></div>
             </div>       
             <div class="copy col-sm-12">© Magalí Boada 2020</div>
         </div>
@@ -112,12 +107,12 @@
             <div class="banner-retail" >
               <div class="innerBanner row">
                 <span class = "text col-sm-12">  
-                  <p><span class="hola">Hello!</span>If you continue to browse, we’ll use cookies that make our site work, improve performance, and customise your experience.</p> 
+                  <p><span class="hola">{{ 'Hello'|trans({}, 'room') }}!</span>{{ 'If you continue to browse, we’ll use cookies that make our site work, improve performance, and customise your experience.'|trans({}, 'room') }}</p> 
                       
                 </span>
                 <div class="buttons">
-                  <div class="btn btn-course button-cerrar" href="/">Agree</div>
-                  <div class="btn btn-course button-readmore" href="/">Read More</div>
+                  <div class="btn btn-course button-cerrar" href="/">{{ 'Agree'|trans({}, 'room') }}</div>
+                  <div class="btn btn-course button-readmore" href="/">{{ 'Read More'|trans({}, 'room') }}</div>
                 </div>
               </div>
             </div>

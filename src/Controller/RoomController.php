@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use App\Model\CronManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
+use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Model\Scraper;
 use App\Repository\UserRepository;
 
@@ -25,9 +25,13 @@ class RoomController extends AbstractController
 {
 
     /**
-     * @Route("/u/{username}", name="user_rooms", methods={"GET"})
+     * @Route("/{_locale}/u/{username}", 
+     * name="user_rooms", methods={"GET"},
+     * requirements={
+     *         "_locale": "en|es",
+     *     })
      */
-    public function userRooms(String $username, RoomRepository $roomRepository, UserRepository $userRepository): Response
+    public function userRooms(String $username, RoomRepository $roomRepository, UserRepository $userRepository, Request $request): Response
     {
         $userRoom = $userRepository->findByUsername($username);
         $user = $this->getUser();
@@ -44,18 +48,24 @@ class RoomController extends AbstractController
         if ($user && $user->getId() == $userRoom->getId()) {
             $owner = true;
         }
+
         
-        
+
         return $this->render('room/index.html.twig', [
             'rooms' => $rooms,
             'home' => false,
             'user_name' => $userRoom->getName(),
             'owner' => $owner,
+            // 'locale' => $event->getRequest(),
         ]);
     }
 
-    /**
-     * @Route("/room/new", name="room_new", methods={"GET","POST"})
+     /**
+     * @Route("/{_locale}/room/new", 
+     * name="room_new",  methods={"GET","POST"},
+     * requirements={
+     *         "_locale": "en|es",
+     *     })
      */
     public function new(Request $request)
     {
@@ -94,7 +104,11 @@ class RoomController extends AbstractController
     }
 
     /**
-     * @Route("/u/{username}/rooms/{id}", name="room_show", methods={"GET"})
+     * @Route("/{_locale}/u/{username}/rooms/{id}", 
+     * name="room_show",  methods={"GET"},
+     * requirements={
+     *         "_locale": "en|es",
+     *     })
      */
     public function show(String $username, Room $room, UserRepository $userRepository): Response
     {
@@ -184,7 +198,11 @@ class RoomController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="room_edit", methods={"GET","POST"})
+     * @Route("/{_locale}/u/{username}/rooms/{id}/edit", 
+     * name="room_edit",  methods={"GET", "POST"},
+     * requirements={
+     *         "_locale": "en|es",
+     *     })
      */
     public function edit(Request $request, Room $room): Response
     {
@@ -192,7 +210,7 @@ class RoomController extends AbstractController
         
         if($user == null) {
             return $this->redirectToRoute('app_login');
-        } elseif ($user->getId() != $room->getUserId()) {
+        } elseif ($user->getId() != $room->getUserId() || $user->getId() != 1) {
             return $this->redirectToRoute('home_index');
         }        
 
@@ -207,7 +225,7 @@ class RoomController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             CronManager::refreshNull($this->getDoctrine()->getManager(), $user->getId());
 
-            return $this->redirectToRoute('room_show', ['id' => $room->getId()]);
+            return $this->redirectToRoute('room_show', ['id' => $room->getId(), 'username' =>$user->getUsername()]);
         }
 
 

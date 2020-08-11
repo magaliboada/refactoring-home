@@ -62,7 +62,7 @@
         <div class="elements offset-sm-1 col-sm-10 panel edit" id="item-list" data-prototype="{{ form_widget(form.Items.vars.prototype)|e('html_attr') }}">
         <div class="working-with"><i> 
         You can group items by assigning the same name. </br>
-        Currently we only support Amazon, Maisons du Monde, Ikea and Leroy Merlin.</i></div>
+        Currently we only support Maisons du Monde, Ikea and Leroy Merlin.</i></div>
        
         {% for row in form.Items %}
             <div class="panel edit panel-warning shadow mb-4 item">
@@ -168,7 +168,7 @@ $('span.select2-selection__arrow').html('<svg xmlns="http://www.w3.org/2000/svg"
     
 
 {{ form_end(form) }}
-        <a class="btn btn-warning edit" href="{{ path('room_index') }}">Back to list</a> 
+        <a class="btn btn-warning edit" href="{{ path('home_index') }}">Back to list</a> 
 </div>
 
 {% endblock %}

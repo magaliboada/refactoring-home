@@ -12,7 +12,7 @@
         {# <img src="{{ absolute_url(asset('images/roof.jpg')) }}" class=""  alt="header"> #}
         <div class="container">
             <div class="home-header">
-                <h1> {{ room.Name }} </h1>
+                <h1> {{ room.Name|trans({}, 'room') }} </h1>
             </div>
         </div>
     </div>
@@ -26,9 +26,9 @@
             {% endif %}
 
             <div class="row">
-                <div class="measure col-sm-3"><b>Width: </b>{{ ( room.Width/100 )|number_format(2, ',', '.') }} m</div>
-                <div class="measure col-sm-3"><b>Height: </b>{{ ( room.Height/100 )|number_format(2, ',', '.') }} m</div>
-                <div class="measure col-sm-3"><b>Depth: </b>{{ ( room.Depth/100 )|number_format(2, ',', '.') }} m</div>
+                <div class="measure col-sm-3"><b>{{ 'Width'|trans({}, 'room') }}: </b>{{ ( room.Width/100 )|number_format(2, ',', '.') }} m</div>
+                <div class="measure col-sm-3"><b>{{ 'Height'|trans({}, 'room') }}: </b>{{ ( room.Height/100 )|number_format(2, ',', '.') }} m</div>
+                <div class="measure col-sm-3"><b>{{ 'Depth'|trans({}, 'room') }}: </b>{{ ( room.Depth/100 )|number_format(2, ',', '.') }} m</div>
             </div>
 
         </div>
@@ -67,14 +67,11 @@
         {% endfor %}
         <div class="action-buttons">    
             {% if owner %}
-            <a class="btn btn-info m-2" href="/{{room.id}}/edit">Edit</a> 
+            <a class="btn btn-info m-2" href="{{ path('room_edit',{'id': room.id, 'username': user.username }) }}">Edit</a> 
             {% endif %}
 
-            {% if owner %}
-            <a class="btn btn-warning m-2" href="{{ path('user_rooms',{'username': user.username }) }}">Back to list</a> 
-            {% else %}
-            <a class="btn btn-warning m-2" href="{{ path('home_index') }}">Back to list</a> 
-            {% endif %}
+     
+            <a class="btn btn-warning m-2" href="{{ app.request.headers.get('referer') }}">Back</a>
             
         </div>
         </div>

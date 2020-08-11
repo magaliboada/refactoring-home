@@ -25,8 +25,12 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
-    /**
-     * @Route("/user/register", name="app_register")
+     /**
+     * @Route("/{_locale}/user/register", 
+     * name="app_register",  methods={"GET", "POST"},
+     * requirements={
+     *         "_locale": "en|es",
+     *     })
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
@@ -71,8 +75,13 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-     /**
-     * @Route("/user/profile", name="profile", methods={"GET","POST"})
+
+    /**
+     * @Route("/{_locale}/user/profile", 
+     * name="profile",  methods={"GET", "POST"},
+     * requirements={
+     *         "_locale": "en|es",
+     *     })
      */
 
     public function profile(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response

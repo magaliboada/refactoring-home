@@ -12,15 +12,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
  * @Route("/")
  */
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home_index", methods={"GET"})
+     * @Route("/{_locale}", 
+     * name="home_index", methods={"GET"},
+     * requirements={
+     *         "_locale": "en|es",
+     *     })
      */
-    public function index(RoomRepository $roomRepository, UserRepository $userRepository): Response
+    public function index(RoomRepository $roomRepository, UserRepository $userRepository, Request $request): Response
     {
         $rooms = $roomRepository->findByPublic();
         foreach ($rooms as &$room) {
@@ -28,12 +33,12 @@ class HomeController extends AbstractController
             $room->username = $userRoom->getName();
             $room->userslug = $userRoom->getUsername();
         }
-        
 
         return $this->render('room/index.html.twig', [
             'rooms' => $roomRepository->findByPublic(),
             'home' => true,
             'user' => $this->getUser(),
+            'locale' => $request->getLocale(),
         ]);
     }
 
@@ -55,5 +60,13 @@ class HomeController extends AbstractController
         ]);
 
         return new JsonResponse(strval($html));        
+    }
+
+    public function onKernelRequest(RequestEvent $event)
+    {
+        $request = $event->getRequest();
+
+        // some logic to determine the $locale
+        $request->setLocale($locale);
     }
 }

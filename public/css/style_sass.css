@@ -236,7 +236,7 @@ body {
 }
 
 .room span.measure {
-  width: 33%;
+  padding-right: 20px;
   float: left;
 }
 
@@ -1036,7 +1036,7 @@ div#user button#user_save {
 }
 
 .room-filters .typo, .room-filters .list a {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #585858;
   text-decoration: none;
 }
@@ -1057,7 +1057,7 @@ div#user button#user_save {
 .room-filters .wrapper {
   padding-top: 0px;
   height: 2vh;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 .room-filters .list__ul {

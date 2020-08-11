@@ -268,7 +268,7 @@ body {
     }
     
     span.measure {
-        width: 33%;
+        padding-right: 20px;
         float: left;
     }
     
@@ -1021,7 +1021,7 @@ div#item-list {
             body {}
             
             .typo {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
                 color: #585858;
                 text-decoration: none;
                 option {
@@ -1041,7 +1041,7 @@ div#item-list {
             .wrapper {
                 padding-top: 0px;
                 height: 2vh;
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
             
             .list__ul {

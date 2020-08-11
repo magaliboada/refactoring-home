@@ -38,7 +38,6 @@ class HomeController extends AbstractController
             'rooms' => $roomRepository->findByPublic(),
             'home' => true,
             'user' => $this->getUser(),
-            'locale' => $request->getLocale(),
         ]);
     }
 
@@ -54,7 +53,10 @@ class HomeController extends AbstractController
             $room->userslug = $userRoom->getUsername();
         }
 
+        $locale = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+
         $html = $this->renderView('room/room-item.html.twig', [
+            'locale' => $locale,
             'rooms' => $rooms,
             'home' => true,
         ]);
@@ -62,11 +64,4 @@ class HomeController extends AbstractController
         return new JsonResponse(strval($html));        
     }
 
-    public function onKernelRequest(RequestEvent $event)
-    {
-        $request = $event->getRequest();
-
-        // some logic to determine the $locale
-        $request->setLocale($locale);
-    }
 }

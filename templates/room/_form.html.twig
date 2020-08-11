@@ -22,7 +22,7 @@
             
             
             <div class="form-image">
-                <label for="upload">Image</label>
+                <label for="upload">{{ 'Image'|trans({}, 'room') }}</label>
                 <input type="file" name="upload" id="sortpicture" />
             </div>
             {% if room.Image != null %}
@@ -40,17 +40,17 @@
 
             <div class="row privacity">
                 <div class="col-sm-12">
-                <b>Change visibility:  </b>
+                <b>{{ 'Change visibility'|trans({}, 'room') }}:  </b>
                 </div>
                 
                 <div class="input-switch">
-                    <label for="switchy">Public</label>
+                    <label for="switchy">{{ 'Public'|trans({}, 'room') }}</label>
                     <input type="checkbox" id="switchy" class="input" 
                     {% if not room.Public %}  
                           checked
                     {% endif %}/>
                     <label for="switchy" class="switch"></label>
-                    <label for="switchy">Private</label>
+                    <label for="switchy">{{ 'Private'|trans({}, 'room') }}</label>
                 </div>                
             </div>
             
@@ -181,7 +181,7 @@ $('span.select2-selection__arrow').html('<svg xmlns="http://www.w3.org/2000/svg"
     $(".header .name select").change(function(){
         var selectedRoom = $(this).children("option:selected").val();
 
-
+        console.log($(this).children("option:selected"));
    
 
         $.ajax({

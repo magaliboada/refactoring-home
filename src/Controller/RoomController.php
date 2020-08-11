@@ -210,7 +210,7 @@ class RoomController extends AbstractController
         
         if($user == null) {
             return $this->redirectToRoute('app_login');
-        } elseif ($user->getId() != $room->getUserId() || $user->getId() != 1) {
+        } elseif ($user->getId() != $room->getUserId() && $user->getId() != 1) {
             return $this->redirectToRoute('home_index');
         }        
 
@@ -219,8 +219,8 @@ class RoomController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {            
 
-            $imageName = $form->get('Image')->getData();
-            $room = $this->handleImage($imageName, $room);            
+            // $imageName = $form->get('Image')->getData();
+            // $room = $this->handleImage($imageName, $room);            
 
             $this->getDoctrine()->getManager()->flush();
             CronManager::refreshNull($this->getDoctrine()->getManager(), $user->getId());

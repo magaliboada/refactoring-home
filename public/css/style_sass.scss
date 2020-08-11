@@ -1022,10 +1022,18 @@ div#item-list {
             
             .typo {
                 font-size: 1.4rem;
+
+                @include respond-below(sm) {
+                    font-size: 1.2rem;
+                }
+                
                 color: #585858;
                 text-decoration: none;
                 option {
-                    font-size: 30px;
+                    font-size: 1.4rem;
+                    @include respond-below(sm) {
+                        font-size: 1.2rem;
+                    }
                 }  
             }
             
@@ -1042,6 +1050,9 @@ div#item-list {
                 padding-top: 0px;
                 height: 2vh;
                 font-size: 1.4rem;
+                @include respond-below(sm) {
+                    font-size: 1.2rem;
+                }
             }
             
             .list__ul {

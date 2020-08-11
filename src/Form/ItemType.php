@@ -17,7 +17,9 @@ class ItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Name', TextType::class)
+            ->add('Name', TextType::class, [
+                'translation_domain' => 'room',
+            ])
             // ->add('Image', FileType::class, [
             //     'label' => 'Image',
 
@@ -48,6 +50,7 @@ class ItemType extends AbstractType
             ->add('Link', TextType::class, [
                 'required' => true,
                 'attr' => ['class' => 'item-link'],
+                'translation_domain' => 'room',
             ])
         ;
     }

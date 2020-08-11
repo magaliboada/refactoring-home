@@ -67,11 +67,11 @@
         {% endfor %}
         <div class="action-buttons">    
             {% if owner %}
-            <a class="btn btn-info m-2" href="{{ path('room_edit',{'id': room.id, 'username': user.username }) }}">Edit</a> 
+            <a class="btn btn-info m-2" href="{{ path('room_edit',{'id': room.id, 'username': user.username }) }}">{{ 'Edit'|trans({}, 'room') }}</a> 
             {% endif %}
 
      
-            <a class="btn btn-warning m-2" href="{{ app.request.headers.get('referer') }}">Back</a>
+            <a class="btn btn-warning m-2" href="{{ app.request.headers.get('referer') }}">{{ 'Back'|trans({}, 'room') }}</a>
             
         </div>
         </div>

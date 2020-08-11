@@ -53,8 +53,11 @@
 
     <div class="rooms row">
         {% if rooms %}
+            {% if locale is not defined %}
+                {% set locale =  app.request.locale %}
+            {% endif %}
 
-        {% include '/room/room-item.html.twig' with {'rooms': rooms, 'home' : home} only %}
+            {% include '/room/room-item.html.twig' with {'rooms': rooms, 'home' : home, 'locale': locale} only %}
 
         {% else %}
         <div>

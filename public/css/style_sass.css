@@ -1041,8 +1041,20 @@ div#user button#user_save {
   text-decoration: none;
 }
 
+@media (max-width: 767px) {
+  .room-filters .typo, .room-filters .list a {
+    font-size: 1.2rem;
+  }
+}
+
 .room-filters .typo option, .room-filters .list a option {
-  font-size: 30px;
+  font-size: 1.4rem;
+}
+
+@media (max-width: 767px) {
+  .room-filters .typo option, .room-filters .list a option {
+    font-size: 1.2rem;
+  }
 }
 
 .room-filters .transition {
@@ -1058,6 +1070,12 @@ div#user button#user_save {
   padding-top: 0px;
   height: 2vh;
   font-size: 1.4rem;
+}
+
+@media (max-width: 767px) {
+  .room-filters .wrapper {
+    font-size: 1.2rem;
+  }
 }
 
 .room-filters .list__ul {

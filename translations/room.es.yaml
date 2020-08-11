@@ -29,7 +29,14 @@ Register: Registrarse
 Privacy Policy: Política de Privacidad
 Terms of service: Términos y Condiciones
 Contact: Contacto
+Profile: Perfil
+Delete Account: Borrar Cuenta
 
+Name: Nombre
+Email: Correo
+Password: Contraseña
+Repeat Password: Repetir Contraseña
+If you delete your account, all your data will be lost. Are you sure you want to proceed?: Si borra su cuenta, todos sus datos se perderán. ¿Estás seguro de que desea continuar?
 
 Agree: Aceptar
 Read More: Leer más
@@ -40,6 +47,16 @@ Room by: Creado por
 Height: Altura
 Depth: Profundidad
 Width: Ancho
+Change visibility: Cambiar privacidad
+Public: Público
+Private: Privado
+Are you sure you want to delete this room?: Seguro que quieres borrar esta estancia?
+Back: Volver
+Edit: Editar
+Image: Imagen
+Save: Guardar
+Delete: Borrar
+
 
 
 # symfony:

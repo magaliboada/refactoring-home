@@ -1,0 +1,71 @@
+
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %} Home Refactor | 404 Not Found{% endblock %}
+
+{% block body %}
+<script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+<script src="{{ asset('js/check-form.js') }}"></script>
+<div class="header">
+    {# <img src="{{ absolute_url(asset('images/roof.jpg')) }}" class="responsive"  alt="header"> #}
+    <div class="container">
+        <div class="home-header">
+            <h1>404 Not Found</h1>           
+        </div>
+    </div>
+</div>
+
+<div class="content container contact">
+<section class="mb-4">
+
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5 intro" style="font-size: 1.4rem; color: gray;">Sorry, an error has occured, Requested page not found.</p>
+
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-12 mb-md-0 mb-5">
+
+            <img src="{{ absolute_url(asset('images/404-rabbit.png')) }}" alt="">
+      
+            <div class="error-actions">
+                    <a href="{{ path('home_index') }}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-home"></span>
+                        Take Me Home </a><a href="{{ path('contact') }}" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+            </div>
+        </div>
+        <!--Grid column-->
+
+
+
+    </div>
+
+
+</section>
+</div>
+<!--Section: Contact v.2-->
+
+
+<style>
+
+.error-actions {
+    display: flex;
+    justify-content: center;
+}
+
+
+.error-actions a {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.content img {
+    opacity: 0.7;
+    margin-top: -30px;
+    margin-bottom: 34px;
+}
+</style>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+Show: Mostrar
+Add Room: Añadir Estancia
+Rooms: Estancias
+My Rooms: Mis Estancias
+All Room Types: Todas las Estancias
+
+
+
+
+Living Room: Sala de Estar
+Bedroom: Dormitorio
+Bathroom: Baño
+Kitchen: Cocina
+Dining Room: Comedor
+Dressing Room: Vestidor
+Receiver: Recibidor
+Study: Estudio
+Guest Room: Habitación de Invitados
+Utility Room: Lavadero
+Balcony: Balcón
+Garden: Jardín
+Garage: Garaje
+
+
+Account: Mi Cuenta
+Logout: Desconectar
+Sign In: Iniciar sesión
+Register: Registrarse
+Privacy Policy: Política de Privacidad
+Terms of service: Términos y Condiciones
+Contact: Contacto
+Profile: Perfil
+Delete Account: Borrar Cuenta
+
+Name: Nombre
+Email: Correo
+Password: Contraseña
+Repeat Password: Repetir Contraseña
+If you delete your account, all your data will be lost. Are you sure you want to proceed?: Si borra su cuenta, todos sus datos se perderán. ¿Estás seguro de que desea continuar?
+
+Agree: Aceptar
+Read More: Leer más
+If you continue to browse, we’ll use cookies that make our site work, improve performance, and customise your experience.: Si continúa navegando, utilizaremos cookies que hacen que nuestra página funcione, mejoran el rendimiento y personalizan su experiencia.
+Hello: Hola
+
+Room by: Creado por
+Height: Altura
+Depth: Profundidad
+Width: Ancho
+Change visibility: Cambiar privacidad
+Public: Público
+Private: Privado
+Are you sure you want to delete this room?: Seguro que quieres borrar esta estancia?
+Back: Volver
+Edit: Editar
+Image: Imagen
+Save: Guardar
+Delete: Borrar
+en: es
+
+
+
+# symfony:
+#     is:
+#         # id is symfony.is.great
+#         great: Symfony is great
+#         # id is symfony.is.amazing
+#         amazing: Symfony is amazing
+#     has:
+#         # id is symfony.has.bundles
+#         bundles: Symfony has bundles
+# user:
+#     # id is user.login
+#     login: Login

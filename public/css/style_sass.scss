@@ -268,7 +268,7 @@ body {
     }
     
     span.measure {
-        width: 33%;
+        padding-right: 20px;
         float: left;
     }
     
@@ -614,9 +614,17 @@ div#item-list {
         //   width: 8%;
         // }
         
+
         .field {
             padding-left: 90px !important;
             padding-right: 90px !important;
+        }
+
+
+        [name="registration_form"] ul li {
+            list-style: none;
+            color: #e95a68eb;
+            font-size: 1rem;
         }
         
         .field,
@@ -1013,11 +1021,19 @@ div#item-list {
             body {}
             
             .typo {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
+
+                @include respond-below(sm) {
+                    font-size: 1.2rem;
+                }
+                
                 color: #585858;
                 text-decoration: none;
                 option {
-                    font-size: 30px;
+                    font-size: 1.4rem;
+                    @include respond-below(sm) {
+                        font-size: 1.2rem;
+                    }
                 }  
             }
             
@@ -1033,7 +1049,10 @@ div#item-list {
             .wrapper {
                 padding-top: 0px;
                 height: 2vh;
-                font-size: 1.5rem;
+                font-size: 1.4rem;
+                @include respond-below(sm) {
+                    font-size: 1.2rem;
+                }
             }
             
             .list__ul {

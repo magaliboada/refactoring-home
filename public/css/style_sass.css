@@ -236,7 +236,7 @@ body {
 }
 
 .room span.measure {
-  width: 33%;
+  padding-right: 20px;
   float: left;
 }
 
@@ -602,6 +602,12 @@ button.btn.btn-danger {
 .field {
   padding-left: 90px !important;
   padding-right: 90px !important;
+}
+
+[name="registration_form"] ul li {
+  list-style: none;
+  color: #e95a68eb;
+  font-size: 1rem;
 }
 
 .field,
@@ -1030,13 +1036,25 @@ div#user button#user_save {
 }
 
 .room-filters .typo, .room-filters .list a {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #585858;
   text-decoration: none;
 }
 
+@media (max-width: 767px) {
+  .room-filters .typo, .room-filters .list a {
+    font-size: 1.2rem;
+  }
+}
+
 .room-filters .typo option, .room-filters .list a option {
-  font-size: 30px;
+  font-size: 1.4rem;
+}
+
+@media (max-width: 767px) {
+  .room-filters .typo option, .room-filters .list a option {
+    font-size: 1.2rem;
+  }
 }
 
 .room-filters .transition {
@@ -1051,7 +1069,13 @@ div#user button#user_save {
 .room-filters .wrapper {
   padding-top: 0px;
   height: 2vh;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+}
+
+@media (max-width: 767px) {
+  .room-filters .wrapper {
+    font-size: 1.2rem;
+  }
 }
 
 .room-filters .list__ul {

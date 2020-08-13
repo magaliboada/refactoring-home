@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a5d2198516af3b52bf9f460ea4263f47",
+    "content-hash": "5732641ab480d1cedc0c2aec793cc33e",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -8395,12 +8395,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "2765c3fceb1e7120cb20555155063d0d1a05ed3b"
+                "reference": "942013b919d6d5221482c31ae4f48ab087e5d04b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/2765c3fceb1e7120cb20555155063d0d1a05ed3b",
-                "reference": "2765c3fceb1e7120cb20555155063d0d1a05ed3b",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/942013b919d6d5221482c31ae4f48ab087e5d04b",
+                "reference": "942013b919d6d5221482c31ae4f48ab087e5d04b",
                 "shasum": ""
             },
             "require": {
@@ -8452,7 +8452,21 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2020-07-15T12:47:34+00:00"
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-07-23T09:29:40+00:00"
         },
         {
             "name": "symfony/profiler-pack",
@@ -8480,20 +8494,6 @@
                 "MIT"
             ],
             "description": "A pack for the Symfony web profiler",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-02-11T16:20:33+00:00"
         },
         {

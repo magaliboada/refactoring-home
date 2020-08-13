@@ -61,6 +61,7 @@
     <table id="table_id2" class="display">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Name</th>
                 <th>User Id</th>          
                 <th>Items</th>     
@@ -70,6 +71,7 @@
         <tbody>
             {% for room in rooms %}
             <tr>
+                <td>{{ room.id }}</td>
                 <td>{{ room.name }}</td>
                 <td>{{ room.userId }}</td> 
                 <td>    

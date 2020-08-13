@@ -1,4 +1,5 @@
 {% for room in rooms %}
+
 <div class="col-sm-12 col-md-12 col-lg-6">          
     
     <div class="room panel shadow">
@@ -8,24 +9,24 @@
             </div>
             
             <div class="title">
-                <h2>{{ room.Name }}</h2>
+                <h2>{{ room.Name|trans({}, "room", locale) }}</h2>
             </div>                    
             
             <div class="info">
                 {% if room.Height %}
-                <span class="measure"><div><b>Height:</b> {{ room.Height }}</div> </span>
+                <span class="measure"><div><b>{{ 'Height'|trans({}, 'room', locale) }}:</b> {{ room.Height }}</div> </span>
                 {% endif %}
                 {% if room.Depth %}
-                <span class="measure"><div><b>Depth:</b> {{ room.Depth }}</div> </span>
+                <span class="measure"><div><b>{{ 'Depth'|trans({}, 'room', locale) }}:</b> {{ room.Depth }}</div> </span>
                 {% endif %}
                 {% if room.Width %}
-                <span class="measure"><div><b>Width:</b> {{ room.Width }}</div> </span>
+                <span class="measure"><div><b>{{ 'Width'|trans({}, 'room', locale) }}:</b> {{ room.Width }}</div> </span>
                 {% endif %}
             </div>                 
         </a>
         {% if home %}
         <div class="made cl-effect-6" style="color:gray">
-            <i>Room by <a href="/{{ room.userslug }}">{{ room.username }}</a></i>
+            <i>{{ 'Room by'|trans({}, 'room', locale) }} <a href="{{ path('user_rooms', {'username': room.userslug}) }}">{{ room.username }}</a></i>
         </div>
         {% endif %}         
 

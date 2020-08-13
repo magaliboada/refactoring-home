@@ -5,9 +5,11 @@
 {% block body %}
 <div class="edit-form existing">
         {{ include('room/_form.html.twig', {'button_label': 'Update'}) }}
-        <a class="btn btn-warning edit" href="{{ path('room_index') }}">Back to list</a> 
+        <a class="btn btn-warning edit" href="{{ path('home_index') }}">{{ 'Back'|trans({}, 'room') }}</a> 
         {{ include('room/_delete_form.html.twig') }}
 </div>
+
+<script>$('script + div').hide();</script>
 
 {% endblock %}
 

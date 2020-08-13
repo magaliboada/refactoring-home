@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class RoomType extends AbstractType
 {
@@ -24,22 +25,34 @@ class RoomType extends AbstractType
                     'Bedroom' => 'Bedroom',
                     'Bathroom' => 'Bathroom',
                     'Kitchen' => 'Kitchen',
-                    'Dining room' => 'Dining room',
+                    'Dining Room' => 'Dining Room',
+                    'Dressing Room' => 'Dressing Room',
+                    'Receiver' => 'Receiver',
                     'Study' => 'Study',
                     'Guest Room' => 'Guest Room',
-                    'Utily Room' => 'Utily Room',                    
-                    'Garden' => 'Garden',
+                    'Utily Room' => 'Utily Room',
                     'Balcony' => 'Balcony',
-                    'Garage' => 'Garage',            
+                    'Garden' => 'Garden',
+                    'Garage' => 'Garage',           
                 ],
 
                 'attr' => [
                     'class' => 'select2',
                 ],
+                'choice_translation_domain' => 'room',
             ])
-            ->add('Height')
-            ->add('Depth')
-            ->add('Width')
+            ->add('Height', TextType::class, [
+                'translation_domain' => 'room',
+                'required' => false,
+            ])
+            ->add('Depth', TextType::class, [
+                'translation_domain' => 'room',
+                'required' => false,
+            ])
+            ->add('Width', TextType::class, [
+                'translation_domain' => 'room',
+                'required' => false,
+            ])
             ->add('Image', FileType::class, [
                 'label' => 'Image',
 
@@ -49,6 +62,7 @@ class RoomType extends AbstractType
                 // make it optional so you don't have to re-upload the PDF file
                 // every time you edit the Product details
                 'required' => false,
+                'translation_domain' => 'room',
 
                 // unmapped fields can't define their validation using annotations
                 // in the associated entity, so you can use the PHP constraint classes
@@ -61,6 +75,7 @@ class RoomType extends AbstractType
                         'mimeTypesMessage' => 'Please upload a valid Image',
                     ])
                 ],
+                
             ])
             ->add('Items', CollectionType::class, array(
                 'entry_type'   => ItemType::class,
@@ -74,6 +89,7 @@ class RoomType extends AbstractType
             ))
             ->add('save', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success save-room'],
+                'translation_domain' => 'room',
             ])
             ;
     }

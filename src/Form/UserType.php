@@ -22,10 +22,12 @@ class UserType extends AbstractType
     {
         $builder
             ->add('Name', TextType::class, [
-                'attr' => ['class' => 'field']
+                'attr' => ['class' => 'field'],
+                'translation_domain' => 'room',
             ])
             ->add('email', TextType::class, [
-                'attr' => ['class' => 'field']
+                'attr' => ['class' => 'field'],
+                'translation_domain' => 'room',
             ])
             ->add('plainPassword', RepeatedType::class, [             
                 'type' => PasswordType::class,
@@ -49,9 +51,11 @@ class UserType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+                'translation_domain' => 'room',
             ])
             ->add('save', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success save-room'],
+                'translation_domain' => 'room',
             ])
         ;
     }

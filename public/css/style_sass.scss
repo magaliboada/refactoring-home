@@ -162,7 +162,7 @@ body {
 
     .made
     {         
-        padding-top: 30px;
+        padding-top: 15px;
 
         a {
             position: relative;
@@ -182,9 +182,12 @@ body {
         outline: none;
     }
 
+    .item-room.row {
+        min-height: 346px;
+    }
+
     .cl-effect-6 a {
         margin: 0px 7px;
-        padding: 2px 5px;
     }
     
     .cl-effect-6 a::before {

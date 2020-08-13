@@ -135,7 +135,7 @@ body {
 }
 
 .room .made {
-  padding-top: 30px;
+  padding-top: 15px;
 }
 
 .room .made a {
@@ -155,9 +155,12 @@ body {
   outline: none;
 }
 
+.room .item-room.row {
+  min-height: 346px;
+}
+
 .room .cl-effect-6 a {
   margin: 0px 7px;
-  padding: 2px 5px;
 }
 
 .room .cl-effect-6 a::before {

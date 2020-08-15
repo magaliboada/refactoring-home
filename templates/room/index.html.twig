@@ -43,6 +43,17 @@
             </div>            
         </div>
     </div>
+    {% else %}
+        <div class="container row room-filters" >
+            <div class="wrapper typo">
+                <div class="list" style="display: inline-flex;">
+                    <span class="placeholder" style="opacity: 1; border-bottom: none;"><a href="{{ path('home_index') }}">Home</a></span>
+                    <span>→</span>
+                    <span>{{ user_name }}</span>
+                </div>            
+                
+            </div>
+        </div>
      {% endif %}
 
     {% if bc_items is defined %}
@@ -128,7 +139,27 @@
     
 </script>
 
+<style>
+.list * {
+    padding-right: 5px;
+    color: gray;
+}
+.room-filters .list a:hover {
+    color: #8e8e8e;
+}
 
+.room-filters .typo, .room-filters .list a, .room-filters .list span {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 767px){
+    .room-filters .typo, .room-filters .list a, .room-filters .list span {
+        font-size: 0.9rem;
+        width: max-content;
+    }
+}
+
+</style>
 
 
 

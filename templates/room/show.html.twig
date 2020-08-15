@@ -21,18 +21,18 @@
 
     <div class="content container panel panel-body">
 
-    <div class="container row room-filters" >
-        <div class="wrapper typo">
-            <div class="list" style="display: inline-flex;">
-                <span class="placeholder" style="opacity: 1; border-bottom: none;"><a href="{{ path('home_index') }}">Home</a></span>
-                <span>→</span>
-                <span class="placeholder" style="opacity: 1; border-bottom: none;"><a href="{{ path('user_rooms', {'username': user.username}) }}">{{ user.Name }}</a></span>
-                <span>→</span>
-                <span>{{room.Name}}</span>
-            </div>            
-            
+        <div class="container row room-filters" >
+            <div class="wrapper typo">
+                <div class="list" style="display: inline-flex;">
+                    <span class="placeholder" style="opacity: 1; border-bottom: none;"><a href="{{ path('home_index') }}">Home</a></span>
+                    <span>→</span>
+                    <span class="placeholder" style="opacity: 1; border-bottom: none;"><a href="{{ path('user_rooms', {'username': user.username}) }}">{{ user.Name }}</a></span>
+                    <span>→</span>
+                    <span>{{room.Name}}</span>
+                </div>            
+                
+            </div>
         </div>
-    </div>
         <div class="main-information">            
             {% if room.Image != null %}        
             <div class="form-preview-image">

@@ -63,7 +63,6 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 *.pdf
 .env
-src/Security/EmailVerifier.php
 homerefactor.com.csr
 homerefactor.com.key
 *.cache

@@ -14,7 +14,6 @@ use App\Repository\UserRepository;
 use App\Form\UserType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use App\Service\MailerService;
 use Psr\Container\ContainerInterface;
 
@@ -54,7 +53,6 @@ class RegistrationController extends AbstractController
             );
 
             $user->setUsername($user->getEmail());
-
             $user->setIsVerified(false);
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -78,7 +76,7 @@ class RegistrationController extends AbstractController
                 $mailerService
             );
 
-            return $this->redirectToRoute('home_index');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -149,6 +147,7 @@ class RegistrationController extends AbstractController
             )
         ) {
             $user->setIsVerified(true);
+            $user->generateUser();
             $entityManager->persist($user);
             $entityManager->flush();
 

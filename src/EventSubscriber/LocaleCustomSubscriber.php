@@ -41,19 +41,20 @@ class LocaleCustomSubscriber implements EventSubscriberInterface
         }
 
         $language = $this->supportedLanguages[0];
-        if (null !== $acceptLanguage = $event->getRequest()->headers->get('Accept-Language')) {
-            $negotiator = new LanguageNegotiator();
-            $best       = $negotiator->getBest(
-                $event->getRequest()->headers->get('Accept-Language'),
-                $this->supportedLanguages
-            );
+        // if (null !== $acceptLanguage = $event->getRequest()->headers->get('Accept-Language')) {
+        //     $negotiator = new LanguageNegotiator();
+        //     $best       = $negotiator->getBest(
+        //         $event->getRequest()->headers->get('Accept-Language'),
+        //         $this->supportedLanguages
+        //     );
 
-            if (null !== $best) {
-                $language = $best->getType();
-            }
-        }
+        //     if (null !== $best) {
+        //         $language = $best->getType();
+        //     }
+        // }
 
-        $response = new RedirectResponse('/' . $language);
+        // $response = new RedirectResponse('/' . $language);
+        $response = new RedirectResponse('/' . 'en');
         $event->setResponse($response);
     }
 }

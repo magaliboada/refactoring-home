@@ -68,3 +68,4 @@ homerefactor.com.key
 *.cache
 .env.local.php
 config/parameters.yaml
+.htpasswd

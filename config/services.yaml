@@ -31,6 +31,7 @@ services:
         # tags: [kernel.event_subscriber]
 parameters:
     images_directory: '%kernel.project_dir%/public/images'
+    # test: 'test'
 swiftmailer:
   url: smtp://localhost:25
   spool: { type: 'memory' }
@@ -44,3 +45,5 @@ doctrine:
          dql:
              numeric_functions:
                  Rand: App\Model\Rand
+imports:
+    - { resource: parameters.yaml }

@@ -6,9 +6,11 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/doctrine-fixtures-bundle": "^3.3@dev",
         "phpmailer/phpmailer": "dev-master",
         "sensio/framework-extra-bundle": "^5.5@dev",
         "sunra/php-simple-html-dom-parser": "1.5.2",
+        "symfony/apache-pack": "dev-main",
         "symfony/asset": "5.2.*",
         "symfony/console": "5.2.*",
         "symfony/dotenv": "5.2.*",
@@ -39,8 +41,7 @@
         "symfony/yaml": "5.2.*",
         "symfonycasts/verify-email-bundle": "dev-master"
     },
-    "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.3@dev",
+    "require-dev": {        
         "symfony/debug-pack": "*",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*"
